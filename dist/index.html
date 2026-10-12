@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Thiệp cưới online của Đức và Huyền - câu chuyện, album ảnh, lịch trình và địa điểm buổi tiệc."
+    />
+    <title>Đức & Huyền | Wedding Invitation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar" aria-label="Điều hướng thiệp cưới">
+      <div class="topbar__brand">
+        <a class="brand" href="#home">Đ & H</a>
+        <button
+          class="music-toggle"
+          id="musicToggle"
+          type="button"
+          aria-label="Phát nhạc nền thiệp cưới"
+          aria-pressed="false"
+        >
+          <span class="music-toggle__disc" aria-hidden="true">
+            <span class="music-toggle__mic"></span>
+          </span>
+        </button>
+      </div>
+      <nav>
+        <a href="#families">Gia đình</a>
+        <a href="#invitation">Lời mời</a>
+        <a href="#schedule">Lịch cưới</a>
+        <a href="#album">Album</a>
+        <a href="#venue">Địa điểm</a>
+        <button class="nav-button" type="button" data-open-qr>QR</button>
+      </nav>
+    </header>
+
+    <main id="home">
+      <section class="hero" aria-labelledby="hero-title">
+        <img
+          class="hero__image"
+          src="assets/wedding-hero.png"
+          alt="Ảnh bìa thiệp cưới của Đức và Huyền"
+        />
+        <div class="hero__veil"></div>
+        <div class="hero__content">
+          <p class="eyebrow">Nhà có hỷ</p>
+          <h1 id="hero-title">Đức & Huyền</h1>
+          <p class="hero__date">Chủ nhật, 20 tháng 12 năm 2026</p>
+          <p class="hero__copy">
+            Trân trọng kính mời bạn đến dự lễ thành hôn và chung vui cùng hai
+            gia đình chúng tôi trong ngày đặc biệt của Đức và Huyền.
+          </p>
+          <div class="hero__actions" aria-label="Hành động chính">
+            <a class="button button--primary" href="#invitation">Xem lời mời</a>
+            <button class="button button--ghost" type="button" data-open-qr>
+              Mở QR mừng cưới
+            </button>
+            <a
+              class="button button--ghost"
+              href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%C4%90%E1%BB%A9c%20%26%20Huy%E1%BB%81n%20Wedding&dates=20261220T103000/20261220T133000&details=Wedding%20ceremony%20and%20reception&location=Wedding%20Venue"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Thêm vào lịch
+            </a>
+          </div>
+        </div>
+        <aside class="countdown" aria-label="Đếm ngược đến ngày cưới">
+          <span>Còn</span>
+          <strong id="daysLeft">--</strong>
+          <span>ngày</span>
+        </aside>
+      </section>
+
+      <section class="quick-info reveal-group" aria-label="Thông tin nhanh">
+        <article class="reveal-card">
+          <span>Hôn lễ</span>
+          <strong>10:30 - 13:30</strong>
+          <p>Chủ nhật, 20.12.2026</p>
+        </article>
+        <article class="reveal-card">
+          <span>Cô dâu</span>
+          <strong>Huyền</strong>
+          <p>Út nữ trong gia đình nhà gái</p>
+        </article>
+        <article class="reveal-card">
+          <span>Chú rể</span>
+          <strong>Đức</strong>
+          <p>Trưởng nam trong gia đình nhà trai</p>
+        </article>
+      </section>
+
+      <section id="families" class="section families reveal-section">
+        <div class="section__intro reveal-card">
+          <p class="eyebrow">Hai gia đình</p>
+          <h2>Trân trọng báo tin lễ thành hôn</h2>
+          <p>
+            Gia đình hai bên hân hoan thông báo lễ thành hôn của Đức và Huyền,
+            kính mời quý khách cùng hiện diện, chúc phúc và chung vui.
+          </p>
+        </div>
+        <div class="family__grid">
+          <article class="family-card reveal-card">
+            <span>Nhà trai</span>
+            <h3>Gia đình ông bà ...</h3>
+            <p>Trân trọng kính mời quý khách tới dự lễ cưới của Đức.</p>
+          </article>
+          <article class="family-card family-card--bride reveal-card">
+            <span>Nhà gái</span>
+            <h3>Gia đình ông bà ...</h3>
+            <p>Trân trọng kính mời quý khách tới dự lễ cưới của Huyền.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="story" class="section story reveal-section">
+        <div class="section__intro reveal-card">
+          <p class="eyebrow">Câu chuyện</p>
+          <h2>Từ một lời thương đến ngày chung đôi</h2>
+        </div>
+        <div class="story__grid">
+          <p class="reveal-card">
+            Có những hành trình không cần thật ồn ào, chỉ cần đủ chân thành để
+            hai người muốn đi tiếp cùng nhau. Đức và Huyền đã gom những ngày
+            bình thường thành một câu chuyện rất riêng.
+          </p>
+          <p class="reveal-card">
+            Ngày cưới sẽ trọn vẹn hơn khi có sự hiện diện và lời chúc của bạn.
+            Hãy đến, cùng nâng ly, cùng chụp một tấm ảnh và lưu lại khoảnh khắc
+            thật vui với Đức và Huyền.
+          </p>
+        </div>
+      </section>
+
+      <section id="invitation" class="section invitation reveal-section">
+        <div class="section__intro reveal-card">
+          <p class="eyebrow">Thiệp mời</p>
+          <h2>Hân hạnh mời bạn đến dự buổi tiệc chung vui</h2>
+        </div>
+        <div class="invitation__grid">
+          <article class="invite-card reveal-card">
+            <p class="eyebrow">Tại nhà trai</p>
+            <h3>Lễ thành hôn</h3>
+            <p>
+              Vào lúc <strong>10:30</strong>, Chủ nhật ngày
+              <strong>20.12.2026</strong>.
+            </p>
+            <span>Gia đình nhà trai trân trọng kính mời.</span>
+          </article>
+          <article class="invite-card invite-card--bride reveal-card">
+            <p class="eyebrow">Tại nhà gái</p>
+            <h3>Lễ vu quy</h3>
+            <p>
+              Vào lúc <strong>10:30</strong>, Chủ nhật ngày
+              <strong>20.12.2026</strong>.
+            </p>
+            <span>Gia đình nhà gái trân trọng kính mời.</span>
+          </article>
+        </div>
+      </section>
+
+      <section id="album" class="section album reveal-section">
+        <div class="section__intro reveal-card">
+          <p class="eyebrow">Photo story</p>
+          <h2>Album ảnh kể lại hành trình của Đức và Huyền</h2>
+          <p>
+            Mỗi khung ảnh là một lát cắt khác nhau: có ảnh như thước phim, có
+            ảnh như postcard, có ảnh mở ra thành một khoảnh khắc thật gần.
+          </p>
+        </div>
+        <div class="album__grid" aria-label="Album ảnh cưới Đức và Huyền">
+          <figure
+            class="album__item album__item--large album__item--cover reveal-card"
+            role="button"
+            tabindex="0"
+            data-title="Ngày mọi thứ bắt đầu thật nhẹ nhàng"
+            data-caption="Khoảnh khắc mở đầu câu chuyện tình yêu của Đức và Huyền"
+          >
+            <img
+              src="https://res.cloudinary.com/dvglujyon/image/upload/v1776849624/img-welcome_fmpcl3.webp"
+              alt="Khoảnh khắc mở đầu câu chuyện tình yêu của Đức và Huyền"
+            />
+            <span class="album__hint">Xem ảnh</span>
+            <figcaption>
+              <span>01</span>
+              Ngày mọi thứ bắt đầu thật nhẹ nhàng
+            </figcaption>
+          </figure>
+          <figure
+            class="album__item album__item--polaroid reveal-card"
+            role="button"
+            tabindex="0"
+            data-title="Những lần gặp nhau và câu chuyện chưa muốn dừng"
+            data-caption="Một kỷ niệm dịu dàng trong album cưới"
+          >
+            <img
+              src="https://res.cloudinary.com/dvglujyon/image/upload/v1776849624/img-welcome_fmpcl3.webp"
+              alt="Một kỷ niệm dịu dàng trong album cưới"
+            />
+            <span class="album__hint">Xem ảnh</span>
+            <figcaption>
+              <span>02</span>
+              Những lần gặp nhau và câu chuyện chưa muốn dừng
+            </figcaption>
+          </figure>
+          <figure
+            class="album__item album__item--tall album__item--portrait reveal-card"
+            role="button"
+            tabindex="0"
+            data-title="Bình yên trong những điều rất đỗi thường ngày"
+            data-caption="Khung ảnh dọc lưu lại một khoảnh khắc thân mật"
+          >
+            <img
+              src="https://res.cloudinary.com/dvglujyon/image/upload/v1776849624/img-welcome_fmpcl3.webp"
+              alt="Khung ảnh dọc lưu lại một khoảnh khắc thân mật"
+            />
+            <span class="album__hint">Xem ảnh</span>
+            <figcaption>
+              <span>03</span>
+              Bình yên trong những điều rất đỗi thường ngày
+            </figcaption>
+          </figure>
+          <figure
+            class="album__item album__item--glass reveal-card"
+            role="button"
+            tabindex="0"
+            data-title="Một nụ cười, một lời hẹn, một đoạn đường chung"
+            data-caption="Khoảnh khắc vui vẻ của cô dâu chú rể"
+          >
+            <img
+              src="https://res.cloudinary.com/dvglujyon/image/upload/v1776849624/img-welcome_fmpcl3.webp"
+              alt="Khoảnh khắc vui vẻ của cô dâu chú rể"
+            />
+            <span class="album__hint">Xem ảnh</span>
+            <figcaption>
+              <span>04</span>
+              Một nụ cười, một lời hẹn, một đoạn đường chung
+            </figcaption>
+          </figure>
+          <figure
+            class="album__item album__item--wide album__item--film reveal-card"
+            role="button"
+            tabindex="0"
+            data-title="Những chuyến đi gom lại thành ký ức rất riêng"
+            data-caption="Khung ảnh ngang trong câu chuyện cưới của Đức và Huyền"
+          >
+            <img
+              src="https://res.cloudinary.com/dvglujyon/image/upload/v1776849624/img-welcome_fmpcl3.webp"
+              alt="Khung ảnh ngang trong câu chuyện cưới của Đức và Huyền"
+            />
+            <span class="album__hint">Xem ảnh</span>
+            <figcaption>
+              <span>05</span>
+              Những chuyến đi gom lại thành ký ức rất riêng
+            </figcaption>
+          </figure>
+          <figure
+            class="album__item album__item--tile reveal-card"
+            role="button"
+            tabindex="0"
+            data-title="Cùng nhau chọn một mái nhà, một tương lai"
+            data-caption="Ảnh minh họa cho lời hứa đồng hành"
+          >
+            <img
+              src="https://res.cloudinary.com/dvglujyon/image/upload/v1776849624/img-welcome_fmpcl3.webp"
+              alt="Ảnh minh họa cho lời hứa đồng hành"
+            />
+            <span class="album__hint">Xem ảnh</span>
+            <figcaption>
+              <span>06</span>
+              Cùng nhau chọn một mái nhà, một tương lai
+            </figcaption>
+          </figure>
+          <figure
+            class="album__item album__item--large album__item--ending reveal-card"
+            role="button"
+            tabindex="0"
+            data-title="Và hôm nay, chúng mình mời bạn đến chung vui"
+            data-caption="Khung ảnh kết lại album trước ngày cưới"
+          >
+            <img
+              src="https://res.cloudinary.com/dvglujyon/image/upload/v1776849624/img-welcome_fmpcl3.webp"
+              alt="Khung ảnh kết lại album trước ngày cưới"
+            />
+            <span class="album__hint">Xem ảnh</span>
+            <figcaption>
+              <span>07</span>
+              Và hôm nay, chúng mình mời bạn đến chung vui
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="schedule" class="section schedule reveal-section">
+        <div class="section__intro reveal-card">
+          <p class="eyebrow">Ngày cưới</p>
+          <h2>Lịch cưới và chương trình buổi tiệc</h2>
+        </div>
+        <div
+          class="wedding-calendar reveal-card"
+          aria-label="Lịch tháng 12 năm 2026"
+        >
+          <div>
+            <p>Tháng 12</p>
+            <strong>2026</strong>
+          </div>
+          <ol>
+            <li>T2</li>
+            <li>T3</li>
+            <li>T4</li>
+            <li>T5</li>
+            <li>T6</li>
+            <li>T7</li>
+            <li>CN</li>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>10</li>
+            <li>11</li>
+            <li>12</li>
+            <li>13</li>
+            <li>14</li>
+            <li>15</li>
+            <li>16</li>
+            <li>17</li>
+            <li>18</li>
+            <li>19</li>
+            <li class="is-wedding-day">20</li>
+          </ol>
+        </div>
+        <div class="timeline">
+          <article class="reveal-card">
+            <time>10:30</time>
+            <div>
+              <h3>Đón khách</h3>
+              <p>Check-in, chụp ảnh và gửi lời chúc tại bàn gallery.</p>
+            </div>
+          </article>
+          <article class="reveal-card">
+            <time>11:15</time>
+            <div>
+              <h3>Làm lễ</h3>
+              <p>Nghi thức thành hôn và khoảnh khắc trao nhẫn.</p>
+            </div>
+          </article>
+          <article class="reveal-card">
+            <time>12:00</time>
+            <div>
+              <h3>Khai tiệc</h3>
+              <p>Dùng bữa, nâng ly và chia sẻ niềm vui cùng hai gia đình.</p>
+            </div>
+          </article>
+          <article class="reveal-card">
+            <time>13:15</time>
+            <div>
+              <h3>Gửi lời cảm ơn</h3>
+              <p>Chụp ảnh lưu niệm và nhận quà cảm ơn nhỏ từ cô dâu chú rể.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="venue" class="section venue reveal-section">
+        <div class="venue__panel reveal-card">
+          <p class="eyebrow">Venue</p>
+          <h2>Hẹn gặp bạn tại buổi tiệc</h2>
+          <p>
+            Đức và Huyền rất mong được gặp bạn trong buổi tiệc thân mật này.
+            Thông tin sảnh và địa chỉ có thể cập nhật theo thông báo chính thức
+            của gia đình.
+          </p>
+          <dl>
+            <div>
+              <dt>Nhà trai</dt>
+              <dd>Gia đình ông bà ...</dd>
+            </div>
+            <div>
+              <dt>Nhà gái</dt>
+              <dd>Gia đình ông bà ...</dd>
+            </div>
+          </dl>
+          <a
+            class="button button--primary"
+            href="https://maps.google.com/?q=Wedding%20Venue"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Mở Google Maps
+          </a>
+          <button class="button button--glass" type="button" data-open-qr>
+            Mở QR mừng cưới
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Đức & Huyền</p>
+      <span>Thank you for being part of our day.</span>
+    </footer>
+
+    <div class="mobile-actions" aria-label="Hành động nhanh trên di động">
+      <a href="#invitation">Lời mời</a>
+      <a href="#album">Album</a>
+      <button type="button" data-open-qr>QR</button>
+    </div>
+
+    <div
+      class="invite-gate"
+      id="inviteGate"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="inviteGateTitle"
+    >
+      <div class="invite-gate__card">
+        <img
+          src="assets/wedding-hero.png"
+          alt="Ảnh bìa thiệp cưới Đức và Huyền"
+        />
+        <div class="invite-gate__content">
+          <p class="eyebrow">Wedding invitation</p>
+          <h2 id="inviteGateTitle">Đức & Huyền</h2>
+          <p>
+            Trân trọng mời bạn mở thiệp và cùng xem câu chuyện của chúng mình.
+          </p>
+          <button class="button button--primary" id="openInvite" type="button">
+            Mở thiệp
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="photo-modal"
+      id="photoModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="photoModalTitle"
+      hidden
+    >
+      <button class="photo-modal__close" id="closePhotoModal" type="button">
+        Đóng
+      </button>
+      <figure class="photo-modal__frame">
+        <img id="photoModalImage" src="" alt="" />
+        <figcaption>
+          <h3 id="photoModalTitle"></h3>
+          <p id="photoModalCaption"></p>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div
+      class="qr-modal"
+      id="qrModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="qrModalTitle"
+      hidden
+    >
+      <button class="photo-modal__close" id="closeQrModal" type="button">
+        Đóng
+      </button>
+      <div class="qr-modal__card">
+        <div class="qr-modal__code">
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?size=420x420&margin=18&data=%C4%90%E1%BB%A9c%20%26%20Huy%E1%BB%81n%20Wedding%20Gift"
+            alt="Mã QR mừng cưới Đức và Huyền"
+          />
+        </div>
+        <div class="qr-modal__content">
+          <p class="eyebrow">QR mừng cưới</p>
+          <h2 id="qrModalTitle">Đức & Huyền</h2>
+          <dl>
+            <div>
+              <dt>Ngân hàng</dt>
+              <dd>Cập nhật sau</dd>
+            </div>
+            <div>
+              <dt>Số tài khoản</dt>
+              <dd>0000 0000 0000</dd>
+            </div>
+            <div>
+              <dt>Nội dung</dt>
+              <dd>Ten ban - chuc mung Duc Huyen</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <audio
+      id="weddingMusic"
+      src="https://res.cloudinary.com/dvglujyon/video/upload/v1791791915/Until_You_kfmejy.mp3"
+      preload="metadata"
+      loop
+    ></audio>
+
+    <script src="script.js"></script>
+  </body>
+</html>
