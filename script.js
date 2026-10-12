@@ -113,28 +113,43 @@ document.querySelectorAll("[data-stagger]").forEach((group) => {
 });
 
 const revealItems = document.querySelectorAll("[data-anim]");
+const mobileMotionQuery = window.matchMedia("(max-width: 840px)");
+const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 function showItem(item) {
   item.classList.add("is-visible");
-  // Bỏ độ trễ sau khi hiện xong để hiệu ứng hover không bị chậm
-  setTimeout(() => item.style.removeProperty("--delay"), 2200);
+
+  if (!mobileMotionQuery.matches) {
+    // Bỏ độ trễ sau khi hiện xong để hiệu ứng hover không bị chậm trên desktop.
+    setTimeout(() => item.style.removeProperty("--delay"), 2200);
+  }
 }
 
-if ("IntersectionObserver" in window) {
+function hideItem(item) {
+  item.classList.remove("is-visible");
+}
+
+if ("IntersectionObserver" in window && !reduceMotionQuery.matches) {
   const revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) {
+          if (mobileMotionQuery.matches) {
+            hideItem(entry.target);
+          }
           return;
         }
 
         showItem(entry.target);
-        revealObserver.unobserve(entry.target);
+
+        if (!mobileMotionQuery.matches) {
+          revealObserver.unobserve(entry.target);
+        }
       });
     },
     {
-      rootMargin: "0px 0px -8% 0px",
-      threshold: 0.1,
+      rootMargin: mobileMotionQuery.matches ? "-8% 0px -8% 0px" : "0px 0px -8% 0px",
+      threshold: mobileMotionQuery.matches ? 0.18 : 0.1,
     },
   );
 
@@ -143,7 +158,7 @@ if ("IntersectionObserver" in window) {
   revealItems.forEach(showItem);
 }
 
-if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+if (reduceMotionQuery.matches) {
   revealItems.forEach(showItem);
 }
 

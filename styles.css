@@ -1066,6 +1066,26 @@ nav a:hover,
    Responsive
    ========================================================================== */
 @media (max-width: 840px) {
+  .can-animate [data-anim] {
+    transition-duration: 680ms;
+  }
+
+  .can-animate [data-anim="up"] {
+    transform: translateY(42px);
+  }
+
+  .can-animate [data-anim="left"] {
+    transform: translateX(-34px) translateY(12px);
+  }
+
+  .can-animate [data-anim="right"] {
+    transform: translateX(34px) translateY(12px);
+  }
+
+  .can-animate [data-anim="zoom"] {
+    transform: scale(0.86);
+  }
+
   .topbar {
     top: 10px;
     width: calc(100% - 20px);
