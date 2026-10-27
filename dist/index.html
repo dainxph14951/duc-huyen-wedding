@@ -155,55 +155,62 @@
 
           <div class="event__body">
             <h2 id="event-title">Lịch trình ngày cưới</h2>
-            <ol class="timeline" data-stagger data-stagger-base="300">
-              <li>
-                <time datetime="2027-01-16T13:30:00+07:00">13:30</time>
-                <div>
+            <ol class="event__itinerary" data-stagger data-stagger-base="300">
+              <li class="event__occasion">
+                <div class="event__stamp">
+                  <time datetime="2027-01-16">
+                    <span class="event__day">16</span>
+                    <span class="event__month-year">01 · 2027</span>
+                  </time>
+                  <span class="event__weekday">Thứ Bảy</span>
+                </div>
+                <div class="event__details">
+                  <time class="event__hour" datetime="2027-01-16T13:30:00+07:00">13:30</time>
                   <h3>Lễ ăn hỏi & nạp tài</h3>
-                  <p>16/01/2027, Thứ Bảy</p>
+                  <div class="event__venue">
+                    <p>Thôn Xuân Hồng, xã Xuân Bình, tỉnh Thanh Hoá</p>
+                  </div>
+                  <a
+                    class="event__map"
+                    href="https://www.google.com/maps/search/?api=1&amp;query=Th%C3%B4n%20Xu%C3%A2n%20H%E1%BB%93ng%2C%20x%C3%A3%20Xu%C3%A2n%20B%C3%ACnh%2C%20t%E1%BB%89nh%20Thanh%20Ho%C3%A1"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Xem bản đồ: Lễ ăn hỏi & nạp tài"
+                  >
+                    Xem bản đồ <span aria-hidden="true">↗</span>
+                  </a>
                 </div>
               </li>
-              <li>
-                <time datetime="2027-01-17T16:10:00+07:00">16:10</time>
-                <div>
+              <li class="event__occasion">
+                <div class="event__stamp">
+                  <time datetime="2027-01-17">
+                    <span class="event__day">17</span>
+                    <span class="event__month-year">01 · 2027</span>
+                  </time>
+                  <span class="event__weekday">Chủ nhật</span>
+                </div>
+                <div class="event__details">
+                  <time class="event__hour" datetime="2027-01-17T16:10:00+07:00">16:10</time>
                   <h3>Tiệc cưới</h3>
-                  <p>17/01/2027, Chủ nhật</p>
+                  <div class="event__venue">
+                    <p>Trung tâm tiệc cưới Tràng An Palace</p>
+                    <p>Toà nhà Hei, số 1 Nguỵ Như Kon Tum, Thanh Xuân, Hà Nội</p>
+                  </div>
+                  <a
+                    class="event__map"
+                    href="https://www.google.com/maps/search/?api=1&amp;query=Tr%C3%A0ng%20An%20Palace%2C%20To%C3%A0%20nh%C3%A0%20Hei%2C%20s%E1%BB%91%201%20Ngu%E1%BB%B5%20Nh%C6%B0%20Kon%20Tum%2C%20Thanh%20Xu%C3%A2n%2C%20H%C3%A0%20N%E1%BB%99i"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Xem bản đồ: Tiệc cưới"
+                  >
+                    Xem bản đồ <span aria-hidden="true">↗</span>
+                  </a>
                 </div>
               </li>
             </ol>
           </div>
 
-          <div class="event__families" data-stagger data-stagger-base="450">
-            <article>
-              <span>16/01/2027 · 13:30</span>
-              <h3>Lễ ăn hỏi & nạp tài</h3>
-              <p>Thôn Xuân Hồng, xã Xuân Bình, tỉnh Thanh Hoá</p>
-            </article>
-            <article>
-              <span>17/01/2027 · 16:10</span>
-              <h3>Tiệc cưới</h3>
-              <p>Trung tâm tiệc cưới Tràng An Palace</p>
-              <p>Toà nhà Hei, số 1 Nguỵ Như Kon Tum, Thanh Xuân, Hà Nội</p>
-            </article>
-          </div>
-
           <div class="event__actions" data-anim="up" style="--delay: 600ms">
-            <a
-              class="button button--primary"
-              href="https://www.google.com/maps/search/?api=1&amp;query=Th%C3%B4n%20Xu%C3%A2n%20H%E1%BB%93ng%2C%20x%C3%A3%20Xu%C3%A2n%20B%C3%ACnh%2C%20t%E1%BB%89nh%20Thanh%20Ho%C3%A1"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Địa điểm ăn hỏi
-            </a>
-            <a
-              class="button button--primary"
-              href="https://www.google.com/maps/search/?api=1&amp;query=Tr%C3%A0ng%20An%20Palace%2C%20To%C3%A0%20nh%C3%A0%20Hei%2C%20s%E1%BB%91%201%20Ngu%E1%BB%B5%20Nh%C6%B0%20Kon%20Tum%2C%20Thanh%20Xu%C3%A2n%2C%20H%C3%A0%20N%E1%BB%99i"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Địa điểm tiệc cưới
-            </a>
             <button class="button button--ghost" type="button" data-open-qr>
               Mừng cưới
             </button>
