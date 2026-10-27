@@ -501,29 +501,52 @@
     >
       <button class="modal-close" id="closeQrModal" type="button">Đóng</button>
       <div class="qr-modal__card">
-        <div class="qr-modal__code">
-          <img
-            src="https://api.qrserver.com/v1/create-qr-code/?size=420x420&margin=18&data=Minh%20%C4%90%E1%BB%A9c%20%26%20Ng%E1%BB%8Dc%20Huy%E1%BB%81n%20Wedding%20Gift"
-            alt="Mã QR mừng cưới Minh Đức và Ngọc Huyền"
-          />
+        <h2 id="qrModalTitle">Mừng cưới Minh Đức & Ngọc Huyền</h2>
+        <div class="qr-modal__banks">
+          <article class="qr-modal__content" aria-labelledby="vcb-title">
+            <h3 id="vcb-title">Vietcombank</h3>
+            <div class="qr-modal__code">
+              <img
+                src="https://res.cloudinary.com/dvglujyon/image/upload/v1793084815/qr-vietcombank_nf8nl1.png"
+                alt="QR chuyển khoản Vietcombank, tài khoản 1042532207, NGUYEN MINH DUC"
+                width="300"
+                height="300"
+              />
+            </div>
+            <dl>
+              <div>
+                <dt>Chủ tài khoản</dt>
+                <dd>NGUYEN MINH DUC</dd>
+              </div>
+              <div>
+                <dt>Số tài khoản</dt>
+                <dd>1042532207</dd>
+              </div>
+            </dl>
+          </article>
+          <article class="qr-modal__content" aria-labelledby="shb-title">
+            <h3 id="shb-title">SHB</h3>
+            <div class="qr-modal__code">
+              <img
+                src="https://res.cloudinary.com/dvglujyon/image/upload/v1793084812/qr-shb_wsdgrg.png"
+                alt="QR chuyển khoản SHB, tài khoản 999910071996, PHAM THI NGOC HUYEN"
+                width="300"
+                height="300"
+              />
+            </div>
+            <dl>
+              <div>
+                <dt>Chủ tài khoản</dt>
+                <dd>PHAM THI NGOC HUYEN</dd>
+              </div>
+              <div>
+                <dt>Số tài khoản</dt>
+                <dd>999910071996</dd>
+              </div>
+            </dl>
+          </article>
         </div>
-        <div class="qr-modal__content">
-          <h2 id="qrModalTitle">Mừng cưới Minh Đức & Ngọc Huyền</h2>
-          <dl>
-            <div>
-              <dt>Ngân hàng</dt>
-              <dd>Cập nhật sau</dd>
-            </div>
-            <div>
-              <dt>Số tài khoản</dt>
-              <dd>0000 0000 0000</dd>
-            </div>
-            <div>
-              <dt>Nội dung</dt>
-              <dd>Ten ban - chuc mung Minh Duc Ngoc Huyen</dd>
-            </div>
-          </dl>
-        </div>
+        <p class="qr-modal__note">Nội dung: Ten ban - chuc mung Minh Duc Ngoc Huyen</p>
       </div>
     </div>
 

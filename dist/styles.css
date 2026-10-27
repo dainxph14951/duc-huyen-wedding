@@ -1155,7 +1155,9 @@ nav a:hover,
 .qr-modal__card {
   display: grid;
   width: min(100%, 720px);
-  grid-template-columns: minmax(220px, 0.84fr) 1fr;
+  grid-template-columns: minmax(0, 1fr);
+  max-height: calc(100svh - 96px);
+  overflow-y: auto;
   gap: 28px;
   align-items: center;
   border-radius: var(--radius-lg);
@@ -1164,7 +1166,31 @@ nav a:hover,
   padding: 28px;
 }
 
+.qr-modal__banks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  align-items: start;
+}
+
+.qr-modal__content h3 {
+  margin: 0 0 16px;
+  color: var(--plum);
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.qr-modal__note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
 .qr-modal__code {
+  margin-bottom: 16px;
+  background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
   padding: 12px;
@@ -1173,11 +1199,12 @@ nav a:hover,
 .qr-modal__code img {
   display: block;
   width: 100%;
+  height: auto;
   aspect-ratio: 1;
   object-fit: contain;
 }
 
-.qr-modal__content h2 {
+.qr-modal__card > h2 {
   margin-bottom: 18px;
   font-size: clamp(1.9rem, 3.4vw, 2.5rem);
 }
@@ -1485,9 +1512,14 @@ nav a:hover,
   .qr-modal__card {
     grid-template-columns: 1fr;
     gap: 18px;
-    max-height: calc(100svh - 24px);
+    max-height: calc(100svh - 96px);
     overflow: auto;
     padding: 18px;
+  }
+
+  .qr-modal__banks {
+    grid-template-columns: 1fr;
+    gap: 28px;
   }
 
   .qr-modal__code img {
