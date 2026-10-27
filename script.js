@@ -23,8 +23,27 @@ if (inviteGate && openInviteButton) {
   document.body.classList.add("gate-open");
 
   openInviteButton.addEventListener("click", async () => {
-    inviteGate.setAttribute("hidden", "");
-    document.body.classList.remove("gate-open");
+    if (openInviteButton.disabled) return;
+    openInviteButton.disabled = true;
+    // Bắt đầu nhạc ngay trong thao tác bấm; hiệu ứng mở thiệp chạy song song.
+    const opening = !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      && typeof inviteGate.animate === "function"
+      ? Promise.all([
+          inviteGate.animate([{ opacity: 1 }, { opacity: 0 }], {
+            duration: 700, easing: "ease-in-out", fill: "forwards",
+          }).finished,
+          inviteGate.querySelector(".invite-gate__card").animate(
+            [{ transform: "perspective(1200px) rotateY(0deg) scale(1)" },
+             { transform: "perspective(1200px) rotateY(-12deg) scale(1.06)" }],
+            { duration: 700, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "forwards" },
+          ).finished,
+        ]).catch(() => {})
+      : Promise.resolve();
+    opening.then(() => {
+      inviteGate.setAttribute("hidden", "");
+      document.body.classList.remove("gate-open");
+      document.querySelector('.hero__actions a')?.focus({ preventScroll: true });
+    });
 
     // Bấm "Mở thiệp" là thao tác của người dùng nên trình duyệt cho phép phát nhạc
     if (weddingMusic) {
@@ -101,32 +120,26 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
 
 /* ---------- Animation xuất hiện ---------- */
-// Container có data-stagger: các khối con lần lượt hiện ra, mỗi khối trễ 90ms
+// Hiện khi vào màn hình; chỉ đặt lại sau khi ra xa mép để tránh bật tắt liên tục.
 document.querySelectorAll("[data-stagger]").forEach((group) => {
-  const base = Number(group.dataset.staggerBase || 0);
-  const kind = group.dataset.staggerAnim || "up";
+  const base = Math.min(Number(group.dataset.staggerBase || 0), 100);
+  const kind = group.classList.contains("love-story__chapters")
+    ? "unfold"
+    : group.classList.contains("album__grid")
+      ? "photo"
+      : group.dataset.staggerAnim || "up";
 
   Array.from(group.children).forEach((child, index) => {
     child.dataset.anim = kind;
-    child.style.setProperty("--delay", `${base + index * 90}ms`);
+    child.style.setProperty("--delay", `${Math.min(base + index * 55, 260)}ms`);
   });
 });
 
 const revealItems = document.querySelectorAll("[data-anim]");
-const mobileMotionQuery = window.matchMedia("(max-width: 840px)");
 const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 function showItem(item) {
   item.classList.add("is-visible");
-
-  if (!mobileMotionQuery.matches) {
-    // Bỏ độ trễ sau khi hiện xong để hiệu ứng hover không bị chậm trên desktop.
-    setTimeout(() => item.style.removeProperty("--delay"), 2200);
-  }
-}
-
-function hideItem(item) {
-  item.classList.remove("is-visible");
 }
 
 if ("IntersectionObserver" in window && !reduceMotionQuery.matches) {
@@ -134,31 +147,39 @@ if ("IntersectionObserver" in window && !reduceMotionQuery.matches) {
     (entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) {
-          if (mobileMotionQuery.matches) {
-            hideItem(entry.target);
-          }
           return;
         }
 
         showItem(entry.target);
+      });
+    },
+    {
+      rootMargin: "0px 0px 60px 0px",
+      threshold: 0.01,
+    },
+  );
 
-        if (!mobileMotionQuery.matches) {
-          revealObserver.unobserve(entry.target);
+  // Vùng đặt lại rộng hơn vùng xuất hiện, tránh transform của chính khối
+  // làm nó liên tục đi qua ngưỡng quan sát khi người dùng cuộn chậm.
+  const resetObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          entry.target.classList.remove("is-visible");
         }
       });
     },
     {
-      rootMargin: mobileMotionQuery.matches ? "-8% 0px -8% 0px" : "0px 0px -8% 0px",
-      threshold: mobileMotionQuery.matches ? 0.18 : 0.1,
+      rootMargin: "140px 0px 140px 0px",
+      threshold: 0,
     },
   );
 
-  revealItems.forEach((item) => revealObserver.observe(item));
+  revealItems.forEach((item) => {
+    revealObserver.observe(item);
+    resetObserver.observe(item);
+  });
 } else {
-  revealItems.forEach(showItem);
-}
-
-if (reduceMotionQuery.matches) {
   revealItems.forEach(showItem);
 }
 
