@@ -705,7 +705,7 @@ nav a:hover,
   line-height: 1;
 }
 
-.couple__person span {
+.couple__person figcaption > span {
   color: var(--muted);
   font-size: 0.92rem;
 }
@@ -1034,6 +1034,36 @@ nav a:hover,
   transition-delay: var(--delay, 0ms);
 }
 
+/* Chữ mở lần lượt theo từ, giữ nguyên dấu và khả năng xuống dòng. */
+[data-text-motion] { perspective: 900px; }
+
+.text-word { display: inline-block; }
+
+.can-animate [data-text-motion] .text-word {
+  opacity: 0;
+  transform: translateY(0.65em) rotateX(-55deg) rotateZ(-2deg);
+  transform-origin: 50% 100%;
+  clip-path: inset(-25% -15% 100% -15%);
+  transition:
+    opacity 1000ms ease,
+    transform 1600ms cubic-bezier(0.22, 1, 0.36, 1),
+    clip-path 1400ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: 0ms;
+}
+
+.can-animate [data-text-motion="soft"] .text-word {
+  transform: translateY(0.4em);
+  clip-path: none;
+  transition-duration: 1200ms, 1700ms, 1400ms;
+}
+
+.can-animate [data-text-motion].is-visible .text-word {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(-25% -15% -25% -15%);
+  transition-delay: calc(180ms + var(--word-delay, 0ms));
+}
+
 /* Chuyển động riêng cho tên, câu chuyện và ảnh cưới. */
 body.gate-open .hero__image,
 body.gate-open .hero__content > *,
@@ -1042,7 +1072,7 @@ body.gate-open .hero__names > span {
 }
 
 .hero__names > span {
-  animation: name-unveil 1800ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: name-unveil 2400ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .hero__names > span:first-child { animation-delay: 300ms; }
@@ -1050,8 +1080,17 @@ body.gate-open .hero__names > span {
 .hero__names > span:last-child { animation-delay: 1000ms; }
 
 @keyframes name-unveil {
-  from { opacity: 0; transform: translateY(22px) rotate(-3deg); }
-  to { opacity: 1; transform: translateY(0) rotate(0); }
+  0% {
+    opacity: 0;
+    clip-path: inset(-25% 110% -25% -15%);
+    transform: translateY(28px) rotate(-5deg) scale(0.94);
+  }
+  65% { opacity: 1; }
+  100% {
+    opacity: 1;
+    clip-path: inset(-25% -15% -25% -15%);
+    transform: translateY(0) rotate(0) scale(1);
+  }
 }
 
 .love-story__chapters {
@@ -1159,7 +1198,7 @@ body.gate-open .hero__names > span {
   font-weight: 700;
 }
 
-.footer span {
+.footer > span {
   color: var(--muted);
 }
 
@@ -1672,6 +1711,13 @@ body.gate-open .hero__names > span {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .can-animate [data-text-motion] .text-word {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+    transition: none;
+  }
+
   .album__item img,
   .album__item figcaption {
     transform: none;

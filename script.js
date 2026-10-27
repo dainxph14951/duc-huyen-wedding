@@ -135,7 +135,30 @@ document.querySelectorAll("[data-stagger]").forEach((group) => {
   });
 });
 
-const revealItems = document.querySelectorAll("[data-anim]");
+// Tách theo từ để giữ nguyên dấu tiếng Việt và cách xuống dòng tự nhiên.
+const textMotionTargets = document.querySelectorAll(
+  "main h2, main h3, .couple__person strong, .love-story__eyebrow, .love-story__chapters p, .album__intro p, .footer p, .footer > span"
+);
+textMotionTargets.forEach((element) => {
+  if (element.children.length) return;
+  element.dataset.textMotion = element.matches("p, .footer > span") ? "soft" : "title";
+  const fragment = document.createDocumentFragment();
+  let wordIndex = 0;
+  element.textContent.split(/(\s+)/).forEach((part) => {
+    if (!part.trim()) {
+      fragment.append(document.createTextNode(part));
+      return;
+    }
+    const word = document.createElement("span");
+    word.className = "text-word";
+    word.textContent = part;
+    word.style.setProperty("--word-delay", `${Math.min(wordIndex++ * 85, 510)}ms`);
+    fragment.append(word);
+  });
+  element.replaceChildren(fragment);
+});
+
+const revealItems = document.querySelectorAll("[data-anim], [data-text-motion]");
 const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 function showItem(item) {
