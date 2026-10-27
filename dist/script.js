@@ -183,6 +183,71 @@ if ("IntersectionObserver" in window && !reduceMotionQuery.matches) {
   revealItems.forEach(showItem);
 }
 
+/* ---------- Album trượt ngang ---------- */
+const albumTrack = document.querySelector("#albumTrack");
+const albumThumbs = document.querySelector("#albumThumbs");
+const albumPrev = document.querySelector("#albumPrev");
+const albumNext = document.querySelector("#albumNext");
+const albumCount = document.querySelector("#albumCount");
+let activeAlbumPhoto = 0;
+
+if (albumTrack && albumThumbs && albumItems.length) {
+  const thumbs = albumItems.map((item, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "album__thumb";
+    button.setAttribute("aria-label", `Xem ảnh ${index + 1}: ${item.dataset.title}`);
+    button.setAttribute("aria-controls", "albumTrack");
+    const image = item.querySelector("img").cloneNode();
+    image.alt = "";
+    button.append(image);
+    button.addEventListener("click", () => goToAlbumPhoto(index));
+    albumThumbs.append(button);
+    return button;
+  });
+
+  function updateAlbumState(index) {
+    activeAlbumPhoto = index;
+    thumbs.forEach((thumb, i) => thumb.setAttribute("aria-current", String(i === index)));
+    // Các ảnh ngoài khung vẫn mở được qua nút chọn, không nhận Tab ngoài màn hình.
+    albumItems.forEach((item, i) => {
+      item.tabIndex = i === index ? 0 : -1;
+      if (i === index) item.removeAttribute("aria-hidden");
+      else item.setAttribute("aria-hidden", "true");
+    });
+    albumCount.textContent = `${String(index + 1).padStart(2, "0")} / ${String(albumItems.length).padStart(2, "0")}`;
+    albumPrev.disabled = index === 0;
+    albumNext.disabled = index === albumItems.length - 1;
+  }
+
+  function goToAlbumPhoto(index) {
+    const target = Math.max(0, Math.min(index, albumItems.length - 1));
+    albumTrack.scrollTo({
+      left: albumItems[target].offsetLeft - albumItems[0].offsetLeft,
+      behavior: reduceMotionQuery.matches ? "instant" : "smooth",
+    });
+  }
+
+  let albumScrollFrame = 0;
+  albumTrack.addEventListener("scroll", () => {
+    if (albumScrollFrame) return;
+    albumScrollFrame = requestAnimationFrame(() => {
+      const step = albumItems.length > 1 ? albumItems[1].offsetLeft - albumItems[0].offsetLeft : 1;
+      updateAlbumState(Math.max(0, Math.min(albumItems.length - 1, Math.round(albumTrack.scrollLeft / step))));
+      albumScrollFrame = 0;
+    });
+  }, { passive: true });
+  albumPrev.addEventListener("click", () => goToAlbumPhoto(activeAlbumPhoto - 1));
+  albumNext.addEventListener("click", () => goToAlbumPhoto(activeAlbumPhoto + 1));
+  albumTrack.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+      event.preventDefault();
+      goToAlbumPhoto(activeAlbumPhoto + (event.key === "ArrowRight" ? 1 : -1));
+    }
+  });
+  updateAlbumState(0);
+}
+
 /* ---------- Xem ảnh album ---------- */
 let currentPhoto = 0;
 let lastFocusedItem = null;

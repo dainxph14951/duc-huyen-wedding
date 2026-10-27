@@ -285,16 +285,17 @@
         <p class="love-story__heart" aria-label="Tình yêu" data-anim="zoom">❤️</p>
       </section>
 
-      <!-- ALBUM: mosaic 6 ảnh, không caption trên ảnh -->
+      <!-- ALBUM: ảnh trượt ngang, hiển thị trọn ảnh gốc -->
       <section id="album" class="album" aria-labelledby="album-title">
         <div class="album__intro" data-anim="up">
           <h2 id="album-title">Album ảnh cưới</h2>
-          <p>Mời bạn cùng ngắm nhìn những khoảnh khắc hạnh phúc của chúng mình.</p>
+          <p>
+            Mời bạn cùng ngắm nhìn những khoảnh khắc hạnh phúc của chúng mình.
+          </p>
         </div>
         <div
           class="album__grid"
-          data-stagger
-          data-stagger-anim="zoom"
+          id="albumTrack"
           aria-label="Album ảnh cưới Minh Đức và Ngọc Huyền"
         >
           <figure
@@ -305,10 +306,14 @@
             data-title="Ngày mọi thứ bắt đầu"
           >
             <img
-              src="https://res.cloudinary.com/dvglujyon/image/upload/v1776849624/img-welcome_fmpcl3.webp"
+              src="https://res.cloudinary.com/dvglujyon/image/upload/v1793071526/HAU07191_1_ccxikg.jpg"
               alt="Ngày mọi thứ bắt đầu"
               loading="lazy"
             />
+            <figcaption>
+              <span class="album__number" aria-hidden="true">01</span>
+              <span>Ngày mọi thứ bắt đầu</span>
+            </figcaption>
           </figure>
           <figure
             class="album__item"
@@ -318,10 +323,14 @@
             data-title="Những lần gặp nhau"
           >
             <img
-              src="https://res.cloudinary.com/dvglujyon/image/upload/v1776849624/img-welcome_fmpcl3.webp"
+              src="https://res.cloudinary.com/dvglujyon/image/upload/v1793071680/HAU07487_nro5hd.jpg"
               alt="Những lần gặp nhau"
               loading="lazy"
             />
+            <figcaption>
+              <span class="album__number" aria-hidden="true">02</span>
+              <span>Những lần gặp nhau</span>
+            </figcaption>
           </figure>
           <figure
             class="album__item"
@@ -331,10 +340,14 @@
             data-title="Bình yên thường ngày"
           >
             <img
-              src="https://res.cloudinary.com/dvglujyon/image/upload/v1776849624/img-welcome_fmpcl3.webp"
+              src="https://res.cloudinary.com/dvglujyon/image/upload/v1793071798/HAU07630_1_jmcqhh.jpg"
               alt="Bình yên thường ngày"
               loading="lazy"
             />
+            <figcaption>
+              <span class="album__number" aria-hidden="true">03</span>
+              <span>Bình yên thường ngày</span>
+            </figcaption>
           </figure>
           <figure
             class="album__item"
@@ -344,10 +357,14 @@
             data-title="Một nụ cười, một lời hẹn"
           >
             <img
-              src="https://res.cloudinary.com/dvglujyon/image/upload/v1776849624/img-welcome_fmpcl3.webp"
+              src="https://res.cloudinary.com/dvglujyon/image/upload/v1793071889/HAU07986_1_y7p0hx.jpg"
               alt="Một nụ cười, một lời hẹn"
               loading="lazy"
             />
+            <figcaption>
+              <span class="album__number" aria-hidden="true">04</span>
+              <span>Một nụ cười, một lời hẹn</span>
+            </figcaption>
           </figure>
           <figure
             class="album__item"
@@ -357,10 +374,14 @@
             data-title="Những chuyến đi"
           >
             <img
-              src="https://res.cloudinary.com/dvglujyon/image/upload/v1776849624/img-welcome_fmpcl3.webp"
+              src="https://res.cloudinary.com/dvglujyon/image/upload/v1793071980/HAU08112_1_wjn35k.jpg"
               alt="Những chuyến đi"
               loading="lazy"
             />
+            <figcaption>
+              <span class="album__number" aria-hidden="true">05</span>
+              <span>Những chuyến đi</span>
+            </figcaption>
           </figure>
           <figure
             class="album__item"
@@ -370,12 +391,22 @@
             data-title="Hôm nay, mời bạn chung vui"
           >
             <img
-              src="https://res.cloudinary.com/dvglujyon/image/upload/v1776849624/img-welcome_fmpcl3.webp"
+              src="https://res.cloudinary.com/dvglujyon/image/upload/v1793072108/HAU07876_1_hucnig.jpg"
               alt="Hôm nay, mời bạn chung vui"
               loading="lazy"
             />
+            <figcaption>
+              <span class="album__number" aria-hidden="true">06</span>
+              <span>Hôm nay, mời bạn chung vui</span>
+            </figcaption>
           </figure>
         </div>
+        <div class="album__controls">
+          <button class="album__arrow" id="albumPrev" type="button" aria-label="Ảnh trước" aria-controls="albumTrack">←</button>
+          <p class="album__status"><span id="albumCount" aria-live="polite" aria-atomic="true">01 / 06</span><span>Vuốt ngang để xem ảnh</span></p>
+          <button class="album__arrow" id="albumNext" type="button" aria-label="Ảnh tiếp theo" aria-controls="albumTrack">→</button>
+        </div>
+        <div class="album__thumbs" id="albumThumbs" role="group" aria-label="Chọn ảnh trong album"></div>
       </section>
       <!-- ẢNH LỚN -->
       <section class="feature" aria-label="Ảnh cưới Minh Đức và Ngọc Huyền">

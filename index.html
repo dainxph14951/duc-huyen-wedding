@@ -294,7 +294,7 @@
         </p>
       </section>
 
-      <!-- ALBUM: mosaic 6 ảnh, không caption trên ảnh -->
+      <!-- ALBUM: ảnh trượt ngang, hiển thị trọn ảnh gốc -->
       <section id="album" class="album" aria-labelledby="album-title">
         <div class="album__intro" data-anim="up">
           <h2 id="album-title">Album ảnh cưới</h2>
@@ -304,8 +304,7 @@
         </div>
         <div
           class="album__grid"
-          data-stagger
-          data-stagger-anim="zoom"
+          id="albumTrack"
           aria-label="Album ảnh cưới Minh Đức và Ngọc Huyền"
         >
           <figure
@@ -320,6 +319,10 @@
               alt="Ngày mọi thứ bắt đầu"
               loading="lazy"
             />
+            <figcaption>
+              <span class="album__number" aria-hidden="true">01</span>
+              <span>Ngày mọi thứ bắt đầu</span>
+            </figcaption>
           </figure>
           <figure
             class="album__item"
@@ -333,6 +336,10 @@
               alt="Những lần gặp nhau"
               loading="lazy"
             />
+            <figcaption>
+              <span class="album__number" aria-hidden="true">02</span>
+              <span>Những lần gặp nhau</span>
+            </figcaption>
           </figure>
           <figure
             class="album__item"
@@ -346,6 +353,10 @@
               alt="Bình yên thường ngày"
               loading="lazy"
             />
+            <figcaption>
+              <span class="album__number" aria-hidden="true">03</span>
+              <span>Bình yên thường ngày</span>
+            </figcaption>
           </figure>
           <figure
             class="album__item"
@@ -359,6 +370,10 @@
               alt="Một nụ cười, một lời hẹn"
               loading="lazy"
             />
+            <figcaption>
+              <span class="album__number" aria-hidden="true">04</span>
+              <span>Một nụ cười, một lời hẹn</span>
+            </figcaption>
           </figure>
           <figure
             class="album__item"
@@ -372,6 +387,10 @@
               alt="Những chuyến đi"
               loading="lazy"
             />
+            <figcaption>
+              <span class="album__number" aria-hidden="true">05</span>
+              <span>Những chuyến đi</span>
+            </figcaption>
           </figure>
           <figure
             class="album__item"
@@ -385,8 +404,18 @@
               alt="Hôm nay, mời bạn chung vui"
               loading="lazy"
             />
+            <figcaption>
+              <span class="album__number" aria-hidden="true">06</span>
+              <span>Hôm nay, mời bạn chung vui</span>
+            </figcaption>
           </figure>
         </div>
+        <div class="album__controls">
+          <button class="album__arrow" id="albumPrev" type="button" aria-label="Ảnh trước" aria-controls="albumTrack">←</button>
+          <p class="album__status"><span id="albumCount" aria-live="polite" aria-atomic="true">01 / 06</span><span>Vuốt ngang để xem ảnh</span></p>
+          <button class="album__arrow" id="albumNext" type="button" aria-label="Ảnh tiếp theo" aria-controls="albumTrack">→</button>
+        </div>
+        <div class="album__thumbs" id="albumThumbs" role="group" aria-label="Chọn ảnh trong album"></div>
       </section>
       <!-- ẢNH LỚN -->
       <section class="feature" aria-label="Ảnh cưới Minh Đức và Ngọc Huyền">

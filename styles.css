@@ -842,14 +842,15 @@ nav a:hover,
    Album
    ========================================================================== */
 .album {
-  width: min(calc(100% - 40px), 1040px);
+  width: min(calc(100% - 48px), 960px);
   margin-inline: auto;
-  padding: 104px 0 88px;
+  padding: 80px 0 64px;
 }
 
 .album__intro {
   max-width: 520px;
-  margin-bottom: 36px;
+  margin: 0 auto 32px;
+  text-align: center;
 }
 
 .album__intro p {
@@ -858,74 +859,121 @@ nav a:hover,
 }
 
 .album__grid {
-  display: grid;
-  grid-auto-flow: dense;
-  grid-auto-rows: 200px;
-  grid-template-rows: repeat(2, 220px);
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow);
 }
 
-/* 1 ảnh lớn, 1 ảnh dọc, 2 ảnh nhỏ, 2 ảnh ngang: lấp kín lưới, không lỗ trống */
-.album__item:nth-child(1) {
-  grid-column: span 2;
-  grid-row: span 2;
-}
-
-.album__item:nth-child(3) {
-  grid-row: span 2;
-}
-
-.album__item:nth-child(5),
-.album__item:nth-child(6) {
-  grid-column: span 2;
-}
+.album__grid::-webkit-scrollbar { display: none; }
 
 .album__item {
   position: relative;
-  min-height: 0;
-  overflow: hidden;
-  border-radius: var(--radius-md);
-  background: var(--blush);
-  cursor: zoom-in;
+  flex: 0 0 100%;
+  min-width: 0;
   margin: 0;
+  padding: 12px 12px 0;
+  scroll-snap-align: start;
+  cursor: zoom-in;
 }
 
 .album__item img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 500ms ease;
+  height: clamp(300px, 55svh, 580px);
+  object-fit: contain;
 }
 
-.album__item:nth-child(2) img,
-.album__item:nth-child(5) img {
-  object-position: 38% center;
+.album__item figcaption {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 14px;
+  padding: 16px 4px;
+  color: var(--muted);
+  font-size: 0.8rem;
 }
 
-.album__item:nth-child(3) img,
-.album__item:nth-child(6) img {
-  object-position: 68% center;
+.album__number {
+  color: var(--plum);
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  line-height: 1;
+  font-style: italic;
 }
 
-.album__item::after {
-  position: absolute;
-  inset: 0;
-  content: "";
-  background: rgba(59, 31, 51, 0);
-  transition: background 300ms ease;
-  pointer-events: none;
+.album__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  margin-top: 20px;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .album__item:hover img {
-    transform: scale(1.04);
-  }
+.album__arrow {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--plum);
+  font-size: 1.25rem;
+  cursor: pointer;
+}
 
-  .album__item:hover::after {
-    background: rgba(59, 31, 51, 0.16);
-  }
+.album__arrow:disabled { opacity: 0.35; cursor: default; }
+
+.album__status {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  color: var(--muted);
+  text-align: center;
+  font-size: 0.7rem;
+}
+
+#albumCount { color: var(--plum); font-size: 0.85rem; }
+
+.album__thumbs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.album__thumb {
+  width: 64px;
+  min-width: 0;
+  padding: 3px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  opacity: 0.55;
+  cursor: pointer;
+}
+
+.album__thumb img {
+  display: block;
+  width: 100%;
+  height: 52px;
+  object-fit: contain;
+  border-radius: 3px;
+  background: var(--surface);
+}
+
+.album__thumb[aria-current="true"] { border-color: var(--plum); opacity: 1; }
+
+.album__item:focus-visible,
+.album__arrow:focus-visible,
+.album__thumb:focus-visible {
+  outline: 2px solid var(--plum);
+  outline-offset: -3px;
 }
 
 /* ==========================================================================
@@ -1020,27 +1068,6 @@ body.gate-open .hero__names > span {
 
 .can-animate [data-anim="photo"].is-visible {
   transform: none;
-}
-
-.can-animate .album__item::before {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: var(--rose-soft);
-  pointer-events: none;
-  content: "";
-  transform: scaleX(1);
-  transform-origin: right center;
-  transition: transform 1300ms cubic-bezier(0.76, 0, 0.24, 1);
-}
-
-.can-animate .album__item:nth-child(even)::before {
-  transform-origin: left center;
-}
-
-.can-animate .album__item.is-visible::before {
-  transform: scaleX(0);
-  transition-delay: var(--delay, 0ms);
 }
 
 .can-animate .feature__photo figcaption {
@@ -1514,33 +1541,19 @@ body.gate-open .hero__names > span {
     padding: 24px;
   }
 
-  /* Album: 1 ảnh lớn, 2 hàng ảnh đôi, 1 ảnh ngang */
+  /* Album giữ chiều cao gọn trên điện thoại. */
   .album {
-    width: calc(100% - 24px);
-    padding: 72px 0 64px;
+    width: calc(100% - 32px);
+    padding: 56px 0 48px;
   }
 
-  .album__grid {
-    grid-auto-rows: 150px;
-    grid-template-rows: repeat(2, 170px);
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  .album__item:nth-child(1) {
-    grid-column: span 2;
-    grid-row: span 2;
-  }
-
-  .album__item:nth-child(3),
-  .album__item:nth-child(5) {
-    grid-column: auto;
-    grid-row: auto;
-  }
-
-  .album__item:nth-child(6) {
-    grid-column: span 2;
-  }
+  .album__intro { margin-bottom: 24px; }
+  .album__item { padding: 8px 8px 0; }
+  .album__item img { height: clamp(240px, 48svh, 420px); }
+  .album__item figcaption { gap: 10px; font-size: 0.75rem; }
+  .album__thumbs { gap: 4px; }
+  .album__thumb { flex: 0 1 52px; }
+  .album__thumb img { height: 42px; }
 
   /* Footer & bar */
   .footer {
