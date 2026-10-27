@@ -1,4 +1,4 @@
-const weddingDate = new Date("2026-12-20T10:30:00+07:00");
+const weddingDate = new Date("2027-01-17T16:10:00+07:00");
 const daysLeft = document.querySelector("#daysLeft");
 const inviteGate = document.querySelector("#inviteGate");
 const openInviteButton = document.querySelector("#openInvite");
