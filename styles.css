@@ -1339,88 +1339,145 @@ body.gate-open .hero__names > span {
   right: 20px;
 }
 
-/* QR */
+/* QR: thiệp giấy, dấu niêm phong và hai vé gửi lời chúc. */
 .qr-modal {
   z-index: 92;
+  background: rgba(46, 24, 39, 0.78);
 }
 
 .qr-modal__card {
-  display: grid;
-  width: min(100%, 720px);
-  grid-template-columns: minmax(0, 1fr);
+  position: relative;
+  width: min(100%, 800px);
   max-height: calc(100svh - 96px);
   overflow-y: auto;
-  gap: 28px;
-  align-items: center;
-  border-radius: var(--radius-lg);
-  background: var(--surface);
-  box-shadow: 0 26px 90px rgba(59, 31, 51, 0.28);
-  padding: 28px;
+  overscroll-behavior: contain;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 160px 160px 20px 20px / 54px 54px 20px 20px;
+  background:
+    radial-gradient(ellipse at 0 0, rgba(224, 138, 171, 0.2), transparent 55%),
+    linear-gradient(135deg, #fffaf5, #fff1f6);
+  box-shadow: 0 32px 100px rgba(30, 12, 24, 0.4);
+  padding: 32px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--rose) transparent;
 }
+
+.qr-modal:not([hidden]) .qr-modal__card {
+  animation: qr-letter-open 1000ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.qr-modal__header { max-width: 460px; margin: 0 auto 26px; text-align: center; }
+
+.qr-modal__seal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 18px;
+  border: 5px double #edb4c8;
+  border-radius: 46% 54% 48% 52%;
+  background: linear-gradient(135deg, #ce7095, #9c365b);
+  box-shadow: 2px 5px 0 #e8b4c6, 0 8px 16px rgba(156, 54, 91, 0.18);
+  color: #fff4e7;
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  transform: rotate(-9deg);
+}
+
+.qr-modal__seal i { font-size: 0.8rem; }
+
+.qr-modal__eyebrow {
+  margin: 0 0 8px;
+  color: var(--plum);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.qr-modal__header h2 {
+  margin: 0;
+  font-size: clamp(2.8rem, 6vw, 3.8rem);
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.1;
+}
+
+.qr-modal__names {
+  margin: 10px 0;
+  font-family: var(--serif);
+  font-size: 1.5rem;
+}
+
+.qr-modal__names span { padding-inline: 6px; color: var(--plum); font-style: italic; }
+.qr-modal__thanks { margin: 0; color: var(--muted); font-size: 0.75rem; line-height: 1.8; }
 
 .qr-modal__banks {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 28px;
-  align-items: start;
+  gap: 20px;
+  align-items: stretch;
 }
 
-.qr-modal__content h3 {
-  margin: 0 0 16px;
-  color: var(--plum);
-  font-size: 1.8rem;
-  text-align: center;
+.qr-modal__content {
+  position: relative;
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 16px 16px 6px 6px;
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 8px 24px rgba(128, 60, 87, 0.05);
 }
 
-.qr-modal__note {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.85rem;
-  text-align: center;
-  overflow-wrap: anywhere;
+.qr-modal:not([hidden]) .qr-modal__content {
+  animation: qr-ticket-unfold 1200ms cubic-bezier(0.22, 1, 0.36, 1) 150ms both;
 }
+
+.qr-modal:not([hidden]) .qr-modal__content:nth-child(2) { animation-delay: 300ms; }
+
+.qr-modal__bank-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.qr-modal__recipient { margin: 0 0 4px; color: var(--muted); font-size: 0.65rem; }
+.qr-modal__bank-heading h3 { margin: 0; color: var(--plum); font-size: 1.75rem; }
+.qr-modal__ticket-number { color: var(--line); font-family: var(--serif); font-size: 2.4rem; font-style: italic; line-height: 1; }
 
 .qr-modal__code {
-  margin-bottom: 16px;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
+  max-width: 248px;
+  margin: 18px auto;
   padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 0 0 4px var(--surface), 0 0 0 5px var(--line);
 }
 
-.qr-modal__code img {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1;
-  object-fit: contain;
-}
-
-.qr-modal__card > h2 {
-  margin-bottom: 18px;
-  font-size: clamp(1.9rem, 3.4vw, 2.5rem);
-}
+.qr-modal__code img { display: block; width: 100%; height: auto; object-fit: contain; }
 
 .qr-modal__content dl {
   display: grid;
   gap: 12px;
   margin: 0;
+  padding-top: 18px;
+  border-top: 1px dashed var(--line);
 }
 
-.qr-modal__content dl div {
-  border-top: 1px solid var(--line);
-  padding-top: 12px;
+.qr-modal__content dt { color: var(--muted); font-size: 0.65rem; }
+.qr-modal__content dd { margin: 3px 0 0; color: var(--ink); font-size: 0.8rem; font-weight: 600; overflow-wrap: anywhere; }
+.qr-modal__content dl > div:last-child dd { font-size: 1.1rem; letter-spacing: 0.06em; font-variant-numeric: tabular-nums; }
+
+.qr-modal__note { margin-top: 24px; text-align: center; overflow-wrap: anywhere; }
+.qr-modal__note-label { color: var(--muted); font-size: 0.65rem; letter-spacing: 0.05em; }
+.qr-modal__note p { margin: 6px 0 14px; color: var(--plum); font-size: 0.75rem; }
+.qr-modal__signature { color: var(--muted); font-family: var(--serif); font-size: 1.35rem; font-style: italic; }
+
+@keyframes qr-letter-open {
+  from { opacity: 0; transform: translateY(30px) scale(0.96); }
+  to { opacity: 1; transform: none; }
 }
 
-.qr-modal__content dt {
-  color: var(--rose);
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-
-.qr-modal__content dd {
-  margin: 2px 0 0;
-  font-weight: 600;
+@keyframes qr-ticket-unfold {
+  from { opacity: 0; transform: perspective(1000px) translateY(20px) rotateX(-7deg); }
+  to { opacity: 1; transform: none; }
 }
 
 /* ==========================================================================
@@ -1680,22 +1737,16 @@ body.gate-open .hero__names > span {
   }
 
   .qr-modal__card {
-    grid-template-columns: 1fr;
-    gap: 18px;
     max-height: calc(100svh - 96px);
-    overflow: auto;
-    padding: 18px;
+    border-radius: 72px 72px 16px 16px / 28px 28px 16px 16px;
+    padding: 24px 16px;
   }
 
-  .qr-modal__banks {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
+  .qr-modal__banks { grid-template-columns: 1fr; gap: 16px; }
+  .qr-modal__content { padding: 20px; }
+  .qr-modal__header { margin-bottom: 22px; }
+  .qr-modal__code { max-width: 256px; }
 
-  .qr-modal__code img {
-    max-width: 280px;
-    margin-inline: auto;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

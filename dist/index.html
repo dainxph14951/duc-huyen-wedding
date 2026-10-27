@@ -529,10 +529,19 @@
     >
       <button class="modal-close" id="closeQrModal" type="button">Đóng</button>
       <div class="qr-modal__card">
-        <h2 id="qrModalTitle">Mừng cưới Minh Đức & Ngọc Huyền</h2>
+        <header class="qr-modal__header">
+          <div class="qr-modal__seal" aria-hidden="true"><span>Đ</span><i>&amp;</i><span>H</span></div>
+          <p class="qr-modal__eyebrow">Gửi trao yêu thương</p>
+          <h2 id="qrModalTitle">Mừng cưới</h2>
+          <p class="qr-modal__names">Minh Đức <span>&amp;</span> Ngọc Huyền</p>
+          <p class="qr-modal__thanks">Cảm ơn bạn đã góp thêm một niềm vui vào ngày hạnh phúc của chúng mình.</p>
+        </header>
         <div class="qr-modal__banks">
           <article class="qr-modal__content" aria-labelledby="vcb-title">
-            <h3 id="vcb-title">Vietcombank</h3>
+            <div class="qr-modal__bank-heading">
+              <div><p class="qr-modal__recipient">Gửi đến chú rể</p><h3 id="vcb-title">Vietcombank</h3></div>
+              <span class="qr-modal__ticket-number" aria-hidden="true">01</span>
+            </div>
             <div class="qr-modal__code">
               <img
                 src="https://res.cloudinary.com/dvglujyon/image/upload/v1793084815/qr-vietcombank_nf8nl1.png"
@@ -553,7 +562,10 @@
             </dl>
           </article>
           <article class="qr-modal__content" aria-labelledby="shb-title">
-            <h3 id="shb-title">SHB</h3>
+            <div class="qr-modal__bank-heading">
+              <div><p class="qr-modal__recipient">Gửi đến cô dâu</p><h3 id="shb-title">SHB</h3></div>
+              <span class="qr-modal__ticket-number" aria-hidden="true">02</span>
+            </div>
             <div class="qr-modal__code">
               <img
                 src="https://res.cloudinary.com/dvglujyon/image/upload/v1793084812/qr-shb_wsdgrg.png"
@@ -574,7 +586,11 @@
             </dl>
           </article>
         </div>
-        <p class="qr-modal__note">Nội dung: Ten ban - chuc mung Minh Duc Ngoc Huyen</p>
+        <footer class="qr-modal__note">
+          <span class="qr-modal__note-label">Lời nhắn gửi cùng món quà</span>
+          <p>Ten ban - chuc mung Minh Duc Ngoc Huyen</p>
+          <span class="qr-modal__signature" aria-hidden="true">With love, Đ &amp; H</span>
+        </footer>
       </div>
     </div>
 
