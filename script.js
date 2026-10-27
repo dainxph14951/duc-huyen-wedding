@@ -206,6 +206,54 @@ if (albumTrack && albumThumbs && albumItems.length) {
     return button;
   });
 
+  const albumSection = albumTrack.closest(".album");
+  const autoplayButton = document.querySelector("#albumAutoplay");
+  const albumTransitionDuration = 1200;
+  const albumAutoplayDelay = 4000;
+  let albumAnimationFrame = 0;
+  let autoplayTimer;
+  let scrollSettleTimer;
+  let isPaused = reduceMotionQuery.matches;
+  let isInteracting = false;
+  let isHovered = false;
+  let isAlbumVisible = !("IntersectionObserver" in window);
+
+  function scheduleAutoplay() {
+    clearTimeout(autoplayTimer);
+    if (albumAnimationFrame || isPaused || isInteracting || isHovered || !isAlbumVisible || document.hidden || albumSection.contains(document.activeElement)) return;
+    autoplayTimer = setTimeout(() => {
+      if (document.body.classList.contains("modal-open") || document.body.classList.contains("gate-open") || document.body.classList.contains("qr-open")) {
+        scheduleAutoplay();
+        return;
+      }
+      const next = (activeAlbumPhoto + 1) % albumItems.length;
+      // Quay về đầu ngay, tránh chạy ngược qua cả dải ảnh.
+      goToAlbumPhoto(next, next === 0);
+      scheduleAutoplay();
+    }, albumAutoplayDelay);
+  }
+
+  function updateAutoplayButton() {
+    autoplayButton.setAttribute("aria-pressed", String(isPaused));
+    autoplayButton.textContent = isPaused ? "Bật tự chuyển ảnh" : "Tạm dừng tự chuyển";
+    albumCount.setAttribute("aria-live", isPaused ? "polite" : "off");
+  }
+
+  function paintAlbumTransition() {
+    const step = albumItems.length > 1 ? albumItems[1].offsetLeft - albumItems[0].offsetLeft : 1;
+    const progress = albumTrack.scrollLeft / step;
+    albumItems.forEach((item, index) => {
+      const distance = Math.max(-1, Math.min(1, index - progress));
+      const amount = Math.abs(distance);
+      item.style.setProperty("--album-shift", `${distance * 18}px`);
+      item.style.setProperty("--album-turn", `${distance * -9}deg`);
+      item.style.setProperty("--album-scale", String(1 - amount * 0.08));
+      item.style.setProperty("--album-opacity", String(1 - amount * 0.5));
+      item.style.setProperty("--album-caption-shift", `${amount * 10}px`);
+    });
+    updateAlbumState(Math.max(0, Math.min(albumItems.length - 1, Math.round(progress))));
+  }
+
   function updateAlbumState(index) {
     activeAlbumPhoto = index;
     thumbs.forEach((thumb, i) => thumb.setAttribute("aria-current", String(i === index)));
@@ -220,20 +268,60 @@ if (albumTrack && albumThumbs && albumItems.length) {
     albumNext.disabled = index === albumItems.length - 1;
   }
 
-  function goToAlbumPhoto(index) {
+  function cancelAlbumTransition() {
+    cancelAnimationFrame(albumAnimationFrame);
+    albumAnimationFrame = 0;
+    albumTrack.style.removeProperty("scroll-snap-type");
+  }
+
+  function goToAlbumPhoto(index, instant = false) {
+    cancelAlbumTransition();
     const target = Math.max(0, Math.min(index, albumItems.length - 1));
-    albumTrack.scrollTo({
-      left: albumItems[target].offsetLeft - albumItems[0].offsetLeft,
-      behavior: reduceMotionQuery.matches ? "instant" : "smooth",
-    });
+    const destination = albumItems[target].offsetLeft - albumItems[0].offsetLeft;
+    const startLeft = albumTrack.scrollLeft;
+    clearTimeout(autoplayTimer);
+    if (instant || reduceMotionQuery.matches || Math.abs(destination - startLeft) < 1) {
+      albumTrack.scrollTo({ left: destination, behavior: "instant" });
+      if (instant && !reduceMotionQuery.matches && target !== activeAlbumPhoto) {
+        albumItems[target].querySelector("img").animate?.([
+          { opacity: 0.4, transform: "scale(0.94) rotateY(-7deg)" },
+          { opacity: 1, transform: "scale(1) rotateY(0deg)" },
+        ], { duration: albumTransitionDuration, easing: "cubic-bezier(0.22, 1, 0.36, 1)" });
+      }
+      paintAlbumTransition();
+      scheduleAutoplay();
+      return;
+    }
+
+    // Tự điều khiển thời lượng vì smooth scroll của trình duyệt thường quá nhanh.
+    albumTrack.style.setProperty("scroll-snap-type", "none");
+    let startedAt;
+    function animateAlbum(timestamp) {
+      if (startedAt === undefined) startedAt = timestamp;
+      const progress = Math.min((timestamp - startedAt) / albumTransitionDuration, 1);
+      const eased = progress < 0.5
+        ? 4 * progress * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+      albumTrack.scrollTo({ left: startLeft + (destination - startLeft) * eased, behavior: "instant" });
+      paintAlbumTransition();
+      if (progress < 1) {
+        albumAnimationFrame = requestAnimationFrame(animateAlbum);
+      } else {
+        cancelAlbumTransition();
+        scheduleAutoplay();
+      }
+    }
+    albumAnimationFrame = requestAnimationFrame(animateAlbum);
   }
 
   let albumScrollFrame = 0;
   albumTrack.addEventListener("scroll", () => {
+    clearTimeout(autoplayTimer);
+    clearTimeout(scrollSettleTimer);
+    scrollSettleTimer = setTimeout(scheduleAutoplay, 160);
     if (albumScrollFrame) return;
     albumScrollFrame = requestAnimationFrame(() => {
-      const step = albumItems.length > 1 ? albumItems[1].offsetLeft - albumItems[0].offsetLeft : 1;
-      updateAlbumState(Math.max(0, Math.min(albumItems.length - 1, Math.round(albumTrack.scrollLeft / step))));
+      paintAlbumTransition();
       albumScrollFrame = 0;
     });
   }, { passive: true });
@@ -245,7 +333,55 @@ if (albumTrack && albumThumbs && albumItems.length) {
       goToAlbumPhoto(activeAlbumPhoto + (event.key === "ArrowRight" ? 1 : -1));
     }
   });
-  updateAlbumState(0);
+  autoplayButton.addEventListener("click", () => {
+    isPaused = !isPaused;
+    updateAutoplayButton();
+    scheduleAutoplay();
+  });
+  albumSection.addEventListener("pointerenter", (event) => {
+    if (event.pointerType === "touch") return;
+    isHovered = true;
+    scheduleAutoplay();
+  });
+  albumSection.addEventListener("pointerleave", () => {
+    isHovered = false;
+    scheduleAutoplay();
+  });
+  albumTrack.addEventListener("wheel", cancelAlbumTransition, { passive: true });
+  albumTrack.addEventListener("pointerdown", () => {
+    cancelAlbumTransition();
+    isInteracting = true;
+    scheduleAutoplay();
+  }, { passive: true });
+  const endInteraction = () => {
+    if (!isInteracting) return;
+    isInteracting = false;
+    scheduleAutoplay();
+  };
+  window.addEventListener("pointerup", endInteraction);
+  window.addEventListener("pointercancel", endInteraction);
+  albumSection.addEventListener("focusin", scheduleAutoplay);
+  albumSection.addEventListener("focusout", () => setTimeout(scheduleAutoplay, 0));
+  document.addEventListener("visibilitychange", scheduleAutoplay);
+  reduceMotionQuery.addEventListener("change", () => {
+    if (reduceMotionQuery.matches) isPaused = true;
+    updateAutoplayButton();
+    paintAlbumTransition();
+    scheduleAutoplay();
+  });
+  window.addEventListener("resize", () => {
+    goToAlbumPhoto(activeAlbumPhoto, true);
+    paintAlbumTransition();
+  });
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(([entry]) => {
+      isAlbumVisible = entry.isIntersecting;
+      scheduleAutoplay();
+    }, { threshold: 0.25 }).observe(albumTrack);
+  }
+  updateAutoplayButton();
+  paintAlbumTransition();
+  scheduleAutoplay();
 }
 
 /* ---------- Xem ảnh album ---------- */

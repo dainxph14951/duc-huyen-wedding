@@ -879,6 +879,7 @@ nav a:hover,
   margin: 0;
   padding: 12px 12px 0;
   scroll-snap-align: start;
+  perspective: 1100px;
   cursor: zoom-in;
 }
 
@@ -887,6 +888,10 @@ nav a:hover,
   width: 100%;
   height: clamp(300px, 55svh, 580px);
   object-fit: contain;
+  transform: translateX(var(--album-shift, 0px)) rotateY(var(--album-turn, 0deg)) scale(var(--album-scale, 1));
+  opacity: var(--album-opacity, 1);
+  transform-origin: center;
+
 }
 
 .album__item figcaption {
@@ -898,6 +903,26 @@ nav a:hover,
   color: var(--muted);
   font-size: 0.8rem;
 }
+
+.album__item figcaption {
+  opacity: var(--album-opacity, 1);
+  transform: translateY(var(--album-caption-shift, 0px));
+}
+
+.album__autoplay {
+  display: block;
+  margin: 12px auto 0;
+  padding: 6px 12px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+.album__autoplay:focus-visible { outline: 2px solid var(--plum); }
 
 .album__number {
   color: var(--plum);
@@ -1647,6 +1672,12 @@ body.gate-open .hero__names > span {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .album__item img,
+  .album__item figcaption {
+    transform: none;
+    opacity: 1;
+  }
+
   html {
     scroll-behavior: auto;
   }
