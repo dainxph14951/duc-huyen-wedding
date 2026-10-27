@@ -451,15 +451,24 @@
       aria-labelledby="inviteGateTitle"
     >
       <div class="invite-gate__card">
-        <img
-          src="https://dichvucuoihoi.vn/wp-content/uploads/2023/08/Backdrop-chup-anh-tiec-cuoi-tong-trang-3.jpg"
-          alt="Ảnh bìa thiệp cưới Minh Đức và Ngọc Huyền"
-        />
+        <div class="invite-gate__portrait">
+          <img
+            src="https://res.cloudinary.com/dvglujyon/image/upload/v1793088537/HAU07903_1_fpsgts.jpg"
+            alt="Ảnh cưới Minh Đức và Ngọc Huyền sau lớp sương mờ"
+            fetchpriority="high"
+          />
+          <div class="invite-gate__portrait-frame" aria-hidden="true">
+            <span class="invite-gate__monogram">Đ <i>&amp;</i> H</span>
+            <span class="invite-gate__secret">Một lời hẹn đang chờ bạn…</span>
+          </div>
+        </div>
         <div class="invite-gate__content">
-          <h2 id="inviteGateTitle">Minh Đức & Ngọc Huyền</h2>
+          <h2 id="inviteGateTitle" class="invite-gate__names">
+            <span>Minh Đức</span><span class="invite-gate__ampersand">&amp;</span><span>Ngọc Huyền</span>
+          </h2>
           <p>Trân trọng mời bạn mở thiệp.</p>
           <button class="button button--primary" id="openInvite" type="button">
-            Mở thiệp
+            Mở thiệp <span aria-hidden="true">↗</span>
           </button>
         </div>
       </div>
