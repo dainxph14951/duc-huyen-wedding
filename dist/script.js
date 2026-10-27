@@ -30,12 +30,12 @@ if (inviteGate && openInviteButton) {
       && typeof inviteGate.animate === "function"
       ? Promise.all([
           inviteGate.animate([{ opacity: 1 }, { opacity: 0 }], {
-            duration: 700, easing: "ease-in-out", fill: "forwards",
+            duration: 1050, easing: "ease-in-out", fill: "forwards",
           }).finished,
           inviteGate.querySelector(".invite-gate__card").animate(
             [{ transform: "perspective(1200px) rotateY(0deg) scale(1)" },
              { transform: "perspective(1200px) rotateY(-12deg) scale(1.06)" }],
-            { duration: 700, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "forwards" },
+            { duration: 1050, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "forwards" },
           ).finished,
         ]).catch(() => {})
       : Promise.resolve();
@@ -131,7 +131,7 @@ document.querySelectorAll("[data-stagger]").forEach((group) => {
 
   Array.from(group.children).forEach((child, index) => {
     child.dataset.anim = kind;
-    child.style.setProperty("--delay", `${Math.min(base + index * 55, 260)}ms`);
+    child.style.setProperty("--delay", `${Math.min(base + index * 90, 420)}ms`);
   });
 });
 

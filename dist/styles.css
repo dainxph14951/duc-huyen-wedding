@@ -280,7 +280,7 @@ nav a:hover,
 }
 
 .hero__image {
-  animation: hero-settle 2200ms cubic-bezier(0.2, 0.72, 0.2, 1) both;
+  animation: hero-settle 3200ms cubic-bezier(0.2, 0.72, 0.2, 1) both;
 }
 
 .hero__content {
@@ -290,19 +290,19 @@ nav a:hover,
 }
 
 .hero__content > * {
-  animation: hero-rise 800ms cubic-bezier(0.2, 0.72, 0.2, 1) both;
+  animation: hero-rise 1200ms cubic-bezier(0.2, 0.72, 0.2, 1) both;
 }
 
 .hero__content > :nth-child(2) {
-  animation-delay: 120ms;
+  animation-delay: 180ms;
 }
 
 .hero__content > :nth-child(3) {
-  animation-delay: 240ms;
+  animation-delay: 360ms;
 }
 
 .hero__content > :nth-child(4) {
-  animation-delay: 360ms;
+  animation-delay: 540ms;
 }
 
 @keyframes hero-settle {
@@ -745,7 +745,7 @@ nav a:hover,
 
 .can-animate .feature__photo img {
   transform: scale(1.12);
-  transition: transform 2000ms cubic-bezier(0.2, 0.72, 0.2, 1);
+  transition: transform 2800ms cubic-bezier(0.2, 0.72, 0.2, 1);
 }
 
 .can-animate .feature__photo.is-visible img {
@@ -934,8 +934,8 @@ nav a:hover,
 .can-animate [data-anim] {
   opacity: 0;
   transition:
-    opacity 600ms ease,
-    transform 600ms cubic-bezier(0.2, 0.72, 0.2, 1);
+    opacity 1000ms ease,
+    transform 1000ms cubic-bezier(0.2, 0.72, 0.2, 1);
   transition-delay: 0ms;
 }
 
@@ -969,12 +969,12 @@ body.gate-open .hero__names > span {
 }
 
 .hero__names > span {
-  animation: name-unveil 1200ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: name-unveil 1800ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.hero__names > span:first-child { animation-delay: 200ms; }
-.hero__names > .hero__ampersand { animation-delay: 450ms; }
-.hero__names > span:last-child { animation-delay: 650ms; }
+.hero__names > span:first-child { animation-delay: 300ms; }
+.hero__names > .hero__ampersand { animation-delay: 650ms; }
+.hero__names > span:last-child { animation-delay: 1000ms; }
 
 @keyframes name-unveil {
   from { opacity: 0; transform: translateY(22px) rotate(-3deg); }
@@ -988,7 +988,7 @@ body.gate-open .hero__names > span {
 .can-animate [data-anim="unfold"] {
   transform: translateY(24px) rotateY(-12deg) rotateZ(-1.5deg);
   transform-origin: left center;
-  transition-duration: 850ms;
+  transition-duration: 1300ms;
 }
 
 .can-animate [data-anim="unfold"]:nth-child(even) {
@@ -1002,7 +1002,7 @@ body.gate-open .hero__names > span {
 
 .love-story__number {
   transform-origin: left center;
-  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 1350ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .can-animate [data-anim="unfold"]:not(.is-visible) .love-story__number {
@@ -1011,7 +1011,7 @@ body.gate-open .hero__names > span {
 
 .can-animate [data-anim="photo"] {
   transform: translateY(24px) rotate(-1.5deg) scale(0.97);
-  transition-duration: 800ms;
+  transition-duration: 1200ms;
 }
 
 .can-animate [data-anim="photo"]:nth-child(even) {
@@ -1031,7 +1031,7 @@ body.gate-open .hero__names > span {
   content: "";
   transform: scaleX(1);
   transform-origin: right center;
-  transition: transform 850ms cubic-bezier(0.76, 0, 0.24, 1);
+  transition: transform 1300ms cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 .can-animate .album__item:nth-child(even)::before {
@@ -1044,7 +1044,7 @@ body.gate-open .hero__names > span {
 }
 
 .can-animate .feature__photo figcaption {
-  transition: opacity 800ms ease 200ms, transform 1000ms cubic-bezier(0.22, 1, 0.36, 1) 200ms;
+  transition: opacity 1200ms ease 300ms, transform 1500ms cubic-bezier(0.22, 1, 0.36, 1) 300ms;
 }
 
 .can-animate .feature__photo:not(.is-visible) figcaption {
@@ -1341,7 +1341,7 @@ body.gate-open .hero__names > span {
    ========================================================================== */
 @media (max-width: 840px) {
   .can-animate [data-anim] {
-    transition-duration: 500ms;
+    transition-duration: 1000ms;
   }
 
   .can-animate [data-anim="up"] {
