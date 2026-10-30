@@ -76,7 +76,7 @@ h3 {
 
 h2 {
   margin-bottom: 14px;
-  font-size: clamp(2.3rem, 4.4vw, 3.6rem);
+  font-size: clamp(2.3rem, calc(var(--phone-unit) * 4.4), 3.6rem);
   font-weight: 700;
 }
 
@@ -255,7 +255,7 @@ nav a:hover,
   display: grid;
   min-height: 92vh;
   overflow: hidden;
-  padding: 132px max(24px, calc((100vw - 1040px) / 2)) 168px;
+  padding: 132px max(24px, calc((calc(var(--phone-unit) * 100) - 1040px) / 2)) 168px;
   place-items: center start;
 }
 
@@ -347,7 +347,7 @@ nav a:hover,
   display: grid;
   justify-items: center;
   margin: 0 0 28px;
-  font-size: clamp(3rem, 5.5vw, 4.75rem);
+  font-size: clamp(3rem, calc(var(--phone-unit) * 5.5), 4.75rem);
   font-weight: 500;
   font-style: italic;
   line-height: 1.08;
@@ -385,7 +385,7 @@ nav a:hover,
   border-top: 1px solid currentColor;
   border-bottom: 1px solid currentColor;
   font-family: var(--serif);
-  font-size: clamp(1.7rem, 3vw, 2.1rem);
+  font-size: clamp(1.7rem, calc(var(--phone-unit) * 3), 2.1rem);
   font-weight: 500;
   line-height: 1;
 }
@@ -543,7 +543,7 @@ nav a:hover,
 
 .event__body h2 {
   margin-bottom: 22px;
-  font-size: clamp(2rem, 3.4vw, 2.7rem);
+  font-size: clamp(2rem, calc(var(--phone-unit) * 3.4), 2.7rem);
 }
 
 /* Hai thiệp sự kiện, con dấu ngày và đường nối mảnh. */
@@ -618,7 +618,7 @@ nav a:hover,
 .event__details h3 {
   margin: 10px 0 8px;
   font-family: var(--serif);
-  font-size: clamp(1.5rem, 2.5vw, 1.9rem);
+  font-size: clamp(1.5rem, calc(var(--phone-unit) * 2.5), 1.9rem);
   line-height: 1.15;
 }
 
@@ -670,7 +670,7 @@ nav a:hover,
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(16px, 5vw, 56px);
+  gap: clamp(16px, calc(var(--phone-unit) * 5), 56px);
   margin-top: 32px;
 }
 
@@ -682,7 +682,7 @@ nav a:hover,
 }
 
 .couple__person img {
-  width: clamp(130px, 22vw, 210px);
+  width: clamp(130px, calc(var(--phone-unit) * 22), 210px);
   aspect-ratio: 1;
   border: 6px solid var(--surface);
   border-radius: 50%;
@@ -763,7 +763,7 @@ nav a:hover,
 
 .feature__photo strong {
   font-family: var(--serif);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2rem, calc(var(--phone-unit) * 4), 3rem);
   line-height: 1;
 }
 
@@ -1139,7 +1139,7 @@ body.gate-open .hero__names > span {
   transform: translateY(20px);
 }
 
-@media (max-width: 840px) {
+@media all {
   .can-animate [data-anim="unfold"],
   .can-animate [data-anim="unfold"]:nth-child(even) {
     transform: translateY(18px) rotateZ(-1deg);
@@ -1190,17 +1190,17 @@ body.gate-open .hero__names > span {
 }
 
 .footer__ornament { display: flex; align-items: center; gap: 18px; color: var(--plum); opacity: 0.7; margin-bottom: 18px; }
-.footer__ornament > span { width: clamp(42px, 10vw, 90px); height: 1px; background: linear-gradient(90deg, transparent, var(--rose)); }
+.footer__ornament > span { width: clamp(42px, calc(var(--phone-unit) * 10), 90px); height: 1px; background: linear-gradient(90deg, transparent, var(--rose)); }
 .footer__ornament > span:last-child { transform: rotate(180deg); }
 .footer .footer__eyebrow { margin: 0 0 16px; color: var(--muted); font-family: var(--sans); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; }
-.footer .footer__names { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: center; gap: 0 16px; margin: 0; font-family: var(--serif); font-size: clamp(2.5rem, 5.5vw, 4.2rem); font-weight: 500; font-style: italic; line-height: 1.25; }
+.footer .footer__names { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: center; gap: 0 16px; margin: 0; font-family: var(--serif); font-size: clamp(2.5rem, calc(var(--phone-unit) * 5.5), 4.2rem); font-weight: 500; font-style: italic; line-height: 1.25; }
 .footer__names > span { white-space: nowrap; }
 .footer__names i { color: var(--plum); font-size: 0.72em; font-weight: 400; }
-.footer .footer__message { margin: 22px 0 26px; max-width: 440px; color: var(--muted); font-family: var(--serif); font-size: clamp(1.2rem, 2.5vw, 1.5rem); font-style: italic; font-weight: 500; line-height: 1.65; text-wrap: balance; }
+.footer .footer__message { margin: 22px 0 26px; max-width: 440px; color: var(--muted); font-family: var(--serif); font-size: clamp(1.2rem, calc(var(--phone-unit) * 2.5), 1.5rem); font-style: italic; font-weight: 500; line-height: 1.65; text-wrap: balance; }
 .footer__date { display: flex; align-items: center; gap: 14px; color: var(--plum); font-size: 0.65rem; letter-spacing: 0.22em; }
 .footer__date > span { height: 1px; width: 28px; background: var(--line); }
-@media (max-width: 480px) {
-  .footer .footer__names { display: grid; gap: 2px; font-size: clamp(2.4rem, 10vw, 3rem); }
+@media all {
+  .footer .footer__names { display: grid; gap: 2px; font-size: clamp(2.4rem, calc(var(--phone-unit) * 10), 3rem); }
   .footer__names i { line-height: 1; font-size: 1.7rem; }
 }
 
@@ -1351,7 +1351,7 @@ body.gate-open .hero__names > span {
   gap: 6px;
   margin: 0;
   color: #60434f;
-  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-size: clamp(2rem, calc(var(--phone-unit) * 4), 2.8rem);
   font-weight: 500;
   font-style: italic;
   line-height: 1.1;
@@ -1531,7 +1531,7 @@ body.gate-open .hero__names > span {
 
 .qr-modal__header h2 {
   margin: 0;
-  font-size: clamp(2.8rem, 6vw, 3.8rem);
+  font-size: clamp(2.8rem, calc(var(--phone-unit) * 6), 3.8rem);
   font-weight: 500;
   font-style: italic;
   line-height: 1.1;
@@ -1616,7 +1616,7 @@ body.gate-open .hero__names > span {
 /* ==========================================================================
    Responsive
    ========================================================================== */
-@media (max-width: 840px) {
+@media all {
   .can-animate [data-anim] {
     transition-duration: 1000ms;
   }
@@ -1674,7 +1674,7 @@ body.gate-open .hero__names > span {
 
   .hero h1 {
     margin-bottom: 22px;
-    font-size: clamp(2.8rem, 10vw, 4rem);
+    font-size: clamp(2.8rem, calc(var(--phone-unit) * 10), 4rem);
   }
 
   .hero__eyebrow,
@@ -1885,7 +1885,7 @@ body.gate-open .hero__names > span {
   }
 
   .invite-gate__content .invite-gate__names {
-    font-size: clamp(1.9rem, 7vw, 2.5rem);
+    font-size: clamp(1.9rem, calc(var(--phone-unit) * 7), 2.5rem);
   }
 
   .invite-gate__portrait::before {
@@ -2008,7 +2008,7 @@ body.gate-open .hero__names > span {
 .qr-modal__seal { width: 44px; height: 44px; margin-bottom: 12px; border-width: 4px; font-size: 1rem; }
 .qr-modal__seal i { font-size: 0.65rem; }
 .qr-modal__eyebrow { font-size: 0.58rem; letter-spacing: 0.14em; margin-bottom: 6px; }
-.qr-modal__header h2 { font-size: clamp(2rem, 5vw, 2.6rem); }
+.qr-modal__header h2 { font-size: clamp(2rem, calc(var(--phone-unit) * 5), 2.6rem); }
 .qr-modal__names { margin: 6px 0 10px; font-size: 1.2rem; }
 .qr-modal__thanks { font-size: 0.7rem; line-height: 1.65; }
 .qr-modal__banks { gap: 12px; }
@@ -2022,7 +2022,7 @@ body.gate-open .hero__names > span {
 .qr-modal__note { margin-top: 18px; }
 .qr-modal__note p { font-size: 0.7rem; margin-bottom: 8px; }
 .qr-modal__signature { font-size: 1.1rem; }
-@media (max-width: 840px) {
+@media all {
   .qr-modal { padding: 12px; padding-top: max(12px, env(safe-area-inset-top, 0px)); padding-bottom: max(12px, env(safe-area-inset-bottom, 0px)); }
   .qr-modal__card { width: min(100%, 400px); }
 }
@@ -2190,7 +2190,7 @@ body.gate-open .hero__names > span {
   font-size: 1.75rem;
   background: #fffaf4;
 }
-.story-chime__paper h3 { font-size: clamp(1.5rem, 2.4vw, 1.8rem); line-height: 1.25; }
+.story-chime__paper h3 { font-size: clamp(1.5rem, calc(var(--phone-unit) * 2.4), 1.8rem); line-height: 1.25; }
 .story-chime__paper p { font-size: 0.9rem; line-height: 1.85; }
 .story-chime__stars {
   display: block;
@@ -2233,7 +2233,7 @@ body.gate-open .hero__names > span {
   0%, 100% { opacity: 0.35; filter: drop-shadow(0 0 0 transparent); }
   50% { opacity: 1; filter: drop-shadow(0 0 5px #e9bf80); }
 }
-@media (max-width: 840px) {
+@media all {
   .love-story__chapters { gap: 14px; padding: 0 20px 32px; }
   .love-story__chapters::before { display: none; }
   .love-story__chapters li { width: min(100%, 380px); margin-inline: auto; }
@@ -2360,7 +2360,7 @@ body.gate-open .hero__names > span {
 }
 .album-yacht__name {
   font-family: var(--serif);
-  font-size: clamp(0.7rem, 1.7vw, 1rem);
+  font-size: clamp(0.7rem, calc(var(--phone-unit) * 1.7), 1rem);
   letter-spacing: 0.12em;
   white-space: nowrap;
 }
@@ -2414,7 +2414,7 @@ body.gate-open .hero__names > span {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
-@media (max-width: 840px) {
+@media all {
   .album-voyage { margin-inline: -4px; padding: 74px 4px 40px; }
   .album-yacht .album__grid { border-radius: 30px 10px 0 0; }
   .album-yacht__hull { min-height: 70px; padding: 15px 9% 26px; gap: 8px; }
@@ -2532,14 +2532,14 @@ body.gate-open .hero__names > span {
   opacity: 1;
   box-shadow: inset 0 0 0 2px #f8e6edbb, 0 0 0 2px #d8a6ba66, 0 4px 12px #9b5c7526;
 }
-@media (max-width: 840px) {
+@media all {
   .album__controls { grid-template-columns: 50px minmax(0, 1fr) 50px; gap: 10px; }
   .album__arrow { width: 50px; height: 50px; }
   .album__helm-direction { font-size: 13px; }
   .album__status { font-size: 0.65rem; }
   .album__thumbs { width: 100%; gap: 6px; padding: 10px 8px; }
   .album__thumb { flex: 1 1 0; max-width: 64px; padding: 4px; }
-  .album__thumb img { height: clamp(38px, 10vw, 58px); }
+  .album__thumb img { height: clamp(38px, calc(var(--phone-unit) * 10), 58px); }
   .album__thumb::after { inset: 4px; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -2558,7 +2558,7 @@ body.gate-open .hero__names > span {
   position: absolute;
   z-index: -1;
   inset: auto 0 0;
-  height: clamp(240px, 28vw, 360px);
+  height: clamp(240px, calc(var(--phone-unit) * 28), 360px);
   pointer-events: none;
 }
 .footer__landscape img {
@@ -2573,13 +2573,13 @@ body.gate-open .hero__names > span {
   color: #94677b;
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  font-size: clamp(1.1rem, calc(var(--phone-unit) * 2.5), 1.35rem);
   letter-spacing: 0.02em;
 }
 @media (min-width: 1200px) {
   .footer { padding-bottom: 320px; }
 }
-@media (max-width: 840px) {
+@media all {
   .footer { padding-bottom: calc(250px + env(safe-area-inset-bottom, 0px)); }
   .footer__landscape { height: 260px; }
 }
@@ -2690,7 +2690,7 @@ body.gate-open .hero__names > span {
   box-shadow: none;
 }
 .couple-home .couple__person figcaption { width: 100%; }
-.couple-home .couple__person strong { font-size: clamp(1.65rem, 3.8vw, 2.3rem); line-height: 1.15; }
+.couple-home .couple__person strong { font-size: clamp(1.65rem, calc(var(--phone-unit) * 3.8), 2.3rem); line-height: 1.15; }
 .couple-home .couple__person figcaption > span { display: block; margin-top: 6px; font-size: 0.8rem; }
 .couple-home .couple__heart { position: absolute; left: calc(50% - 12px); top: 40%; }
 .couple-home .couple__heart svg { width: 24px; height: 24px; }
@@ -2723,15 +2723,15 @@ body.gate-open .hero__names > span {
   65% { opacity: 0.3; }
   100% { opacity: 0; transform: translate(24px, -82px) scale(2.3); }
 }
-@media (max-width: 840px) {
+@media all {
   .couple-home { margin-top: 66px; padding-inline: 18px; }
   .couple-home__roof { width: calc(100% + 36px); margin-inline: -18px; }
   .couple-home__chimney { width: 24px; height: 58px; }
   .couple-home .couple__pair { gap: 28px; padding: 20px 18px 64px; }
   .couple-home__window { padding: 5px; }
   .couple-home__window::before { inset: 5px; }
-  .couple-home .couple__person strong { font-size: clamp(1.3rem, 5vw, 1.85rem); }
-  .couple-home .couple__person figcaption > span { font-size: clamp(0.6rem, 2.5vw, 0.8rem); }
+  .couple-home .couple__person strong { font-size: clamp(1.3rem, calc(var(--phone-unit) * 5), 1.85rem); }
+  .couple-home .couple__person figcaption > span { font-size: clamp(0.6rem, calc(var(--phone-unit) * 2.5), 0.8rem); }
   .couple-home .couple__heart svg { width: 18px; height: 18px; }
   .couple-home .couple__heart { left: calc(50% - 9px); top: 36%; }
   .couple-home::after { left: 10px; right: 10px; }
@@ -2788,8 +2788,8 @@ body.gate-open .hero__names > span {
 }
 .story-gate::before { left: -13px; }
 .story-gate::after { right: -13px; }
-.story-gate .love-story__eyebrow { font-size: clamp(1.1rem, 3.5vw, 1.5rem); }
-.story-gate h2 { max-width: 380px; margin-inline: auto; font-size: clamp(1.8rem, 5.5vw, 2.8rem); line-height: 1.15; }
+.story-gate .love-story__eyebrow { font-size: clamp(1.1rem, calc(var(--phone-unit) * 3.5), 1.5rem); }
+.story-gate h2 { max-width: 380px; margin-inline: auto; font-size: clamp(1.8rem, calc(var(--phone-unit) * 5.5), 2.8rem); line-height: 1.15; }
 .story-gate .text-word { position: relative; }
 .story-gate__finial {
   position: absolute;
@@ -2834,7 +2834,7 @@ body.gate-open .hero__names > span {
 }
 .story-gate__doors span:last-child { transform: skewY(-10deg); transform-origin: right bottom; border-radius: 32px 0 0 0; }
 .story-gate__doors span::after { content: ""; position: absolute; top: 28px; left: 0; right: 0; height: 1px; background: #d8a5b9; }
-@media (max-width: 840px) {
+@media all {
   .story-entrance { padding-top: 170px; margin-bottom: 22px; }
   .story-gate { width: calc(100% - 24px); padding: 46px 26px 100px; }
   .story-gate__doors { height: 74px; }
@@ -2894,7 +2894,7 @@ body.gate-open .hero__names > span {
 /* Pháo phun trắng hồng từ hai góc dưới, nằm sau lớp chữ tên/ngày. */
 .feature__photo figcaption { z-index: 2; }
 .feature-fireworks {
-  --rise: clamp(200px, 48vw, 360px);
+  --rise: clamp(200px, calc(var(--phone-unit) * 48), 360px);
   position: absolute;
   z-index: 1;
   inset: 0;
@@ -2994,7 +2994,7 @@ body.gate-open .hero__names > span {
   100% { opacity: 0; transform: translate(110%, -16px); }
 }
 @keyframes dawn-bird-flap { from { transform: scaleY(1); } to { transform: scaleY(0.3); } }
-@media (max-width: 840px) { .home-visitor { width: 32px; height: 48px; } }
+@media all { .home-visitor { width: 32px; height: 48px; } }
 @media (prefers-reduced-motion: reduce) {
   .home-visitor { display: none; }
   .home-visitor__leg, .home-visitor__figure, .footer__bird, .footer__bird-wings { animation: none !important; }
@@ -3067,7 +3067,7 @@ body::after {
   50% { transform: translate3d(1.5%, 1%, 0) scale(1.07); opacity: 0.8; }
   100% { transform: translate3d(-0.5%, 2%, 0) scale(1.04); opacity: 0.65; }
 }
-@media (max-width: 840px) {
+@media all {
   body::after { filter: blur(28px); }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -3145,7 +3145,7 @@ body::after {
   0%, 100% { transform: rotate(-3deg); }
   50% { transform: rotate(3deg); }
 }
-@media (max-width: 840px) { .story-gate__logo { max-width: 230px; } }
+@media all { .story-gate__logo { max-width: 230px; } }
 @media (prefers-reduced-motion: reduce) {
   .story-gate .story-gate__logo { animation: none; transform: none; }
 }
@@ -3177,7 +3177,7 @@ body::after {
 .story-gate .love-story__eyebrow { position: relative; margin: 0 0 24px; font-size: 1.2rem; }
 .story-gate #love-story-title { width: 100%; margin: 0; }
 .story-gate .story-gate__logo { max-width: 220px; }
-@media (max-width: 840px) {
+@media all {
   .love-story__intro.story-gate { min-height: 208px; padding: 28px 44px 20px; }
   .story-gate .love-story__eyebrow { margin-bottom: 20px; font-size: 1.1rem; }
   .story-gate .story-gate__logo { max-width: 185px; }
@@ -3221,7 +3221,7 @@ body::after {
 .story-gate__garden-doors span::before { content: ""; position: absolute; top: 22px; left: 0; right: 0; border-top: 2px solid #d9b1c4; }
 .story-gate__garden-doors span::after { content: ""; position: absolute; top: 33px; right: 5px; width: 4px; height: 4px; border-radius: 50%; background: #b57c99; }
 .story-gate__garden-doors span:last-child::after { right: auto; left: 5px; }
-@media (max-width: 840px) {
+@media all {
   .love-story__intro.story-gate { min-height: 256px; padding: 62px 42px 66px; }
   .story-gate .love-story__eyebrow { margin-bottom: 14px; font-size: 1rem; }
   .story-gate .story-gate__logo { max-width: 160px; }
@@ -3279,7 +3279,7 @@ body::after {
 .couple-home__porch::before { content: ""; position: absolute; left: -10px; right: -10px; top: -22px; height: 22px; background: #e8c4d5; clip-path: polygon(50% 0, 100% 84%, 97% 100%, 50% 20%, 3% 100%, 0 84%); }
 .couple-home__fence { position: absolute; bottom: 12px; left: 30px; right: 30px; height: 25px; display: flex; justify-content: space-between; pointer-events: none; }
 .couple-home__fence span { position: relative; width: calc(50% - 46px); border-block: 2px solid #d6afc2; background: repeating-linear-gradient(90deg, #faedf3 0 6px, #d6afc2 6px 7px, transparent 7px 15px); }
-@media (max-width: 840px) {
+@media all {
   .couple-home__shutters { left: -9px; right: -9px; }
   .couple-home__shutters::before, .couple-home__shutters::after { width: 7px; }
   .couple-home__porch { left: calc(50% - 33px); width: 66px; height: 71px; }
@@ -3313,32 +3313,23 @@ body::after {
 .album-yacht__mast { bottom: 56px; }
 .album-yacht__rail { height: 22px; border-color: #cfa2b9; border-radius: 8px 8px 0 0; background: repeating-linear-gradient(90deg, transparent 0 15px, #d5adbf 15px 17px); }
 .album-yacht .album__grid { border-radius: 36px 36px 0 0; border-color: #dcb8ca; box-shadow: 0 -4px 0 #f4dce8, 0 -7px 0 -2px #e4c2d2, 0 6px 30px #9f648011; }
-.album-yacht__garland { position: absolute; z-index: 2; top: -6px; left: 0; width: 100%; height: clamp(72px, 12vw, 112px); pointer-events: none; }
+.album-yacht__garland { position: absolute; z-index: 2; top: -6px; left: 0; width: 100%; height: clamp(72px, calc(var(--phone-unit) * 12), 112px); pointer-events: none; }
 .album-yacht__hull { color: #a06382; background: linear-gradient(170deg, #f9e7f0, #e6bfd2 75%); }
 .album-yacht__hull::before { background: #cfa1b9; }
 .album-yacht__hull::after { content: ""; position: absolute; left: 8%; right: 8%; bottom: 20px; height: 1px; background: #fff5f8bb; }
 .album-yacht__portholes i { border-color: #c795b0; background: linear-gradient(135deg, #fff3f9, #e5bcd0 65%, #c997b0); box-shadow: inset 0 0 0 1px #fff5f9; }
-@media (max-width: 840px) {
+@media all {
   .album-yacht .album__grid { border-radius: 25px 25px 0 0; }
   .album-yacht__cabin { left: 23%; width: 46%; padding-inline: 12px; }
   .album-yacht__rail { width: 20%; right: 3%; height: 18px; }
 }
 
-/* Chỉ bánh lái trên thân tàu nhận thao tác xoay để đổi ảnh. */
+/* Ảnh được chuyển bằng nút điều hướng, ảnh nhỏ hoặc tự chuyển. */
 .album-yacht .album__grid { overflow-x: hidden; touch-action: pan-y; }
 .album__item img { -webkit-user-drag: none; user-select: none; }
 .album-yacht__hull { display: flex; flex-direction: column; gap: 4px; padding: 14px 10% 42px; }
 .album-yacht__hull-trim { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; }
 .album-yacht__hull::after { pointer-events: none; }
-.album-steering { display: grid; justify-items: center; gap: 2px; }
-.album-steering__wheel { --wheel-angle: 0deg; width: 72px; height: 72px; padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: grab; touch-action: none; user-select: none; }
-.album-yacht__hull .album-steering__wheel svg { display: block; width: 100%; height: 100%; transform: rotate(var(--wheel-angle)); transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1); filter: drop-shadow(0 3px 3px #9f648026); }
-.album-steering__wheel:focus-visible { outline: 2px solid var(--plum); outline-offset: 3px; }
-.album-steering__hint { font-size: 0.66rem; color: #a06382; }
-.album.is-steering .album-steering__wheel { cursor: grabbing; }
-.album.is-steering .album-steering__wheel svg { transition: none; }
-.album.is-steering .album-yacht { animation-play-state: paused; }
-.album.is-turning .album-voyage__wave { animation-duration: 4s; }
 .album-voyage { padding-bottom: 120px; }
 .album-voyage__sea { height: 162px; }
 .album-voyage__wave { height: 140px; }
@@ -3352,17 +3343,14 @@ body::after {
 .album.is-sailing .album-fish__swimmer, .album.is-sailing .album-fish__tail { animation-play-state: running; }
 @keyframes yacht-fish-swim { 0% { transform: translate(-12%, 0); } 50% { transform: translate(50%, -8px); } 100% { transform: translate(112%, 0); } }
 @keyframes yacht-fish-tail { from { transform: scaleX(0.65); } to { transform: scaleX(1.1); } }
-@media (max-width: 840px) {
+@media all {
   .album-voyage { padding-bottom: 100px; }
   .album-yacht__hull { padding: 12px 9% 36px; }
-  .album-steering__wheel { width: 62px; height: 62px; }
-  .album-steering__hint { font-size: 0.6rem; }
   .album-voyage__sea { height: 136px; }
   .album-voyage__wave { height: 116px; }
   .album-voyage__wake { bottom: 76px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .album-steering__wheel svg { transition: none; }
   .album-fish__swimmer, .album-fish__tail { animation: none; }
   .album-fish__swimmer { transform: translateX(20%); }
   .album-fish__swimmer:nth-child(2) { transform: translateX(40%); }
@@ -3371,7 +3359,7 @@ body::after {
 }
 
 /* Cặp chibi cùng nhảy múa bên lời cảm ơn cuối thiệp. */
-.footer__dancing-couple { width: min(240px, 65vw); margin: 18px auto 0; }
+.footer__dancing-couple { width: min(240px, calc(var(--phone-unit) * 65)); margin: 18px auto 0; }
 .footer__dancing-couple svg { display: block; width: 100%; height: auto; overflow: visible; }
 .chibi-bride, .chibi-groom { transform-box: fill-box; transform-origin: 50% 100%; animation: chibi-wedding-dance 1.8s ease-in-out infinite; animation-play-state: paused; }
 .chibi-groom { animation-delay: -0.9s; }
@@ -3411,7 +3399,7 @@ body::after {
 .couple-home { margin-top: 110px; }
 .home-sky { position: absolute; top: -92px; left: 0; right: 0; height: 70px; overflow: hidden; pointer-events: none; }
 .home-sky__flight { position: absolute; width: 100%; height: 100%; opacity: 0; animation: home-airplane-flight 24s linear infinite; animation-play-state: paused; }
-.home-sky__plane { display: block; width: clamp(90px, 18vw, 140px); height: auto; animation: home-airplane-turn 24s linear infinite; animation-play-state: paused; }
+.home-sky__plane { display: block; width: clamp(90px, calc(var(--phone-unit) * 18), 140px); height: auto; animation: home-airplane-turn 24s linear infinite; animation-play-state: paused; }
 .couple.is-home-visible .home-sky__flight, .couple.is-home-visible .home-sky__plane { animation-play-state: running; }
 @keyframes home-airplane-flight {
   0% { opacity: 0; transform: translate(-25%, 10px); }
@@ -3421,7 +3409,7 @@ body::after {
   96%, 100% { opacity: 0; transform: translate(-25%, 10px); }
 }
 @keyframes home-airplane-turn { 0%, 46% { transform: scaleX(1); } 50%, 100% { transform: scaleX(-1); } }
-@media (max-width: 840px) {
+@media all {
   .couple-home { margin-top: 104px; }
   .home-sky { top: -74px; height: 54px; }
   .home-playground { top: 34px; width: 20%; }
@@ -3432,3 +3420,24 @@ body::after {
   .home-sky__flight, .home-sky__plane { animation: none; transform: none; }
   .home-sky__flight { opacity: 0.8; left: 15%; }
 }
+
+/* Luôn xem thiệp trong khung điện thoại tối đa 440px, kể cả máy tính/iPad. */
+:root { --phone-unit: min(1vw, 4.4px); }
+html { background: #eee5ed; }
+body {
+  width: 100%;
+  max-width: 440px;
+  margin-inline: auto;
+  box-shadow: 0 0 65px #72465e18;
+}
+body::before, body::after {
+  width: min(100%, 440px);
+  margin-inline: auto;
+}
+.topbar { width: min(calc(100% - 20px), 420px); }
+.mobile-actions { width: min(calc(100% - 32px), 390px); }
+.invite-gate, .photo-modal, .qr-modal {
+  width: min(100%, 440px);
+  margin-inline: auto;
+}
+.photo-modal .modal-close, .photo-modal__nav { position: absolute; }
