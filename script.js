@@ -317,13 +317,11 @@ if (albumTrack && albumThumbs && albumItems.length) {
   let autoplayTimer;
   let scrollSettleTimer;
   let isPaused = reduceMotionQuery.matches;
-  let isInteracting = false;
-  let isHovered = false;
   let isAlbumVisible = !("IntersectionObserver" in window);
 
   function scheduleAutoplay() {
     clearTimeout(autoplayTimer);
-    if (albumAnimationFrame || isPaused || isInteracting || isHovered || !isAlbumVisible || document.hidden || albumSection.contains(document.activeElement)) return;
+    if (albumAnimationFrame || isPaused || !isAlbumVisible || document.hidden) return;
     autoplayTimer = setTimeout(() => {
       if (document.body.classList.contains("modal-open") || document.body.classList.contains("gate-open") || document.body.classList.contains("qr-open")) {
         scheduleAutoplay();
@@ -430,35 +428,11 @@ if (albumTrack && albumThumbs && albumItems.length) {
   }, { passive: true });
   albumPrev.addEventListener("click", () => goToAlbumPhoto(activeAlbumPhoto - 1));
   albumNext.addEventListener("click", () => goToAlbumPhoto(activeAlbumPhoto + 1));
-  albumTrack.addEventListener("keydown", (event) => {
-    if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
-      event.preventDefault();
-      goToAlbumPhoto(activeAlbumPhoto + (event.key === "ArrowRight" ? 1 : -1));
-    }
-  });
   autoplayButton.addEventListener("click", () => {
     isPaused = !isPaused;
     updateAutoplayButton();
     scheduleAutoplay();
   });
-  albumSection.addEventListener("pointerenter", (event) => {
-    if (event.pointerType === "touch") return;
-    isHovered = true;
-    scheduleAutoplay();
-  });
-  albumSection.addEventListener("pointerleave", () => {
-    isHovered = false;
-    scheduleAutoplay();
-  });
-  const endInteraction = () => {
-    if (!isInteracting) return;
-    isInteracting = false;
-    scheduleAutoplay();
-  };
-  window.addEventListener("pointerup", endInteraction);
-  window.addEventListener("pointercancel", endInteraction);
-  albumSection.addEventListener("focusin", scheduleAutoplay);
-  albumSection.addEventListener("focusout", () => setTimeout(scheduleAutoplay, 0));
   document.addEventListener("visibilitychange", scheduleAutoplay);
   reduceMotionQuery.addEventListener("change", () => {
     if (reduceMotionQuery.matches) isPaused = true;
@@ -801,7 +775,7 @@ if (dawnFooter) {
 
 /* Độ nghiêng 3D độc lập với transform của reveal, du thuyền và pháo sáng. */
 const depthPointer = window.matchMedia("(hover: hover) and (pointer: fine)");
-const depthCards = document.querySelectorAll(".invite-gate__card, .event__panel, .story-gate, .album-voyage, .feature__photo");
+const depthCards = document.querySelectorAll(".invite-gate__card, .event__panel, .story-gate, .feature__photo");
 const resetDepthCards = [];
 depthCards.forEach((card) => {
   card.classList.add("depth-card");

@@ -3441,3 +3441,38 @@ body::before, body::after {
   margin-inline: auto;
 }
 .photo-modal .modal-close, .photo-modal__nav { position: absolute; }
+
+/* Vùng ảnh album chỉ hiển thị; điều khiển qua nút và ảnh nhỏ bên ngoài. */
+.album-yacht .album__grid {
+  overflow: hidden;
+  scroll-snap-type: none;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+}
+.album-yacht .album__item { scroll-snap-align: none; cursor: default; }
+.album-yacht .album__item img { pointer-events: none; -webkit-user-drag: none; }
+
+/* Biển tên hải trình nối phần giới thiệu với du thuyền hồng phía dưới. */
+.album__intro { max-width: 360px; margin: 0 auto 18px; }
+.album__voyage-label { display: block; margin-bottom: 12px; font-size: 0.6rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #b17b98; }
+.album__nameplate {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 17px 20px;
+  border: 3px double #d5adbf;
+  border-radius: 42px 42px 22px 22px;
+  background: linear-gradient(135deg, #fff8fc, #f8e5ef);
+  box-shadow: inset 0 0 0 4px #fff9fc99, 0 3px 0 #e9cad9, 0 10px 22px #ae769215;
+}
+.album__nameplate::before, .album__nameplate::after { content: ""; position: absolute; top: calc(50% - 2px); width: 4px; height: 4px; border-radius: 50%; background: #c392ad; box-shadow: inset 0 1px 0 #fff9; }
+.album__nameplate::before { left: 10px; }
+.album__nameplate::after { right: 10px; }
+.album__intro-anchor { width: 23px; height: 28px; flex-shrink: 0; stroke: #bb87a3; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.album__nameplate h2 { margin: 0; color: #945776; font-size: clamp(1.65rem, calc(var(--phone-unit) * 7.2), 2rem); line-height: 1.15; font-style: italic; }
+.album__intro p { max-width: 310px; margin: 20px auto 0; padding-inline: 8px; font-size: 0.82rem; line-height: 1.85; color: #977186; }
+.album__intro-waves { display: block; margin: 13px auto 0; width: 116px; height: 13px; stroke: #d6a9c0; stroke-width: 1.2; stroke-linecap: round; }
