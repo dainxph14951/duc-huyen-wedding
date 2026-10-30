@@ -3395,3 +3395,40 @@ body::after {
   .footer__dancing-couple .chibi-foot, .footer__dancing-couple .chibi-heart { animation: none; transform: none; }
   .footer__dancing-couple .chibi-heart { opacity: 0.6; }
 }
+
+/* Sân chơi nằm hai bên đường, để trống lối em bé đi về nhà. */
+.home-playground { position: absolute; z-index: 0; width: min(20%, 140px); top: 20px; pointer-events: none; }
+.home-playground--left { left: 1%; }
+.home-playground--right { right: 1%; top: 34px; }
+.home-playground svg { display: block; width: 100%; height: auto; overflow: visible; }
+.playground-seesaw { transform-origin: 75px 175px; animation: garden-seesaw 4s ease-in-out infinite; animation-play-state: paused; }
+.playground-swing { transform-origin: 75px 26px; animation: garden-swing 3.6s ease-in-out infinite; animation-play-state: paused; }
+.playground-rocker { transform-origin: 75px 200px; animation: garden-rocker 3s ease-in-out infinite; animation-play-state: paused; }
+.love-story.is-sparkling .playground-seesaw, .love-story.is-sparkling .playground-swing, .love-story.is-sparkling .playground-rocker { animation-play-state: running; }
+@keyframes garden-seesaw { 0%, 100% { transform: rotate(-10deg); } 50% { transform: rotate(10deg); } }
+@keyframes garden-swing { 0%, 100% { transform: rotate(-8deg); } 50% { transform: rotate(8deg); } }
+@keyframes garden-rocker { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
+.couple-home { margin-top: 110px; }
+.home-sky { position: absolute; top: -92px; left: 0; right: 0; height: 70px; overflow: hidden; pointer-events: none; }
+.home-sky__flight { position: absolute; width: 100%; height: 100%; opacity: 0; animation: home-airplane-flight 24s linear infinite; animation-play-state: paused; }
+.home-sky__plane { display: block; width: clamp(90px, 18vw, 140px); height: auto; animation: home-airplane-turn 24s linear infinite; animation-play-state: paused; }
+.couple.is-home-visible .home-sky__flight, .couple.is-home-visible .home-sky__plane { animation-play-state: running; }
+@keyframes home-airplane-flight {
+  0% { opacity: 0; transform: translate(-25%, 10px); }
+  8%, 40% { opacity: 1; }
+  46%, 50% { opacity: 0; transform: translate(110%, -6px); }
+  58%, 90% { opacity: 1; }
+  96%, 100% { opacity: 0; transform: translate(-25%, 10px); }
+}
+@keyframes home-airplane-turn { 0%, 46% { transform: scaleX(1); } 50%, 100% { transform: scaleX(-1); } }
+@media (max-width: 840px) {
+  .couple-home { margin-top: 104px; }
+  .home-sky { top: -74px; height: 54px; }
+  .home-playground { top: 34px; width: 20%; }
+  .home-playground--right { top: 50px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-playground .playground-seesaw, .home-playground .playground-swing, .home-playground .playground-rocker,
+  .home-sky__flight, .home-sky__plane { animation: none; transform: none; }
+  .home-sky__flight { opacity: 0.8; left: 15%; }
+}
