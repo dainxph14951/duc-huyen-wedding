@@ -13,15 +13,24 @@
     <!-- Thông tin xem trước khi chia sẻ link; đặt trực tiếp trong HTML để bot đọc được. -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="vi_VN" />
-    <meta property="og:site_name" content="Thiệp cưới Minh Đức &amp; Ngọc Huyền" />
+    <meta
+      property="og:site_name"
+      content="Thiệp cưới Minh Đức &amp; Ngọc Huyền"
+    />
     <meta property="og:url" content="https://duc-huyen-wedding.vercel.app/" />
     <meta property="og:title" content="MINH ĐỨC &amp; NGỌC HUYỀN" />
     <meta
       property="og:description"
       content="Trân trọng kính mời Quý khách đến dự và chung vui cùng gia đình chúng tôi!&#10;Chạm mở thiệp, cùng chung vui."
     />
-    <meta property="og:image" content="https://res.cloudinary.com/dvglujyon/image/upload/c_crop,g_north,y_900,w_4132,h_2169/c_scale,w_1200,h_630/q_auto:good/v1793071889/HAU07986_1_y7p0hx.jpg" />
-    <meta property="og:image:secure_url" content="https://res.cloudinary.com/dvglujyon/image/upload/c_crop,g_north,y_900,w_4132,h_2169/c_scale,w_1200,h_630/q_auto:good/v1793071889/HAU07986_1_y7p0hx.jpg" />
+    <meta
+      property="og:image"
+      content="https://res.cloudinary.com/dvglujyon/image/upload/c_crop,g_north,y_900,w_4132,h_2169/c_scale,w_1200,h_630/q_auto:good/v1793071889/HAU07986_1_y7p0hx.jpg"
+    />
+    <meta
+      property="og:image:secure_url"
+      content="https://res.cloudinary.com/dvglujyon/image/upload/c_crop,g_north,y_900,w_4132,h_2169/c_scale,w_1200,h_630/q_auto:good/v1793071889/HAU07986_1_y7p0hx.jpg"
+    />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -33,8 +42,12 @@
       name="twitter:description"
       content="Trân trọng kính mời Quý khách đến dự và chung vui cùng gia đình chúng tôi!&#10;Chạm mở thiệp, cùng chung vui."
     />
-    <meta name="twitter:image" content="https://res.cloudinary.com/dvglujyon/image/upload/c_crop,g_north,y_900,w_4132,h_2169/c_scale,w_1200,h_630/q_auto:good/v1793071889/HAU07986_1_y7p0hx.jpg" />
+    <meta
+      name="twitter:image"
+      content="https://res.cloudinary.com/dvglujyon/image/upload/c_crop,g_north,y_900,w_4132,h_2169/c_scale,w_1200,h_630/q_auto:good/v1793071889/HAU07986_1_y7p0hx.jpg"
+    />
     <meta name="twitter:image:alt" content="Ảnh cưới Minh Đức và Ngọc Huyền" />
+    <link rel="preconnect" href="https://res.cloudinary.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -71,7 +84,15 @@
       <section class="hero" aria-labelledby="hero-title">
         <img
           class="hero__image"
-          src="https://wjardin.com/images/2025/09/chup-anh-cuoi-concept-ban-tiec.jpg"
+          src="https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_800/f_auto/q_auto/v1793070547/HAU07437_ds2lsq.jpg"
+          srcset="
+            https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_480/f_auto/q_auto/v1793070547/HAU07437_ds2lsq.jpg   480w,
+            https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_800/f_auto/q_auto/v1793070547/HAU07437_ds2lsq.jpg   800w,
+            https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_1200/f_auto/q_auto/v1793070547/HAU07437_ds2lsq.jpg 1200w,
+            https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_1600/f_auto/q_auto/v1793070547/HAU07437_ds2lsq.jpg 1600w
+          "
+          sizes="(max-width: 840px) 100vw, 1100px"
+          decoding="async"
           alt="Ảnh bìa thiệp cưới của Minh Đức và Ngọc Huyền"
         />
         <div class="hero__veil"></div>
@@ -260,38 +281,73 @@
       <!-- CÔ DÂU & CHÚ RỂ -->
       <section class="couple" aria-labelledby="couple-title">
         <h2 id="couple-title" data-anim="up">Cô dâu & Chú rể</h2>
-        <div class="couple__pair">
-          <figure class="couple__person" data-anim="left">
-            <img
-              src="https://res.cloudinary.com/dvglujyon/image/upload/v1776849624/img-welcome_fmpcl3.webp"
-              alt="Cô dâu Ngọc Huyền"
-              loading="lazy"
-            />
-            <figcaption>
-              <strong>Ngọc Huyền</strong>
-              <span>Út nữ nhà gái</span>
-            </figcaption>
-          </figure>
-          <span class="couple__heart" data-anim="zoom" style="--delay: 350ms"
-            ><svg viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M12 21.5C5 17 2 13.4 2 9.6 2 6.9 4 5 6.6 5c1.9 0 3.5 1 5.4 3 1.9-2 3.5-3 5.4-3C20 5 22 6.9 22 9.6c0 3.8-3 7.4-10 11.9z"
-              /></svg
-          ></span>
-          <figure
-            class="couple__person couple__person--groom"
-            data-anim="right"
-          >
-            <img
-              src="https://res.cloudinary.com/dvglujyon/image/upload/v1776849624/img-welcome_fmpcl3.webp"
-              alt="Chú rể Minh Đức"
-              loading="lazy"
-            />
-            <figcaption>
-              <strong>Minh Đức</strong>
-              <span>Quý nam nhà trai</span>
-            </figcaption>
-          </figure>
+        <div class="couple-home">
+          <div class="couple-home__roof" aria-hidden="true">
+            <div class="couple-home__chimney">
+              <span class="couple-home__smoke"></span>
+              <span class="couple-home__smoke"></span>
+              <span class="couple-home__smoke"></span>
+            </div>
+            <svg viewBox="0 0 720 190" width="720" height="190" fill="none">
+              <path d="M48 180 360 26 672 180Z" fill="#f8e4e4"/>
+              <path d="M14 177 350 7Q360 2 370 7L706 177 692 189 360 24 28 189Z" fill="#b97d91"/>
+              <path d="M45 173 360 17 675 173" stroke="#e8c3bd" stroke-width="2"/>
+              <circle cx="360" cy="121" r="28" fill="#fff8ed" stroke="#c69b85" stroke-width="3"/>
+              <path d="M360 135c-27-17-17-36 0-22 17-14 27 5 0 22Z" fill="#c8869f"/>
+            </svg>
+          </div>
+          <div class="couple__pair">
+            <figure class="couple__person" data-anim="left">
+              <div class="couple-home__window">
+              <img
+                src="https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_480/f_auto/q_auto/v1793070905/HAU07166_1_rcufis.jpg"
+                srcset="
+                  https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_240/f_auto/q_auto/v1793070905/HAU07166_1_rcufis.jpg 240w,
+                  https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_480/f_auto/q_auto/v1793070905/HAU07166_1_rcufis.jpg 480w,
+                  https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_640/f_auto/q_auto/v1793070905/HAU07166_1_rcufis.jpg 640w
+                "
+                sizes="(max-width: 840px) 40vw, 210px"
+                decoding="async"
+                alt="Cô dâu Ngọc Huyền"
+                loading="lazy"
+              />
+              </div>
+              <figcaption>
+                <strong>Ngọc Huyền</strong>
+                <span>Út nữ nhà gái</span>
+              </figcaption>
+            </figure>
+            <span class="couple__heart" data-anim="zoom" style="--delay: 350ms"
+              ><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 21.5C5 17 2 13.4 2 9.6 2 6.9 4 5 6.6 5c1.9 0 3.5 1 5.4 3 1.9-2 3.5-3 5.4-3C20 5 22 6.9 22 9.6c0 3.8-3 7.4-10 11.9z"
+                /></svg
+            ></span>
+            <figure
+              class="couple__person couple__person--groom"
+              data-anim="right"
+            >
+              <div class="couple-home__window">
+              <img
+                src="https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_480/f_auto/q_auto/v1793070939/HAU07503_bvqbpq.jpg"
+                srcset="
+                  https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_240/f_auto/q_auto/v1793070939/HAU07503_bvqbpq.jpg 240w,
+                  https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_480/f_auto/q_auto/v1793070939/HAU07503_bvqbpq.jpg 480w,
+                  https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_640/f_auto/q_auto/v1793070939/HAU07503_bvqbpq.jpg 640w
+                "
+                sizes="(max-width: 840px) 40vw, 210px"
+                decoding="async"
+                alt="Chú rể Minh Đức"
+                loading="lazy"
+              />
+              </div>
+              <figcaption>
+                <strong>Minh Đức</strong>
+                <span>Quý nam nhà trai</span>
+              </figcaption>
+            </figure>
+          </div>
+          <div class="couple-home__door" aria-hidden="true"><span></span></div>
         </div>
       </section>
 
@@ -301,40 +357,106 @@
         class="love-story"
         aria-labelledby="love-story-title"
       >
+        <div class="love-story__sparkles" aria-hidden="true">
+          <span class="love-story__sparkle" style="--x: 7%; --y: 6%; --size: 14px; --delay: -0.0s; --duration: 3.5s"></span>
+          <span class="love-story__sparkle" style="--x: 89%; --y: 8%; --size: 18px; --delay: -0.7s; --duration: 4.1s"></span>
+          <span class="love-story__sparkle" style="--x: 44%; --y: 2%; --size: 10px; --delay: -1.4s; --duration: 4.7s"></span>
+          <span class="love-story__sparkle" style="--x: 97%; --y: 25%; --size: 12px; --delay: -2.1s; --duration: 5.3s"></span>
+          <span class="love-story__sparkle" style="--x: 2%; --y: 49%; --size: 16px; --delay: -2.8s; --duration: 3.5s"></span>
+          <span class="love-story__sparkle" style="--x: 66%; --y: 38%; --size: 10px; --delay: -3.5s; --duration: 4.1s"></span>
+          <span class="love-story__sparkle" style="--x: 34%; --y: 61%; --size: 12px; --delay: -4.2s; --duration: 4.7s"></span>
+          <span class="love-story__sparkle" style="--x: 93%; --y: 71%; --size: 16px; --delay: -4.9s; --duration: 5.3s"></span>
+          <span class="love-story__sparkle" style="--x: 6%; --y: 91%; --size: 10px; --delay: -5.6s; --duration: 3.5s"></span>
+          <span class="love-story__sparkle" style="--x: 58%; --y: 95%; --size: 14px; --delay: -6.3s; --duration: 4.1s"></span>
+          <span class="love-story__sparkle" style="--x: 74%; --y: 5%; --size: 8px; --delay: -7.0s; --duration: 4.7s"></span>
+          <span class="love-story__sparkle" style="--x: 48%; --y: 77%; --size: 9px; --delay: -7.7s; --duration: 5.3s"></span>
+        </div>
         <div class="love-story__intro" data-anim="up">
           <p class="love-story__eyebrow" lang="en">Our Love Story</p>
           <h2 id="love-story-title">Hành trình của chúng mình</h2>
         </div>
         <ol class="love-story__chapters" data-stagger>
           <li>
-            <span class="love-story__number" aria-hidden="true">01</span>
-            <h3>Lần đầu gặp gỡ</h3>
-            <p>
-              Có những cuộc gặp gỡ tưởng chừng rất đỗi bình thường, nhưng lại là
-              khởi đầu cho một câu chuyện đặc biệt.
-            </p>
+            <div class="story-chime">
+              <div class="story-chime__crown" aria-hidden="true">
+                <span class="story-chime__cord"></span>
+                <svg class="story-chime__bell" viewBox="0 0 100 76" width="100" height="76" fill="none">
+                  <path d="M46 12V8a4 4 0 0 1 8 0v4" />
+                  <path class="story-chime__glass" d="M50 12C28 12 22 31 20 49l-5 9c15 8 55 8 70 0l-5-9C78 31 72 12 50 12Z" />
+                  <path d="M24 55c14 5 38 5 52 0M50 62v10" />
+                  <path class="story-chime__glint" d="m61 24 2 7 7 2-7 2-2 7-2-7-7-2 7-2Z" />
+                  <path class="story-chime__reflection" d="M34 25c-4 5-6 10-7 17" />
+                </svg>
+              </div>
+              <div class="story-chime__paper">
+                <span class="love-story__number" aria-hidden="true">01</span>
+                <h3>Lần đầu gặp gỡ</h3>
+                <p>
+                  Có những cuộc gặp gỡ tưởng chừng rất đỗi bình thường, nhưng lại là
+                  khởi đầu cho một câu chuyện đặc biệt.
+                </p>
+                <span class="story-chime__stars" aria-hidden="true">✧ · ✦ · ✧</span>
+              </div>
+              <span class="story-chime__pendant" aria-hidden="true"></span>
+            </div>
           </li>
           <li>
-            <span class="love-story__number" aria-hidden="true">02</span>
-            <h3>Ngày mình yêu nhau</h3>
-            <p>
-              Từ những quan tâm nhỏ bé, những lần sẻ chia và cả những khoảnh
-              khắc giản đơn, chúng mình dần trở thành một phần không thể thiếu
-              trong cuộc sống của nhau.
-            </p>
+            <div class="story-chime">
+              <div class="story-chime__crown" aria-hidden="true">
+                <span class="story-chime__cord"></span>
+                <svg class="story-chime__bell" viewBox="0 0 100 76" width="100" height="76" fill="none">
+                  <path d="M46 12V8a4 4 0 0 1 8 0v4" />
+                  <path class="story-chime__glass" d="M50 12C28 12 22 31 20 49l-5 9c15 8 55 8 70 0l-5-9C78 31 72 12 50 12Z" />
+                  <path d="M24 55c14 5 38 5 52 0M50 62v10" />
+                  <path class="story-chime__glint" d="m61 24 2 7 7 2-7 2-2 7-2-7-7-2 7-2Z" />
+                  <path class="story-chime__reflection" d="M34 25c-4 5-6 10-7 17" />
+                </svg>
+              </div>
+              <div class="story-chime__paper">
+                <span class="love-story__number" aria-hidden="true">02</span>
+                <h3>Ngày mình yêu nhau</h3>
+                <p>
+                  Từ những quan tâm nhỏ bé, những lần sẻ chia và cả những khoảnh
+                  khắc giản đơn, chúng mình dần trở thành một phần không thể thiếu
+                  trong cuộc sống của nhau.
+                </p>
+                <span class="story-chime__stars" aria-hidden="true">✧ · ✦ · ✧</span>
+              </div>
+              <span class="story-chime__pendant" aria-hidden="true"></span>
+            </div>
           </li>
           <li>
-            <span class="love-story__number" aria-hidden="true">03</span>
-            <h3>Ngày mình về chung một nhà</h3>
-            <p>
-              Và hôm nay, chúng mình quyết định nắm tay nhau bước sang một hành
-              trình mới — hành trình của gia đình, yêu thương và hạnh phúc.
-            </p>
+            <div class="story-chime">
+              <div class="story-chime__crown" aria-hidden="true">
+                <span class="story-chime__cord"></span>
+                <svg class="story-chime__bell" viewBox="0 0 100 76" width="100" height="76" fill="none">
+                  <path d="M46 12V8a4 4 0 0 1 8 0v4" />
+                  <path class="story-chime__glass" d="M50 12C28 12 22 31 20 49l-5 9c15 8 55 8 70 0l-5-9C78 31 72 12 50 12Z" />
+                  <path d="M24 55c14 5 38 5 52 0M50 62v10" />
+                  <path class="story-chime__glint" d="m61 24 2 7 7 2-7 2-2 7-2-7-7-2 7-2Z" />
+                  <path class="story-chime__reflection" d="M34 25c-4 5-6 10-7 17" />
+                </svg>
+              </div>
+              <div class="story-chime__paper">
+                <span class="love-story__number" aria-hidden="true">03</span>
+                <h3>Ngày mình về chung một nhà</h3>
+                <p>
+                  Và hôm nay, chúng mình quyết định nắm tay nhau bước sang một hành
+                  trình mới — hành trình của gia đình, yêu thương và hạnh phúc.
+                </p>
+                <span class="story-chime__stars" aria-hidden="true">✧ · ✦ · ✧</span>
+              </div>
+              <span class="story-chime__pendant" aria-hidden="true"></span>
+            </div>
           </li>
         </ol>
-        <p class="love-story__heart" aria-label="Tình yêu" data-anim="zoom">
-          ❤️
-        </p>
+        <div class="love-story__heart" role="img" aria-label="Hai trái tim lồng vào nhau" data-anim="zoom">
+          <svg class="story-hearts" viewBox="0 0 120 80" width="120" height="80" fill="none" aria-hidden="true">
+            <path class="story-heart__line story-heart__line--first" pathLength="1" d="M44 22C32 4 12 12 14 29C16 43 31 53 44 64C57 53 72 43 74 29C76 12 56 4 44 22Z" transform="translate(-7 2) rotate(-12 44 38)" />
+            <path class="story-heart__line story-heart__line--second" pathLength="1" d="M44 22C32 4 12 12 14 29C16 43 31 53 44 64C57 53 72 43 74 29C76 12 56 4 44 22Z" transform="translate(28 0) rotate(12 44 38)" />
+            <path class="story-heart__glint" d="m62 28 2.5 7.5L72 38l-7.5 2.5L62 48l-2.5-7.5L52 38l7.5-2.5Z" />
+          </svg>
+        </div>
       </section>
 
       <!-- ALBUM: ảnh trượt ngang, hiển thị trọn ảnh gốc -->
@@ -345,113 +467,192 @@
             Mời bạn cùng ngắm nhìn những khoảnh khắc hạnh phúc của chúng mình.
           </p>
         </div>
-        <div
-          class="album__grid"
-          id="albumTrack"
-          aria-label="Album ảnh cưới Minh Đức và Ngọc Huyền"
-        >
-          <figure
-            class="album__item"
-            role="button"
-            tabindex="0"
-            aria-label="Xem ảnh: Ngày mọi thứ bắt đầu"
-            data-title="Ngày mọi thứ bắt đầu"
-          >
-            <img
-              src="https://res.cloudinary.com/dvglujyon/image/upload/v1793071526/HAU07191_1_ccxikg.jpg"
-              alt="Ngày mọi thứ bắt đầu"
-              loading="lazy"
-            />
-            <figcaption>
-              <span class="album__number" aria-hidden="true">01</span>
-              <span>Ngày mọi thứ bắt đầu</span>
-            </figcaption>
-          </figure>
-          <figure
-            class="album__item"
-            role="button"
-            tabindex="0"
-            aria-label="Xem ảnh: Những lần gặp nhau"
-            data-title="Những lần gặp nhau"
-          >
-            <img
-              src="https://res.cloudinary.com/dvglujyon/image/upload/v1793071680/HAU07487_nro5hd.jpg"
-              alt="Những lần gặp nhau"
-              loading="lazy"
-            />
-            <figcaption>
-              <span class="album__number" aria-hidden="true">02</span>
-              <span>Những lần gặp nhau</span>
-            </figcaption>
-          </figure>
-          <figure
-            class="album__item"
-            role="button"
-            tabindex="0"
-            aria-label="Xem ảnh: Bình yên thường ngày"
-            data-title="Bình yên thường ngày"
-          >
-            <img
-              src="https://res.cloudinary.com/dvglujyon/image/upload/v1793071798/HAU07630_1_jmcqhh.jpg"
-              alt="Bình yên thường ngày"
-              loading="lazy"
-            />
-            <figcaption>
-              <span class="album__number" aria-hidden="true">03</span>
-              <span>Bình yên thường ngày</span>
-            </figcaption>
-          </figure>
-          <figure
-            class="album__item"
-            role="button"
-            tabindex="0"
-            aria-label="Xem ảnh: Một nụ cười, một lời hẹn"
-            data-title="Một nụ cười, một lời hẹn"
-          >
-            <img
-              src="https://res.cloudinary.com/dvglujyon/image/upload/v1793071889/HAU07986_1_y7p0hx.jpg"
-              alt="Một nụ cười, một lời hẹn"
-              loading="lazy"
-            />
-            <figcaption>
-              <span class="album__number" aria-hidden="true">04</span>
-              <span>Một nụ cười, một lời hẹn</span>
-            </figcaption>
-          </figure>
-          <figure
-            class="album__item"
-            role="button"
-            tabindex="0"
-            aria-label="Xem ảnh: Những chuyến đi"
-            data-title="Những chuyến đi"
-          >
-            <img
-              src="https://res.cloudinary.com/dvglujyon/image/upload/v1793071980/HAU08112_1_wjn35k.jpg"
-              alt="Những chuyến đi"
-              loading="lazy"
-            />
-            <figcaption>
-              <span class="album__number" aria-hidden="true">05</span>
-              <span>Những chuyến đi</span>
-            </figcaption>
-          </figure>
-          <figure
-            class="album__item"
-            role="button"
-            tabindex="0"
-            aria-label="Xem ảnh: Hôm nay, mời bạn chung vui"
-            data-title="Hôm nay, mời bạn chung vui"
-          >
-            <img
-              src="https://res.cloudinary.com/dvglujyon/image/upload/v1793072108/HAU07876_1_hucnig.jpg"
-              alt="Hôm nay, mời bạn chung vui"
-              loading="lazy"
-            />
-            <figcaption>
-              <span class="album__number" aria-hidden="true">06</span>
-              <span>Hôm nay, mời bạn chung vui</span>
-            </figcaption>
-          </figure>
+        <div class="album-voyage">
+          <div class="album-yacht">
+            <div class="album-yacht__deck" aria-hidden="true">
+              <span class="album-yacht__mast"></span>
+              <span class="album-yacht__cabin"><i></i><i></i><i></i></span>
+              <span class="album-yacht__rail"></span>
+            </div>
+            <div
+              class="album__grid"
+              id="albumTrack"
+              aria-label="Album ảnh cưới Minh Đức và Ngọc Huyền"
+            >
+              <figure
+                class="album__item"
+                role="button"
+                tabindex="0"
+                aria-label="Xem ảnh: Ngày mọi thứ bắt đầu"
+                data-title="Ngày mọi thứ bắt đầu"
+              >
+                <img
+                  src="https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_800/f_auto/q_auto/v1793071526/HAU07191_1_ccxikg.jpg"
+                  srcset="
+                    https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_480/f_auto/q_auto/v1793071526/HAU07191_1_ccxikg.jpg   480w,
+                    https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_800/f_auto/q_auto/v1793071526/HAU07191_1_ccxikg.jpg   800w,
+                    https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_1200/f_auto/q_auto/v1793071526/HAU07191_1_ccxikg.jpg 1200w,
+                    https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_1600/f_auto/q_auto/v1793071526/HAU07191_1_ccxikg.jpg 1600w
+                  "
+                  sizes="(max-width: 840px) 100vw, 1100px"
+                  decoding="async"
+                  data-full-src="https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_2400/f_auto/q_auto/v1793071526/HAU07191_1_ccxikg.jpg"
+                  data-thumb-src="https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_160/f_auto/q_auto/v1793071526/HAU07191_1_ccxikg.jpg"
+                  alt="Ngày mọi thứ bắt đầu"
+                  loading="lazy"
+                />
+                <figcaption>
+                  <span class="album__number" aria-hidden="true">01</span>
+                  <span>Ngày mọi thứ bắt đầu</span>
+                </figcaption>
+              </figure>
+              <figure
+                class="album__item"
+                role="button"
+                tabindex="0"
+                aria-label="Xem ảnh: Những lần gặp nhau"
+                data-title="Những lần gặp nhau"
+              >
+                <img
+                  src="https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_800/f_auto/q_auto/v1793071680/HAU07487_nro5hd.jpg"
+                  srcset="
+                    https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_480/f_auto/q_auto/v1793071680/HAU07487_nro5hd.jpg   480w,
+                    https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_800/f_auto/q_auto/v1793071680/HAU07487_nro5hd.jpg   800w,
+                    https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_1200/f_auto/q_auto/v1793071680/HAU07487_nro5hd.jpg 1200w,
+                    https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_1600/f_auto/q_auto/v1793071680/HAU07487_nro5hd.jpg 1600w
+                  "
+                  sizes="(max-width: 840px) 100vw, 1100px"
+                  decoding="async"
+                  data-full-src="https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_2400/f_auto/q_auto/v1793071680/HAU07487_nro5hd.jpg"
+                  data-thumb-src="https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_160/f_auto/q_auto/v1793071680/HAU07487_nro5hd.jpg"
+                  alt="Những lần gặp nhau"
+                  loading="lazy"
+                />
+                <figcaption>
+                  <span class="album__number" aria-hidden="true">02</span>
+                  <span>Những lần gặp nhau</span>
+                </figcaption>
+              </figure>
+              <figure
+                class="album__item"
+                role="button"
+                tabindex="0"
+                aria-label="Xem ảnh: Bình yên thường ngày"
+                data-title="Bình yên thường ngày"
+              >
+                <img
+                  src="https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_800/f_auto/q_auto/v1793071798/HAU07630_1_jmcqhh.jpg"
+                  srcset="
+                    https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_480/f_auto/q_auto/v1793071798/HAU07630_1_jmcqhh.jpg   480w,
+                    https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_800/f_auto/q_auto/v1793071798/HAU07630_1_jmcqhh.jpg   800w,
+                    https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_1200/f_auto/q_auto/v1793071798/HAU07630_1_jmcqhh.jpg 1200w,
+                    https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_1600/f_auto/q_auto/v1793071798/HAU07630_1_jmcqhh.jpg 1600w
+                  "
+                  sizes="(max-width: 840px) 100vw, 1100px"
+                  decoding="async"
+                  data-full-src="https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_2400/f_auto/q_auto/v1793071798/HAU07630_1_jmcqhh.jpg"
+                  data-thumb-src="https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_160/f_auto/q_auto/v1793071798/HAU07630_1_jmcqhh.jpg"
+                  alt="Bình yên thường ngày"
+                  loading="lazy"
+                />
+                <figcaption>
+                  <span class="album__number" aria-hidden="true">03</span>
+                  <span>Bình yên thường ngày</span>
+                </figcaption>
+              </figure>
+              <figure
+                class="album__item"
+                role="button"
+                tabindex="0"
+                aria-label="Xem ảnh: Một nụ cười, một lời hẹn"
+                data-title="Một nụ cười, một lời hẹn"
+              >
+                <img
+                  src="https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_800/f_auto/q_auto/v1793071889/HAU07986_1_y7p0hx.jpg"
+                  srcset="
+                    https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_480/f_auto/q_auto/v1793071889/HAU07986_1_y7p0hx.jpg   480w,
+                    https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_800/f_auto/q_auto/v1793071889/HAU07986_1_y7p0hx.jpg   800w,
+                    https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_1200/f_auto/q_auto/v1793071889/HAU07986_1_y7p0hx.jpg 1200w,
+                    https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_1600/f_auto/q_auto/v1793071889/HAU07986_1_y7p0hx.jpg 1600w
+                  "
+                  sizes="(max-width: 840px) 100vw, 1100px"
+                  decoding="async"
+                  data-full-src="https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_2400/f_auto/q_auto/v1793071889/HAU07986_1_y7p0hx.jpg"
+                  data-thumb-src="https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_160/f_auto/q_auto/v1793071889/HAU07986_1_y7p0hx.jpg"
+                  alt="Một nụ cười, một lời hẹn"
+                  loading="lazy"
+                />
+                <figcaption>
+                  <span class="album__number" aria-hidden="true">04</span>
+                  <span>Một nụ cười, một lời hẹn</span>
+                </figcaption>
+              </figure>
+              <figure
+                class="album__item"
+                role="button"
+                tabindex="0"
+                aria-label="Xem ảnh: Những chuyến đi"
+                data-title="Những chuyến đi"
+              >
+                <img
+                  src="https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_800/f_auto/q_auto/v1793071980/HAU08112_1_wjn35k.jpg"
+                  srcset="
+                    https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_480/f_auto/q_auto/v1793071980/HAU08112_1_wjn35k.jpg   480w,
+                    https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_800/f_auto/q_auto/v1793071980/HAU08112_1_wjn35k.jpg   800w,
+                    https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_1200/f_auto/q_auto/v1793071980/HAU08112_1_wjn35k.jpg 1200w,
+                    https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_1600/f_auto/q_auto/v1793071980/HAU08112_1_wjn35k.jpg 1600w
+                  "
+                  sizes="(max-width: 840px) 100vw, 1100px"
+                  decoding="async"
+                  data-full-src="https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_2400/f_auto/q_auto/v1793071980/HAU08112_1_wjn35k.jpg"
+                  data-thumb-src="https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_160/f_auto/q_auto/v1793071980/HAU08112_1_wjn35k.jpg"
+                  alt="Những chuyến đi"
+                  loading="lazy"
+                />
+                <figcaption>
+                  <span class="album__number" aria-hidden="true">05</span>
+                  <span>Những chuyến đi</span>
+                </figcaption>
+              </figure>
+              <figure
+                class="album__item"
+                role="button"
+                tabindex="0"
+                aria-label="Xem ảnh: Hôm nay, mời bạn chung vui"
+                data-title="Hôm nay, mời bạn chung vui"
+              >
+                <img
+                  src="https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_800/f_auto/q_auto/v1793072108/HAU07876_1_hucnig.jpg"
+                  srcset="
+                    https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_480/f_auto/q_auto/v1793072108/HAU07876_1_hucnig.jpg   480w,
+                    https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_800/f_auto/q_auto/v1793072108/HAU07876_1_hucnig.jpg   800w,
+                    https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_1200/f_auto/q_auto/v1793072108/HAU07876_1_hucnig.jpg 1200w,
+                    https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_1600/f_auto/q_auto/v1793072108/HAU07876_1_hucnig.jpg 1600w
+                  "
+                  sizes="(max-width: 840px) 100vw, 1100px"
+                  decoding="async"
+                  data-full-src="https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_2400/f_auto/q_auto/v1793072108/HAU07876_1_hucnig.jpg"
+                  data-thumb-src="https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_160/f_auto/q_auto/v1793072108/HAU07876_1_hucnig.jpg"
+                  alt="Hôm nay, mời bạn chung vui"
+                  loading="lazy"
+                />
+                <figcaption>
+                  <span class="album__number" aria-hidden="true">06</span>
+                  <span>Hôm nay, mời bạn chung vui</span>
+                </figcaption>
+              </figure>
+            </div>
+            <div class="album-yacht__hull" aria-hidden="true">
+              <span class="album-yacht__portholes"><i></i><i></i><i></i></span>
+              <span class="album-yacht__name">Đ &amp; H <span>·</span> 17.01.2027</span>
+              <svg viewBox="0 0 32 36" width="28" height="32" fill="none"><circle cx="16" cy="7" r="3"/><path d="M16 10v21M10 15h12M5 22c0 13 22 13 22 0M2 25l3-3 4 3m14 0 4-3 3 3"/></svg>
+            </div>
+          </div>
+          <div class="album-voyage__sea" aria-hidden="true">
+            <svg class="album-voyage__wave album-voyage__wave--back" viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0 35Q90 5 180 35T360 35T540 35T720 35T900 35T1080 35T1260 35T1440 35V100H0Z"/></svg>
+            <svg class="album-voyage__wave album-voyage__wave--front" viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0 35Q90 5 180 35T360 35T540 35T720 35T900 35T1080 35T1260 35T1440 35V100H0Z"/></svg>
+            <span class="album-voyage__wake"></span>
+          </div>
         </div>
         <div class="album__controls">
           <button
@@ -461,12 +662,17 @@
             aria-label="Ảnh trước"
             aria-controls="albumTrack"
           >
-            ←
+            <svg class="album__helm" viewBox="0 0 64 64" width="64" height="64" fill="none" aria-hidden="true">
+              <circle class="album__helm-rim" cx="32" cy="32" r="20" />
+              <path class="album__helm-spokes" d="M32 5v19m0 16v19M5 32h19m16 0h19M13 13l13 13m12 12 13 13M13 51l13-13m12-12 13-13" />
+              <circle class="album__helm-hub" cx="32" cy="32" r="10" />
+            </svg>
+            <span class="album__helm-direction" aria-hidden="true">←</span>
           </button>
           <p class="album__status">
             <span id="albumCount" aria-live="polite" aria-atomic="true"
               >01 / 06</span
-            ><span>Vuốt ngang · Tự chuyển sau 4 giây</span>
+            ><span>Vuốt ngang · Tự chuyển sau 2 giây</span>
           </p>
           <button
             class="album__arrow"
@@ -475,7 +681,12 @@
             aria-label="Ảnh tiếp theo"
             aria-controls="albumTrack"
           >
-            →
+            <svg class="album__helm" viewBox="0 0 64 64" width="64" height="64" fill="none" aria-hidden="true">
+              <circle class="album__helm-rim" cx="32" cy="32" r="20" />
+              <path class="album__helm-spokes" d="M32 5v19m0 16v19M5 32h19m16 0h19M13 13l13 13m12 12 13 13M13 51l13-13m12-12 13-13" />
+              <circle class="album__helm-hub" cx="32" cy="32" r="10" />
+            </svg>
+            <span class="album__helm-direction" aria-hidden="true">→</span>
           </button>
         </div>
         <button
@@ -498,7 +709,15 @@
       <section class="feature" aria-label="Ảnh cưới Minh Đức và Ngọc Huyền">
         <figure class="feature__photo" data-anim="zoom">
           <img
-            src="https://res.cloudinary.com/dvglujyon/image/upload/v1776849624/img-welcome_fmpcl3.webp"
+            src="https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_800/f_auto/q_auto/v1793071283/HAU07148_eak8wq.jpg"
+            srcset="
+              https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_480/f_auto/q_auto/v1793071283/HAU07148_eak8wq.jpg   480w,
+              https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_800/f_auto/q_auto/v1793071283/HAU07148_eak8wq.jpg   800w,
+              https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_1200/f_auto/q_auto/v1793071283/HAU07148_eak8wq.jpg 1200w,
+              https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_1600/f_auto/q_auto/v1793071283/HAU07148_eak8wq.jpg 1600w
+            "
+            sizes="(max-width: 840px) 100vw, 1100px"
+            decoding="async"
             alt="Minh Đức và Ngọc Huyền"
             loading="lazy"
           />
@@ -511,15 +730,46 @@
     </main>
 
     <footer class="footer" data-anim="up">
-      <p>Minh Đức & Ngọc Huyền</p>
-      <span>Sự hiện diện của bạn là món quà ý nghĩa nhất với chúng mình.</span>
+      <div class="footer__landscape" aria-hidden="true">
+        <img src="assets/sunrise-hills.svg" alt="" width="1200" height="400" loading="lazy" decoding="async" />
+      </div>
+      <div class="footer__ornament" aria-hidden="true">
+        <span></span>
+        <svg viewBox="0 0 48 48" width="38" height="38" fill="none">
+          <path d="M24 39V17M24 30C13 30 9 23 10 17c9 0 14 5 14 13ZM24 24c10 0 15-7 14-13-9 0-14 5-14 13ZM24 17c-6-5-6-11 0-15 6 4 6 10 0 15Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span></span>
+      </div>
+      <p class="footer__eyebrow">Trân trọng cảm ơn</p>
+      <p class="footer__names">
+        <span>Minh Đức</span>
+        <i>&amp;</i>
+        <span>Ngọc Huyền</span>
+      </p>
+      <p class="footer__message">
+        Sự hiện diện của bạn<br />
+        là món quà ý nghĩa nhất với chúng mình.
+      </p>
+      <div class="footer__date" aria-label="Ngày cưới 17 tháng 1 năm 2027">
+        <span aria-hidden="true"></span><time datetime="2027-01-17">17 . 01 . 2027</time><span aria-hidden="true"></span>
+      </div>
+      <p class="footer__new-beginning">Cùng nhau, đón một khởi đầu mới.</p>
     </footer>
 
-    <div class="mobile-actions" aria-label="Hành động nhanh trên di động">
-      <a href="#event">Lịch cưới</a>
-      <a href="#album">Album</a>
-      <button type="button" data-open-qr>Mừng cưới</button>
-    </div>
+    <nav class="mobile-actions" aria-label="Hành động nhanh trên di động">
+      <a class="mobile-actions__item" href="#event">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="3"/><path d="M8 3v4m8-4v4M4 10h16m-12 4h2m4 0h2m-8 3h2"/></svg>
+        <span>Lịch cưới</span>
+      </a>
+      <a class="mobile-actions__item" href="#album">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="8" cy="9" r="1.5"/><path d="m3 17 5-5 4 4 4-6 5 7"/></svg>
+        <span>Album</span>
+      </a>
+      <button class="mobile-actions__item mobile-actions__gift" type="button" data-open-qr>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v8h14v-8M12 8v12m0-12H8.5A2.5 2.5 0 1 1 11 5.5L12 8Zm0 0h3.5A2.5 2.5 0 1 0 13 5.5L12 8Z"/></svg>
+        <span>Mừng cưới</span>
+      </button>
+    </nav>
 
     <div
       class="invite-gate"
@@ -531,7 +781,14 @@
       <div class="invite-gate__card">
         <div class="invite-gate__portrait">
           <img
-            src="https://res.cloudinary.com/dvglujyon/image/upload/v1793088537/HAU07903_1_fpsgts.jpg"
+            src="https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_640/f_auto/q_auto/v1793088537/HAU07903_1_fpsgts.jpg"
+            srcset="
+              https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_360/f_auto/q_auto/v1793088537/HAU07903_1_fpsgts.jpg 360w,
+              https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_640/f_auto/q_auto/v1793088537/HAU07903_1_fpsgts.jpg 640w,
+              https://res.cloudinary.com/dvglujyon/image/upload/c_limit,w_960/f_auto/q_auto/v1793088537/HAU07903_1_fpsgts.jpg 960w
+            "
+            sizes="(max-width: 840px) 100vw, 420px"
+            decoding="async"
             alt="Ảnh cưới Minh Đức và Ngọc Huyền sau lớp sương mờ"
             fetchpriority="high"
           />
@@ -616,8 +873,12 @@
       aria-labelledby="qrModalTitle"
       hidden
     >
-      <button class="modal-close" id="closeQrModal" type="button">Đóng</button>
       <div class="qr-modal__card">
+        <div class="qr-modal__toolbar">
+          <button class="modal-close" id="closeQrModal" type="button" aria-label="Đóng hộp thoại mừng cưới" title="Đóng">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>
+          </button>
+        </div>
         <header class="qr-modal__header">
           <div class="qr-modal__seal" aria-hidden="true">
             <span>Đ</span><i>&amp;</i><span>H</span>

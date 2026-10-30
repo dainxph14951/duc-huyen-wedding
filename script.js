@@ -43,6 +43,8 @@ if (inviteGate && openInviteButton) {
       inviteGate.setAttribute("hidden", "");
       document.body.classList.remove("gate-open");
       document.querySelector('.hero__actions a')?.focus({ preventScroll: true });
+      startInvitationReveals();
+      startInvitationScroll();
     });
 
     // Bấm "Mở thiệp" là thao tác của người dùng nên trình duyệt cho phép phát nhạc
@@ -55,6 +57,69 @@ if (inviteGate && openInviteButton) {
       }
     }
   });
+}
+
+/* ---------- Tự cuộn sau khi mở thiệp ---------- */
+function startInvitationScroll() {
+  const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (motionQuery.matches) return;
+
+  const speed = 32; // Pixel mỗi giây, giữ nhịp chậm để khách đọc thiệp.
+  const controls = new AbortController();
+  let frame = 0;
+  let previousTime;
+  let position = window.scrollY;
+  let startsAt = performance.now() + 2000;
+
+  function stop() {
+    cancelAnimationFrame(frame);
+    controls.abort();
+  }
+
+  function scroll(timestamp) {
+    // Không cuộn nền khi xem ảnh, QR hoặc chuyển sang tab khác.
+    const paused = document.hidden
+      || document.body.classList.contains("modal-open")
+      || document.body.classList.contains("qr-open");
+    if (paused || timestamp < startsAt) {
+      previousTime = undefined;
+      position = window.scrollY;
+    } else {
+      const elapsed = previousTime === undefined ? 0 : Math.min(timestamp - previousTime, 64);
+      const bottom = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+      position = Math.min(bottom, position + speed * elapsed / 1000);
+      // Ghi đè smooth scroll CSS để từng khung hình tiến đều, không bị trễ.
+      window.scrollTo({ top: position, behavior: "instant" });
+      previousTime = timestamp;
+      if (position >= bottom) {
+        stop();
+        return;
+      }
+    }
+    frame = requestAnimationFrame(scroll);
+  }
+
+  const options = { passive: true, signal: controls.signal };
+  window.addEventListener("wheel", stop, options);
+  window.addEventListener("touchmove", stop, options);
+  window.addEventListener("pointerdown", (event) => {
+    // Bao gồm kéo thanh cuộn trên máy tính.
+    if (event.target === document.documentElement) stop();
+  }, options);
+  document.addEventListener("keydown", (event) => {
+    if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " ", "Tab", "Escape"].includes(event.key)) stop();
+  }, { signal: controls.signal });
+  document.addEventListener("click", (event) => {
+    if (event.target.closest("a[href]")) stop();
+  }, { signal: controls.signal });
+  motionQuery.addEventListener("change", () => {
+    if (motionQuery.matches) stop();
+  }, { signal: controls.signal });
+  document.addEventListener("visibilitychange", () => {
+    previousTime = undefined;
+    position = window.scrollY;
+  }, { signal: controls.signal });
+  frame = requestAnimationFrame(scroll);
 }
 
 /* ---------- Nhạc nền ---------- */
@@ -165,46 +230,56 @@ function showItem(item) {
   item.classList.add("is-visible");
 }
 
-if ("IntersectionObserver" in window && !reduceMotionQuery.matches) {
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          return;
-        }
+let invitationRevealsStarted = false;
+function startInvitationReveals() {
+  if (invitationRevealsStarted) return;
+  invitationRevealsStarted = true;
 
-        showItem(entry.target);
-      });
-    },
-    {
-      rootMargin: "0px 0px 60px 0px",
-      threshold: 0.01,
-    },
-  );
+  if ("IntersectionObserver" in window && !reduceMotionQuery.matches) {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
 
-  // Vùng đặt lại rộng hơn vùng xuất hiện, tránh transform của chính khối
-  // làm nó liên tục đi qua ngưỡng quan sát khi người dùng cuộn chậm.
-  const resetObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          entry.target.classList.remove("is-visible");
-        }
-      });
-    },
-    {
-      rootMargin: "140px 0px 140px 0px",
-      threshold: 0,
-    },
-  );
+          showItem(entry.target);
+        });
+      },
+      {
+        // Cuộn chậm: chờ nội dung vào màn hình để khách thấy trọn hiệu ứng.
+        rootMargin: "0px 0px -40px 0px",
+        threshold: 0.01,
+      },
+    );
 
-  revealItems.forEach((item) => {
-    revealObserver.observe(item);
-    resetObserver.observe(item);
-  });
-} else {
-  revealItems.forEach(showItem);
+    // Vùng đặt lại rộng hơn vùng xuất hiện, tránh transform của chính khối
+    // làm nó liên tục đi qua ngưỡng quan sát khi người dùng cuộn chậm.
+    const resetObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            entry.target.classList.remove("is-visible");
+          }
+        });
+      },
+      {
+        rootMargin: "140px 0px 140px 0px",
+        threshold: 0,
+      },
+    );
+
+    revealItems.forEach((item) => {
+      revealObserver.observe(item);
+      resetObserver.observe(item);
+    });
+  } else {
+    revealItems.forEach(showItem);
+  }
 }
+
+// Cổng mở thiệp che nội dung, nên chưa chạy hiệu ứng phía sau.
+if (!document.body.classList.contains("gate-open")) startInvitationReveals();
 
 /* ---------- Album trượt ngang ---------- */
 const albumTrack = document.querySelector("#albumTrack");
@@ -221,8 +296,13 @@ if (albumTrack && albumThumbs && albumItems.length) {
     button.className = "album__thumb";
     button.setAttribute("aria-label", `Xem ảnh ${index + 1}: ${item.dataset.title}`);
     button.setAttribute("aria-controls", "albumTrack");
-    const image = item.querySelector("img").cloneNode();
+    // Thumbnail tải bản nhỏ riêng, không kế thừa srcset của ảnh album.
+    const sourceImage = item.querySelector("img");
+    const image = document.createElement("img");
     image.alt = "";
+    image.loading = "lazy";
+    image.decoding = "async";
+    image.src = sourceImage.dataset.thumbSrc || sourceImage.currentSrc || sourceImage.src;
     button.append(image);
     button.addEventListener("click", () => goToAlbumPhoto(index));
     albumThumbs.append(button);
@@ -232,7 +312,7 @@ if (albumTrack && albumThumbs && albumItems.length) {
   const albumSection = albumTrack.closest(".album");
   const autoplayButton = document.querySelector("#albumAutoplay");
   const albumTransitionDuration = 1200;
-  const albumAutoplayDelay = 4000;
+  const albumAutoplayDelay = 2000;
   let albumAnimationFrame = 0;
   let autoplayTimer;
   let scrollSettleTimer;
@@ -422,7 +502,8 @@ function showPhoto(index) {
   const image = item.querySelector("img");
   const title = item.dataset.title || image?.alt || "";
 
-  photoModalImage.src = image?.currentSrc || image?.src || "";
+  photoModalImage.decoding = "async";
+  photoModalImage.src = image?.dataset.fullSrc || image?.currentSrc || image?.src || "";
   photoModalImage.alt = image?.alt || title;
   photoModalTitle.textContent = title;
 
@@ -521,3 +602,62 @@ document.addEventListener("keydown", (event) => {
     }
   }
 });
+
+/* ---------- Mục đang xem trên thanh điều hướng di động ---------- */
+const mobileSectionLinks = Array.from(document.querySelectorAll('.mobile-actions a[href^="#"]'));
+const mobileSections = mobileSectionLinks.map((link) => ({
+  link,
+  section: document.querySelector(link.getAttribute("href")),
+})).filter(({ section }) => section);
+let mobileNavigationFrame = 0;
+function updateMobileNavigation() {
+  const marker = window.innerHeight * 0.45;
+  mobileSections.forEach(({ link, section }) => {
+    const bounds = section.getBoundingClientRect();
+    if (bounds.top <= marker && bounds.bottom > marker) {
+      link.setAttribute("aria-current", "location");
+    } else {
+      link.removeAttribute("aria-current");
+    }
+  });
+  mobileNavigationFrame = 0;
+}
+function scheduleMobileNavigation() {
+  if (!mobileNavigationFrame) mobileNavigationFrame = requestAnimationFrame(updateMobileNavigation);
+}
+window.addEventListener("scroll", scheduleMobileNavigation, { passive: true });
+window.addEventListener("resize", scheduleMobileNavigation);
+updateMobileNavigation();
+
+/* Chỉ chạy ánh sao khi phần hành trình nằm trong màn hình. */
+const sparklingStory = document.querySelector(".love-story");
+if (sparklingStory && "IntersectionObserver" in window) {
+  const storySparkleObserver = new IntersectionObserver(([entry]) => {
+    sparklingStory.classList.toggle("is-sparkling", entry.isIntersecting);
+  }, { threshold: 0 });
+  storySparkleObserver.observe(sparklingStory);
+}
+
+/* Du thuyền và sóng chỉ chuyển động khi album ở trong màn hình. */
+const sailingAlbum = document.querySelector(".album");
+if (sailingAlbum) {
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(([entry]) => {
+      sailingAlbum.classList.toggle("is-sailing", entry.isIntersecting);
+    }, { threshold: 0 }).observe(sailingAlbum);
+  } else {
+    sailingAlbum.classList.add("is-sailing");
+  }
+}
+
+/* Khói bếp chỉ bay khi ngôi nhà xuất hiện trong màn hình. */
+const coupleHomeSection = document.querySelector(".couple");
+if (coupleHomeSection) {
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(([entry]) => {
+      coupleHomeSection.classList.toggle("is-home-visible", entry.isIntersecting);
+    }, { threshold: 0 }).observe(coupleHomeSection);
+  } else {
+    coupleHomeSection.classList.add("is-home-visible");
+  }
+}

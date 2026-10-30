@@ -802,10 +802,9 @@ nav a:hover,
 }
 
 .love-story__chapters li {
-  padding: 28px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  background: var(--surface);
+  position: relative;
+  min-width: 0;
+  padding: 0;
 }
 
 .love-story__number {
@@ -1181,21 +1180,27 @@ body.gate-open .hero__names > span {
    ========================================================================== */
 .footer {
   display: grid;
-  place-items: center;
+  justify-items: center;
+  gap: 0;
   border-top: 1px solid var(--line);
-  padding: 48px 20px 56px;
+  padding: 56px 24px 64px;
   text-align: center;
+  background: radial-gradient(ellipse at 50% 35%, #fffafc 0%, var(--paper) 72%);
 }
 
-.footer p {
-  margin-bottom: 4px;
-  font-family: var(--serif);
-  font-size: 2.2rem;
-  font-weight: 700;
-}
-
-.footer > span {
-  color: var(--muted);
+.footer__ornament { display: flex; align-items: center; gap: 18px; color: var(--plum); opacity: 0.7; margin-bottom: 18px; }
+.footer__ornament > span { width: clamp(42px, 10vw, 90px); height: 1px; background: linear-gradient(90deg, transparent, var(--rose)); }
+.footer__ornament > span:last-child { transform: rotate(180deg); }
+.footer .footer__eyebrow { margin: 0 0 16px; color: var(--muted); font-family: var(--sans); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; }
+.footer .footer__names { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: center; gap: 0 16px; margin: 0; font-family: var(--serif); font-size: clamp(2.5rem, 5.5vw, 4.2rem); font-weight: 500; font-style: italic; line-height: 1.25; }
+.footer__names > span { white-space: nowrap; }
+.footer__names i { color: var(--plum); font-size: 0.72em; font-weight: 400; }
+.footer .footer__message { margin: 22px 0 26px; max-width: 440px; color: var(--muted); font-family: var(--serif); font-size: clamp(1.2rem, 2.5vw, 1.5rem); font-style: italic; font-weight: 500; line-height: 1.65; text-wrap: balance; }
+.footer__date { display: flex; align-items: center; gap: 14px; color: var(--plum); font-size: 0.65rem; letter-spacing: 0.22em; }
+.footer__date > span { height: 1px; width: 28px; background: var(--line); }
+@media (max-width: 480px) {
+  .footer .footer__names { display: grid; gap: 2px; font-size: clamp(2.4rem, 10vw, 3rem); }
+  .footer__names i { line-height: 1; font-size: 1.7rem; }
 }
 
 .mobile-actions {
@@ -1773,10 +1778,6 @@ body.gate-open .hero__names > span {
     gap: 16px;
   }
 
-  .love-story__chapters li {
-    padding: 24px;
-  }
-
   /* Album giữ chiều cao gọn trên điện thoại. */
   .album {
     width: calc(100% - 32px);
@@ -1799,34 +1800,51 @@ body.gate-open .hero__names > span {
   .mobile-actions {
     position: fixed;
     z-index: 30;
-    right: 12px;
-    bottom: 12px;
-    left: 12px;
+    right: 16px;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    left: 16px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.72);
-    border-radius: var(--radius-md);
-    background: var(--glass);
-    box-shadow: 0 18px 46px rgba(59, 31, 51, 0.18);
-    padding: 8px;
-    backdrop-filter: blur(16px);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 5px;
+    width: min(calc(100% - 32px), 390px);
+    margin-inline: auto;
+    padding: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 24px;
+    background: rgba(255, 250, 252, 0.24);
+    box-shadow: 0 8px 28px rgba(83, 36, 61, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(4px) saturate(115%);
+    -webkit-backdrop-filter: blur(4px) saturate(115%);
   }
 
-  .mobile-actions a,
-  .mobile-actions button {
-    display: grid;
-    min-height: 44px;
-    place-items: center;
+  .mobile-actions .mobile-actions__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    min-height: 58px;
+    padding: 7px 4px;
     border: 0;
-    border-radius: 10px;
-    background: var(--surface);
+    border-radius: 18px;
+    background: transparent;
     color: var(--ink);
+    text-shadow: 0 1px 3px rgba(255, 250, 252, 0.85);
     cursor: pointer;
     font: inherit;
-    font-size: 0.86rem;
-    font-weight: 600;
+    font-size: 0.67rem;
+    font-weight: 500;
+    line-height: 1.3;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 180ms ease, color 180ms ease;
   }
+  .mobile-actions__item svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .mobile-actions .mobile-actions__item:hover,
+  .mobile-actions .mobile-actions__item[aria-current="location"] { background: rgba(224, 138, 171, 0.16); color: var(--plum); }
+  .mobile-actions .mobile-actions__gift { background: rgba(184, 69, 111, 0.14); color: var(--plum); box-shadow: inset 0 0 0 1px rgba(184, 69, 111, 0.16); }
+  .mobile-actions .mobile-actions__gift:hover { background: rgba(184, 69, 111, 0.24); color: var(--plum); }
+  .footer { padding-bottom: calc(112px + env(safe-area-inset-bottom, 0px)); }
 
   /* Dialogs */
   .invite-gate,
@@ -1950,4 +1968,775 @@ body.gate-open .hero__names > span {
     opacity: 1;
     transform: none;
   }
+}
+
+/* Modal mừng cưới gọn hơn, nút đóng nằm trong thanh riêng. */
+.qr-modal__card {
+  width: min(100%, 680px);
+  max-height: calc(100svh - 40px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  padding: 20px;
+  border-radius: 24px;
+}
+.qr-modal__toolbar {
+  position: sticky;
+  top: -20px;
+  z-index: 5;
+  display: flex;
+  justify-content: flex-end;
+  margin: -20px -20px 0;
+  padding: 6px 8px;
+  background: rgba(255, 247, 249, 0.96);
+  border-bottom: 1px solid var(--line);
+}
+.qr-modal .modal-close {
+  position: static;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+}
+.qr-modal .modal-close:hover { background: var(--rose-soft); color: var(--plum); }
+.qr-modal .modal-close svg { width: 18px; height: 18px; }
+.qr-modal__header { max-width: 360px; margin: 16px auto 18px; }
+.qr-modal__seal { width: 44px; height: 44px; margin-bottom: 12px; border-width: 4px; font-size: 1rem; }
+.qr-modal__seal i { font-size: 0.65rem; }
+.qr-modal__eyebrow { font-size: 0.58rem; letter-spacing: 0.14em; margin-bottom: 6px; }
+.qr-modal__header h2 { font-size: clamp(2rem, 5vw, 2.6rem); }
+.qr-modal__names { margin: 6px 0 10px; font-size: 1.2rem; }
+.qr-modal__thanks { font-size: 0.7rem; line-height: 1.65; }
+.qr-modal__banks { gap: 12px; }
+.qr-modal__content { padding: 16px; border-radius: 14px; }
+.qr-modal__bank-heading h3 { font-size: 1.4rem; }
+.qr-modal__ticket-number { font-size: 1.8rem; }
+.qr-modal__code { max-width: 190px; margin: 14px auto; padding: 8px; border-radius: 12px; }
+.qr-modal__content dl { padding-top: 12px; gap: 8px; }
+.qr-modal__content dd { font-size: 0.72rem; }
+.qr-modal__content dl > div:last-child dd { font-size: 0.95rem; letter-spacing: 0.03em; }
+.qr-modal__note { margin-top: 18px; }
+.qr-modal__note p { font-size: 0.7rem; margin-bottom: 8px; }
+.qr-modal__signature { font-size: 1.1rem; }
+@media (max-width: 840px) {
+  .qr-modal { padding: 12px; padding-top: max(12px, env(safe-area-inset-top, 0px)); padding-bottom: max(12px, env(safe-area-inset-bottom, 0px)); }
+  .qr-modal__card { width: min(100%, 400px); }
+}
+
+/* Ánh sao nhẹ trên hành trình tình yêu. */
+.love-story { position: relative; isolation: isolate; }
+.love-story::before {
+  content: ""; position: absolute; inset: 90px -6px 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(ellipse at 20% 30%, rgba(245, 201, 223, 0.35), transparent 55%), radial-gradient(ellipse at 85% 65%, rgba(240, 183, 210, 0.24), transparent 55%);
+}
+.love-story__sparkles { position: absolute; inset: 92px 0 0; z-index: 2; pointer-events: none; overflow: hidden; border-radius: 20px; }
+.love-story__sparkle {
+  position: absolute; left: var(--x); top: var(--y); width: var(--size); height: var(--size);
+  background: linear-gradient(135deg, #fff5fb, #d779a1 55%, #edb6d0);
+  clip-path: polygon(50% 0, 61% 38%, 100% 50%, 61% 62%, 50% 100%, 39% 62%, 0 50%, 39% 38%);
+  opacity: 0.25;
+  animation: story-starlight var(--duration, 4s) ease-in-out var(--delay) infinite;
+  animation-play-state: paused;
+}
+.love-story__intro::after { content: "✧  ·  ✧"; display: block; margin-top: 14px; color: #c47197; font-size: 1rem; letter-spacing: 0.35em; }
+.love-story__intro h2 { text-shadow: 0 2px 20px rgba(224, 138, 171, 0.2); }
+.story-chime__paper {
+  position: relative; overflow: hidden;
+  border-color: rgba(207, 128, 165, 0.25);
+  background: linear-gradient(145deg, #fffdfd, #fff5f9 75%, #fff0f7);
+  box-shadow: 0 8px 28px rgba(184, 69, 111, 0.06), inset 0 1px 0 #fff;
+}
+.story-chime__paper::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(110deg, transparent 28%, rgba(255, 255, 255, 0.7) 48%, rgba(248, 197, 223, 0.2) 52%, transparent 72%);
+  transform: translateX(-120%);
+  animation: story-shimmer 8s ease-in-out infinite;
+  animation-play-state: paused;
+}
+.love-story__chapters li:nth-child(2) .story-chime__paper::before { animation-delay: 1.8s; }
+.love-story__chapters li:nth-child(3) .story-chime__paper::before { animation-delay: 3.6s; }
+.story-chime__paper > * { position: relative; z-index: 1; }
+.love-story__number { color: #b86b8d; text-shadow: 1px 1px 0 #fff, 0 0 16px rgba(207, 128, 165, 0.2); }
+.love-story.is-sparkling .love-story__sparkle,
+.love-story.is-sparkling .story-chime__paper::before { animation-play-state: running; }
+@keyframes story-starlight {
+  0%, 100% { opacity: 0.12; transform: scale(0.65) rotate(0deg); }
+  50% { opacity: 0.85; transform: scale(1.15) rotate(20deg); }
+}
+@keyframes story-shimmer {
+  0%, 25% { transform: translateX(-120%); opacity: 0; }
+  35% { opacity: 0.8; }
+  60%, 100% { transform: translateX(120%); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .love-story .love-story__sparkle { animation: none; opacity: 0.35; }
+  .love-story .story-chime__paper::before { animation: none; opacity: 0; }
+}
+
+/* Hai trái tim nét mảnh, vẽ lần lượt khi xuất hiện. */
+.love-story__heart { display: flex; justify-content: center; margin: 24px 0 0; }
+.story-hearts { display: block; width: 112px; height: auto; overflow: visible; }
+.story-heart__line {
+  stroke-width: 1.35; stroke-linecap: round; stroke-linejoin: round;
+  stroke-dasharray: 1; stroke-dashoffset: 0;
+  transition: stroke-dashoffset 2200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.story-heart__line--first { stroke: #b85b80; }
+.story-heart__line--second { stroke: #dc9db7; transition-delay: 350ms; }
+.can-animate .love-story__heart:not(.is-visible) .story-heart__line { stroke-dashoffset: 1; }
+.story-heart__glint { fill: #d987ab; opacity: 0.3; transform-origin: 62px 38px; }
+.can-animate .love-story__heart.is-visible .story-heart__glint { animation: story-heart-glint 1500ms ease-in-out 1800ms both; }
+@keyframes story-heart-glint {
+  0% { opacity: 0; transform: scale(0.4); }
+  45% { opacity: 0.9; transform: scale(1.1); }
+  100% { opacity: 0.3; transform: scale(0.7); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .can-animate .love-story__heart .story-heart__line { stroke-dashoffset: 0; transition: none; }
+  .can-animate .love-story__heart.is-visible .story-heart__glint { animation: none; }
+}
+
+/* Ba kỷ niệm treo như chuông gió; chuyển động nằm bên trong khối reveal. */
+.love-story__chapters {
+  position: relative;
+  align-items: start;
+  gap: 32px;
+  padding: 12px 14px 42px;
+}
+.love-story__chapters::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c895a4 15%, #d6b595 50%, #c895a4 85%, transparent);
+}
+.story-chime {
+  --cord-length: 16px;
+  --swing-duration: 6s;
+  transform-origin: 50% 0;
+  animation: story-chime-sway var(--swing-duration) ease-in-out infinite;
+  animation-play-state: paused;
+  text-align: center;
+}
+.love-story__chapters li:nth-child(2) .story-chime {
+  --cord-length: 24px;
+  --swing-duration: 7.2s;
+  animation-delay: -2.4s;
+}
+.love-story__chapters li:nth-child(3) .story-chime {
+  --cord-length: 18px;
+  --swing-duration: 6.6s;
+  animation-delay: -4.1s;
+}
+.story-chime__crown { display: flex; flex-direction: column; align-items: center; }
+.story-chime__cord {
+  display: block;
+  width: 1px;
+  height: var(--cord-length);
+  background: linear-gradient(#c696a5, #d2af87);
+}
+.story-chime__bell {
+  display: block;
+  width: 96px;
+  height: 73px;
+  stroke: #bd8b76;
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 5px 9px #c78b9b26);
+}
+.story-chime__glass { fill: #fbe5edb3; }
+.story-chime__reflection { stroke: #fff; stroke-width: 3; }
+.story-chime__glint {
+  fill: #fff8e9;
+  stroke: #d7ad77;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: story-chime-twinkle 3.6s ease-in-out infinite;
+  animation-play-state: paused;
+}
+.story-chime__paper {
+  padding: 30px 24px 24px;
+  border: 1px solid #d9acb780;
+  border-radius: 5px 5px 44px 5px;
+  background: linear-gradient(135deg, #fffdfa, #fff3f7 65%, #f8e4ed);
+  box-shadow: 0 12px 26px #9b5a7612, inset 0 0 0 5px #ffffff80;
+}
+.story-chime__paper::after {
+  content: "";
+  position: absolute;
+  left: calc(50% - 3px);
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #bd8b76;
+  box-shadow: 0 0 0 3px #efdbc9;
+}
+.story-chime__paper .love-story__number {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 20px;
+  border: 1px solid #d5ad8970;
+  border-radius: 50%;
+  font-size: 1.75rem;
+  background: #fffaf4;
+}
+.story-chime__paper h3 { font-size: clamp(1.5rem, 2.4vw, 1.8rem); line-height: 1.25; }
+.story-chime__paper p { font-size: 0.9rem; line-height: 1.85; }
+.story-chime__stars {
+  display: block;
+  margin-top: 22px;
+  color: #b78b56;
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  animation: story-chime-twinkle 4s ease-in-out -1.5s infinite;
+  animation-play-state: paused;
+}
+.story-chime__pendant {
+  position: relative;
+  display: block;
+  width: 1px;
+  height: 30px;
+  margin: 0 auto;
+  background: #c5a080;
+}
+.story-chime__pendant::after {
+  content: "";
+  position: absolute;
+  left: -5px;
+  bottom: -9px;
+  width: 11px;
+  height: 17px;
+  border: 1px solid #c89f78;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  background: linear-gradient(135deg, #fffdf3, #e7c8ad 55%, #fff6e5);
+  box-shadow: 0 0 12px #f1cf9e66;
+}
+.love-story.is-sparkling li.is-visible .story-chime,
+.love-story.is-sparkling li.is-visible .story-chime__glint,
+.love-story.is-sparkling li.is-visible .story-chime__stars { animation-play-state: running; }
+@keyframes story-chime-sway {
+  0%, 100% { transform: rotate(-1.8deg); }
+  50% { transform: rotate(1.8deg); }
+}
+@keyframes story-chime-twinkle {
+  0%, 100% { opacity: 0.35; filter: drop-shadow(0 0 0 transparent); }
+  50% { opacity: 1; filter: drop-shadow(0 0 5px #e9bf80); }
+}
+@media (max-width: 840px) {
+  .love-story__chapters { gap: 14px; padding: 0 20px 32px; }
+  .love-story__chapters::before { display: none; }
+  .love-story__chapters li { width: min(100%, 380px); margin-inline: auto; }
+  .love-story__chapters li .story-chime { --cord-length: 12px; }
+  .story-chime__paper { padding: 30px 26px 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .love-story .story-chime,
+  .love-story .story-chime__glint,
+  .love-story .story-chime__stars { animation: none; }
+}
+
+/* Album du thuyền: khung ảnh là khoang tàu, sóng chạy thành vòng liên tục. */
+.album-voyage {
+  position: relative;
+  isolation: isolate;
+  padding: 78px 18px 48px;
+  margin-inline: -12px;
+  background: radial-gradient(ellipse at 50% 90%, #f1d4df80, transparent 65%);
+}
+.album-yacht {
+  position: relative;
+  z-index: 1;
+  transform-origin: 50% 85%;
+  animation: album-yacht-sail 7s ease-in-out infinite;
+  animation-play-state: paused;
+}
+.album-yacht__deck {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  height: 68px;
+  pointer-events: none;
+}
+.album-yacht__cabin {
+  position: absolute;
+  bottom: 0;
+  left: 21%;
+  width: 48%;
+  height: 47px;
+  display: flex;
+  gap: 7px;
+  padding: 12px 20px 7px;
+  border: 1px solid #d2a5b5;
+  border-radius: 36px 10px 0 0;
+  background: linear-gradient(#fffdf9, #f7e3ea);
+  box-shadow: 0 -5px 0 -2px #b88899;
+  transform: skewX(-14deg);
+}
+.album-yacht__cabin i {
+  flex: 1;
+  border-radius: 12px 3px 2px 2px;
+  background: linear-gradient(140deg, #e5bfcf, #faf1ed 48%, #c18a9f);
+  border: 1px solid #bd8e9e66;
+}
+.album-yacht__mast {
+  position: absolute;
+  left: 53%;
+  bottom: 47px;
+  height: 30px;
+  width: 1px;
+  background: #b18c72;
+}
+.album-yacht__mast::after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 25px;
+  height: 13px;
+  background: #bb7f98;
+  clip-path: polygon(0 0, 100% 15%, 75% 55%, 100% 100%, 0 85%);
+}
+.album-yacht__rail {
+  position: absolute;
+  bottom: 0;
+  right: 5%;
+  width: 23%;
+  height: 17px;
+  border-top: 2px solid #c19b80;
+  border-right: 1px solid #c19b80;
+  border-left: 1px solid #c19b80;
+  border-radius: 4px 4px 0 0;
+  background: repeating-linear-gradient(90deg, transparent 0 24px, #c19b8080 24px 25px);
+}
+.album-yacht .album__grid {
+  position: relative;
+  border: 1px solid #d8b6be;
+  border-bottom: 0;
+  border-radius: 48px 16px 0 0;
+  background: linear-gradient(135deg, #fffcfa, #faedf2);
+  box-shadow: 0 -5px 0 #f0d9df, 0 6px 30px #71435a12;
+}
+.album-yacht .album__item { padding-top: 18px; }
+.album-yacht .album__item img { border-radius: 30px 10px 6px 6px; }
+.album-yacht__hull {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 86px;
+  padding: 16px 10% 28px;
+  color: #fbe8cf;
+  background: linear-gradient(170deg, #a26d87, #70465e 75%);
+  clip-path: polygon(0 0, 100% 0, 94% 63%, 88% 91%, 20% 100%, 10% 72%);
+}
+.album-yacht__hull::before {
+  content: "";
+  position: absolute;
+  inset: 7px 0 auto;
+  height: 2px;
+  background: #e4c4a0;
+}
+.album-yacht__portholes { display: flex; gap: 14px; }
+.album-yacht__portholes i {
+  width: 15px;
+  height: 15px;
+  border: 2px solid #e2bc99;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fff5e2, #b88b9b 65%, #694254);
+  box-shadow: 0 1px 4px #45223930;
+}
+.album-yacht__name {
+  font-family: var(--serif);
+  font-size: clamp(0.7rem, 1.7vw, 1rem);
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+.album-yacht__name span { margin-inline: 6px; }
+.album-yacht__hull svg { stroke: currentColor; stroke-width: 1.3; flex-shrink: 0; }
+.album-voyage__sea {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 6px;
+  height: 92px;
+  overflow: hidden;
+  pointer-events: none;
+  border-radius: 0 0 45% 35%;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.album-voyage__wave {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 200%;
+  height: 76px;
+  animation: album-waves-drift 12s linear infinite;
+  animation-play-state: paused;
+}
+.album-voyage__wave--back { bottom: 15px; fill: #deb8cc99; }
+.album-voyage__wave--front {
+  fill: #f2dfe8d9;
+  animation-duration: 9s;
+  animation-direction: reverse;
+}
+.album-voyage__wake {
+  position: absolute;
+  bottom: 30px;
+  left: 18%;
+  width: 64%;
+  height: 12px;
+  border-top: 1px solid #fffc;
+  border-radius: 50%;
+  box-shadow: 0 -8px 0 -5px #fff9;
+}
+.album.is-sailing .album-yacht,
+.album.is-sailing .album-voyage__wave { animation-play-state: running; }
+@keyframes album-yacht-sail {
+  0%, 100% { transform: translateY(2px) rotate(-0.45deg); }
+  50% { transform: translateY(-5px) rotate(0.45deg); }
+}
+@keyframes album-waves-drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (max-width: 840px) {
+  .album-voyage { margin-inline: -4px; padding: 74px 4px 40px; }
+  .album-yacht .album__grid { border-radius: 30px 10px 0 0; }
+  .album-yacht__hull { min-height: 70px; padding: 15px 9% 26px; gap: 8px; }
+  .album-yacht__portholes { gap: 6px; }
+  .album-yacht__portholes i { width: 10px; height: 10px; border-width: 1px; }
+  .album-yacht__hull svg { width: 20px; height: 24px; }
+  .album-yacht__name { letter-spacing: 0.05em; }
+  .album-voyage__sea { height: 74px; }
+  .album-voyage__wave { height: 60px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .album .album-yacht,
+  .album .album-voyage__wave { animation: none; transform: none; }
+}
+
+/* Tay lái và dãy cửa sổ của du thuyền. */
+.album__controls {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 240px) 64px;
+  justify-content: center;
+  gap: 24px;
+}
+.album__arrow {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border: 0;
+  background: transparent;
+  color: #a5617e;
+  border-radius: 50%;
+  -webkit-tap-highlight-color: transparent;
+}
+.album__helm {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 2px 2px #85546a20);
+  transition: transform 550ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.album__helm-rim { stroke: #b88d71; stroke-width: 5; fill: #fff9f266; }
+.album__helm-spokes { stroke: #a46e85; stroke-width: 4; stroke-linecap: round; }
+.album__helm-hub { fill: #fff9f2; stroke: #be9978; stroke-width: 1.5; }
+.album__helm-direction {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  line-height: 1;
+  font-family: var(--sans);
+  pointer-events: none;
+}
+#albumPrev:not(:disabled):hover .album__helm,
+#albumPrev:not(:disabled):focus-visible .album__helm { transform: rotate(-30deg); }
+#albumNext:not(:disabled):hover .album__helm,
+#albumNext:not(:disabled):focus-visible .album__helm { transform: rotate(30deg); }
+.album__arrow:not(:disabled):active .album__helm { transform: rotate(0deg) scale(0.92); }
+.album__arrow:disabled { opacity: 0.3; }
+.album__thumbs {
+  position: relative;
+  isolation: isolate;
+  gap: 10px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 24px auto 0;
+  padding: 12px 14px;
+  border-top: 1px solid #d7b6c166;
+  border-bottom: 1px solid #d7b6c166;
+  border-radius: 28px;
+  background: linear-gradient(180deg, #fffaf655, #ecd6df80, #fffaf655);
+}
+.album__thumb {
+  position: relative;
+  flex: 0 1 64px;
+  width: 64px;
+  min-width: 0;
+  padding: 6px;
+  border: 1px solid #c7a38b;
+  border-radius: 30px 30px 17px 17px;
+  background: linear-gradient(125deg, #fffcf4 5%, #d9b89a 30%, #f6e3cd 55%, #bf977d 90%);
+  box-shadow: inset 0 0 0 2px #fff4df99, 0 3px 6px #85546a1a;
+  opacity: 0.7;
+  transition: opacity 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
+}
+.album__thumb::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border: 1px solid #b78c7155;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.album__thumb::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border-radius: 24px 24px 12px 12px;
+  background: linear-gradient(125deg, #fff5 0%, #fff0 35%, #fff0 55%, #fff3 58%, #fff0 65%);
+  box-shadow: inset 0 1px 3px #51304455;
+  pointer-events: none;
+}
+.album__thumb img {
+  height: 64px;
+  border: 1px solid #a57c6f80;
+  border-radius: 24px 24px 12px 12px;
+  object-fit: cover;
+  background: #f9edf2;
+}
+.album__thumb:hover { opacity: 1; }
+.album__thumb[aria-current="true"] {
+  border-color: #a25c7a;
+  opacity: 1;
+  box-shadow: inset 0 0 0 2px #fff4dfbb, 0 0 0 2px #d8a6bc66, 0 4px 12px #9b5c7b26;
+}
+@media (max-width: 840px) {
+  .album__controls { grid-template-columns: 50px minmax(0, 1fr) 50px; gap: 10px; }
+  .album__arrow { width: 50px; height: 50px; }
+  .album__helm-direction { font-size: 13px; }
+  .album__status { font-size: 0.65rem; }
+  .album__thumbs { width: 100%; gap: 6px; padding: 10px 8px; }
+  .album__thumb { flex: 1 1 0; max-width: 64px; padding: 4px; }
+  .album__thumb img { height: clamp(38px, 10vw, 58px); }
+  .album__thumb::after { inset: 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .album__helm { transition: none; }
+}
+
+/* Bình minh trên núi đồi, mở đầu cho hành trình mới của hai người. */
+.footer {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-bottom: 260px;
+  background: linear-gradient(180deg, #fff5f9 0%, #fff8f6 52%, #fce9de 100%);
+}
+.footer__landscape {
+  position: absolute;
+  z-index: -1;
+  inset: auto 0 0;
+  height: clamp(240px, 28vw, 360px);
+  pointer-events: none;
+}
+.footer__landscape img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+}
+.footer .footer__new-beginning {
+  margin: 22px 0 0;
+  color: #94677b;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  letter-spacing: 0.02em;
+}
+@media (min-width: 1200px) {
+  .footer { padding-bottom: 320px; }
+}
+@media (max-width: 840px) {
+  .footer { padding-bottom: calc(250px + env(safe-area-inset-bottom, 0px)); }
+  .footer__landscape { height: 260px; }
+}
+
+/* Ngôi nhà nhỏ: hai khung cửa sổ là chân dung cô dâu và chú rể. */
+.couple-home {
+  position: relative;
+  width: min(100%, 680px);
+  margin: 74px auto 0;
+  padding: 0 30px 12px;
+  isolation: isolate;
+}
+.couple-home__roof {
+  position: relative;
+  z-index: 1;
+  width: calc(100% + 60px);
+  margin: 0 -30px -2px;
+}
+.couple-home__roof > svg { position: relative; display: block; width: 100%; height: auto; }
+.couple-home__chimney {
+  position: absolute;
+  right: 19%;
+  bottom: 24%;
+  width: 36px;
+  height: 90px;
+  border: 1px solid #b88a85;
+  border-radius: 3px 3px 0 0;
+  background: repeating-linear-gradient(0deg, transparent 0 16px, #ba8c8833 16px 17px), linear-gradient(90deg, #e8bfb9, #f5d9ce);
+}
+.couple-home__chimney::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  height: 9px;
+  border-radius: 2px;
+  background: #b9888b;
+}
+.couple-home__smoke {
+  position: absolute;
+  bottom: calc(100% + 3px);
+  left: 5px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, #c5abbc88, #dbc9d255 50%, transparent 72%);
+  opacity: 0;
+  animation: couple-chimney-smoke 5.4s ease-out infinite;
+  animation-play-state: paused;
+}
+.couple-home__smoke:nth-child(2) { animation-delay: -1.8s; }
+.couple-home__smoke:nth-child(3) { animation-delay: -3.6s; }
+.couple.is-home-visible .couple-home__smoke { animation-play-state: running; }
+.couple-home .couple__pair {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 64px;
+  margin: 0;
+  padding: 28px 40px 72px;
+  border: 1px solid #dcbdad;
+  border-top: 0;
+  border-radius: 0 0 5px 5px;
+  background: repeating-linear-gradient(0deg, transparent 0 38px, #c9a8a00d 38px 39px), linear-gradient(110deg, #fff9ee, #f8e6e6);
+  box-shadow: 0 16px 35px #9d647c12, inset 7px 0 0 #fff9f044, inset -7px 0 0 #dcbeb51a;
+}
+.couple-home .couple__person { min-width: 0; width: 100%; gap: 22px; }
+.couple-home__window {
+  position: relative;
+  width: 100%;
+  max-width: 210px;
+  padding: 8px;
+  border: 1px solid #bf9984;
+  border-radius: 100px 100px 5px 5px;
+  background: linear-gradient(120deg, #edcbb4, #fff7e5 45%, #cda58f);
+  box-shadow: 0 3px 10px #905c6a1a, inset 0 0 0 3px #fff1d9;
+}
+.couple-home__window::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  z-index: 1;
+  border-radius: inherit;
+  background: linear-gradient(120deg, #fff3, transparent 35%, transparent 60%, #fff2 62%, transparent 70%);
+  box-shadow: inset 0 2px 6px #845c6d33;
+  pointer-events: none;
+}
+.couple-home__window::after {
+  content: "";
+  position: absolute;
+  left: -8px;
+  right: -8px;
+  bottom: -6px;
+  height: 9px;
+  border: 1px solid #c4a08c;
+  border-radius: 3px;
+  background: linear-gradient(#fff6e8, #e3c1ac);
+  box-shadow: 0 4px 0 #ba948020;
+}
+.couple-home .couple__person img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border: 1px solid #bd9b8b66;
+  border-radius: 92px 92px 2px 2px;
+  box-shadow: none;
+}
+.couple-home .couple__person figcaption { width: 100%; }
+.couple-home .couple__person strong { font-size: clamp(1.65rem, 3.8vw, 2.3rem); line-height: 1.15; }
+.couple-home .couple__person figcaption > span { display: block; margin-top: 6px; font-size: 0.8rem; }
+.couple-home .couple__heart { position: absolute; left: calc(50% - 12px); top: 40%; }
+.couple-home .couple__heart svg { width: 24px; height: 24px; }
+.couple-home__door {
+  position: absolute;
+  bottom: 12px;
+  left: calc(50% - 22px);
+  width: 44px;
+  height: 62px;
+  border: 1px solid #c69989;
+  border-radius: 24px 24px 0 0;
+  background: linear-gradient(90deg, #e8b8bd, #f5d8cf);
+  box-shadow: inset 0 0 0 4px #fff5e833;
+}
+.couple-home__door span { position: absolute; right: 8px; top: 35px; width: 4px; height: 4px; border-radius: 50%; background: #b58b62; }
+.couple-home::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 18px;
+  right: 18px;
+  height: 12px;
+  border: 1px solid #d3b7a4;
+  border-radius: 4px;
+  background: linear-gradient(#fff5e6, #e3c8b8);
+}
+@keyframes couple-chimney-smoke {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.65); }
+  20% { opacity: 0.65; }
+  65% { opacity: 0.3; }
+  100% { opacity: 0; transform: translate(24px, -82px) scale(2.3); }
+}
+@media (max-width: 840px) {
+  .couple-home { margin-top: 66px; padding-inline: 18px; }
+  .couple-home__roof { width: calc(100% + 36px); margin-inline: -18px; }
+  .couple-home__chimney { width: 24px; height: 58px; }
+  .couple-home .couple__pair { gap: 28px; padding: 20px 18px 64px; }
+  .couple-home__window { padding: 5px; }
+  .couple-home__window::before { inset: 5px; }
+  .couple-home .couple__person strong { font-size: clamp(1.3rem, 5vw, 1.85rem); }
+  .couple-home .couple__person figcaption > span { font-size: clamp(0.6rem, 2.5vw, 0.8rem); }
+  .couple-home .couple__heart svg { width: 18px; height: 18px; }
+  .couple-home .couple__heart { left: calc(50% - 9px); top: 36%; }
+  .couple-home::after { left: 10px; right: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .couple-home .couple-home__smoke { animation: none; opacity: 0.25; transform: translate(8px, -18px) scale(1.2); }
+  .couple-home .couple-home__smoke:nth-child(2) { transform: translate(14px, -38px) scale(1.5); }
+  .couple-home .couple-home__smoke:nth-child(3) { display: none; }
 }
