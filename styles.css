@@ -3072,3 +3072,44 @@ body::after {
 @media (prefers-reduced-motion: reduce) {
   body::after { animation: none; opacity: 0.65; }
 }
+
+/* Tên và ngày cưới phát sáng, ánh trắng hồng lướt qua từng nét chữ. */
+.feature__photo figcaption > strong,
+.feature__photo figcaption > span {
+  width: fit-content;
+  max-width: 100%;
+  color: #fff8fc;
+  text-shadow: 0 0 5px #fff8, 0 0 12px #ffc4e199, 0 0 24px #ed8fbc66;
+  animation: wedding-caption-shine 4.8s linear infinite;
+  animation-play-state: paused;
+}
+.feature__photo figcaption > span { animation-delay: -1.6s; }
+.feature__photo.is-firing figcaption > strong,
+.feature__photo.is-firing figcaption > span { animation-play-state: running; }
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .feature__photo figcaption > strong,
+  .feature__photo figcaption > span {
+    background-image: linear-gradient(110deg, #fff5fb 0%, #fff5fb 34%, #f5b3d2 43%, #fff 49%, #fff 53%, #f5b3d2 60%, #fff5fb 70%, #fff5fb 100%);
+    background-size: 250% 100%;
+    background-position: 160% 0;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+}
+@keyframes wedding-caption-shine {
+  0% { background-position: 160% 0; text-shadow: 0 0 5px #fff6, 0 0 12px #ffc4e17a, 0 0 24px #ed8fbc44; }
+  50% { text-shadow: 0 0 7px #fffb, 0 0 18px #ffd1e8bb, 0 0 30px #ed8fbc80; }
+  100% { background-position: -160% 0; text-shadow: 0 0 5px #fff6, 0 0 12px #ffc4e17a, 0 0 24px #ed8fbc44; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .feature__photo figcaption > strong,
+  .feature__photo figcaption > span {
+    animation: none;
+    background: none;
+    color: #fff8fc;
+    -webkit-text-fill-color: #fff8fc;
+    text-shadow: 0 0 6px #ffc4e180;
+  }
+}
