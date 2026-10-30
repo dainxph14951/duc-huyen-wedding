@@ -3113,3 +3113,176 @@ body::after {
     text-shadow: 0 0 6px #ffc4e180;
   }
 }
+
+/* Logo Đức & Huyền treo trên hai sợi dây, đong đưa theo gió. */
+.story-gate #love-story-title { margin-top: 36px; line-height: 0; }
+.story-gate__logo {
+  position: relative;
+  display: inline-block;
+  width: min(100%, 260px);
+  transform-origin: 50% -24px;
+  animation: story-logo-sway 6s ease-in-out infinite;
+  animation-play-state: paused;
+  filter: drop-shadow(0 5px 5px #a361801c);
+}
+.story-gate__logo::before,
+.story-gate__logo::after {
+  content: "";
+  position: absolute;
+  bottom: calc(100% - 11%);
+  width: 1px;
+  height: 30px;
+  background: #c894ae;
+}
+.story-gate__logo::before { left: 25%; }
+.story-gate__logo::after { right: 25%; }
+.story-gate__logo svg { display: block; width: 100%; height: auto; overflow: visible; }
+.story-gate__monogram { fill: #b77698; font-family: var(--serif); font-size: 35px; font-style: italic; letter-spacing: -3px; }
+.story-gate__logo-names { fill: #a95a7d; font-family: var(--serif); font-size: 34px; font-weight: 600; font-style: italic; }
+.love-story.is-sparkling .story-gate.is-visible .story-gate__logo { animation-play-state: running; }
+@keyframes story-logo-sway {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+@media (max-width: 840px) { .story-gate__logo { max-width: 230px; } }
+@media (prefers-reduced-motion: reduce) {
+  .story-gate .story-gate__logo { animation: none; transform: none; }
+}
+
+/* Cổng vườn thấp với dây leo, lá và hoa hồng phấn. */
+.love-story__intro.story-gate {
+  width: min(calc(100% - 20px), 480px);
+  min-height: 238px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 64px 26px;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+.love-story__intro.story-gate::before,
+.love-story__intro.story-gate::after { display: none; }
+.story-gate__vine {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 2px #b887a314);
+}
+.story-gate .love-story__eyebrow { position: relative; margin: 0 0 24px; font-size: 1.2rem; }
+.story-gate #love-story-title { width: 100%; margin: 0; }
+.story-gate .story-gate__logo { max-width: 220px; }
+@media (max-width: 840px) {
+  .love-story__intro.story-gate { min-height: 208px; padding: 28px 44px 20px; }
+  .story-gate .love-story__eyebrow { margin-bottom: 20px; font-size: 1.1rem; }
+  .story-gate .story-gate__logo { max-width: 185px; }
+}
+
+/* Mái cổng, hai trụ, hàng rào và cửa mở bên dưới logo treo. */
+.love-story__intro.story-gate { min-height: 288px; padding: 72px 64px 76px; }
+.story-gate__structure {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  filter: drop-shadow(0 3px 2px #b887a31a);
+}
+.story-gate__vine { opacity: 0.85; }
+.story-gate .love-story__eyebrow { margin-bottom: 18px; font-size: 1.1rem; }
+.story-gate .story-gate__logo { max-width: 190px; }
+.story-gate__garden-doors {
+  position: absolute;
+  bottom: 12px;
+  left: 21%;
+  right: 21%;
+  height: 62px;
+  display: flex;
+  justify-content: space-between;
+  perspective: 500px;
+  pointer-events: none;
+}
+.story-gate__garden-doors span {
+  position: relative;
+  width: 44%;
+  border: 2px solid #cda0b7;
+  border-radius: 20px 20px 2px 2px;
+  background: repeating-linear-gradient(90deg, #fff4f833 0 14px, #d9b1c4 14px 16px);
+  transform: rotateY(-32deg);
+  transform-origin: left center;
+  box-shadow: 1px 2px 3px #b887a31a;
+}
+.story-gate__garden-doors span:last-child { transform: rotateY(32deg); transform-origin: right center; }
+.story-gate__garden-doors span::before { content: ""; position: absolute; top: 22px; left: 0; right: 0; border-top: 2px solid #d9b1c4; }
+.story-gate__garden-doors span::after { content: ""; position: absolute; top: 33px; right: 5px; width: 4px; height: 4px; border-radius: 50%; background: #b57c99; }
+.story-gate__garden-doors span:last-child::after { right: auto; left: 5px; }
+@media (max-width: 840px) {
+  .love-story__intro.story-gate { min-height: 256px; padding: 62px 42px 66px; }
+  .story-gate .love-story__eyebrow { margin-bottom: 14px; font-size: 1rem; }
+  .story-gate .story-gate__logo { max-width: 160px; }
+  .story-gate__garden-doors { height: 52px; }
+}
+
+/* Nhà vườn cùng ngôn ngữ mái ngói, cột và hàng rào của cổng. */
+.couple-home .couple__pair {
+  border-inline: 3px double #dfbdce;
+  border-bottom: 2px solid #d8b0c4;
+  background: repeating-linear-gradient(0deg, transparent 0 31px, #d8b0c412 31px 32px), linear-gradient(110deg, #fff7fa, #faeaf2 55%, #fff5f9);
+  box-shadow: 0 16px 30px #9d647c0d, inset 9px 0 0 #fff6fa, inset -9px 0 0 #f2dce7;
+}
+.couple-home__garden { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.couple-home__window { border-width: 2px; box-shadow: 0 4px 8px #ad78931a, inset 0 0 0 3px #fff1f8; }
+.couple-home__shutters { position: absolute; inset: 25% -13px 3px; pointer-events: none; }
+.couple-home__shutters::before,
+.couple-home__shutters::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  border: 1px solid #d2a3b9;
+  border-radius: 3px;
+  background: repeating-linear-gradient(0deg, #f5dce7 0 6px, #ddb8cb 6px 7px);
+}
+.couple-home__shutters::before { left: 0; }
+.couple-home__shutters::after { right: 0; }
+.couple-home__flowerbox {
+  position: absolute;
+  z-index: 2;
+  bottom: -12px;
+  left: 12%;
+  width: 76%;
+  height: 11px;
+  display: flex;
+  justify-content: space-evenly;
+  border: 1px solid #d4a9be;
+  border-radius: 2px 2px 6px 6px;
+  background: linear-gradient(#f9e4ee, #e8c1d4);
+}
+.couple-home__flowerbox i { position: relative; top: -8px; width: 8px; height: 8px; border-radius: 50%; background: radial-gradient(circle, #b96e92 0 20%, #edbad2 25% 60%, #fff2f8 65%); box-shadow: 0 3px 0 -1px #c6a1b4; }
+.couple-home__flowerbox i:nth-child(even) { top: -12px; }
+.couple-home__porch {
+  position: absolute;
+  bottom: 12px;
+  left: calc(50% - 40px);
+  width: 80px;
+  height: 75px;
+  border-inline: 3px double #dbb1c5;
+  border-top: 3px solid #dfb5c9;
+  pointer-events: none;
+}
+.couple-home__porch::before { content: ""; position: absolute; left: -10px; right: -10px; top: -22px; height: 22px; background: #e8c4d5; clip-path: polygon(50% 0, 100% 84%, 97% 100%, 50% 20%, 3% 100%, 0 84%); }
+.couple-home__fence { position: absolute; bottom: 12px; left: 30px; right: 30px; height: 25px; display: flex; justify-content: space-between; pointer-events: none; }
+.couple-home__fence span { position: relative; width: calc(50% - 46px); border-block: 2px solid #d6afc2; background: repeating-linear-gradient(90deg, #faedf3 0 6px, #d6afc2 6px 7px, transparent 7px 15px); }
+@media (max-width: 840px) {
+  .couple-home__shutters { left: -9px; right: -9px; }
+  .couple-home__shutters::before, .couple-home__shutters::after { width: 7px; }
+  .couple-home__porch { left: calc(50% - 33px); width: 66px; height: 71px; }
+  .couple-home__fence { left: 18px; right: 18px; height: 20px; }
+  .couple-home__fence span { width: calc(50% - 38px); }
+  .couple-home__flowerbox i { width: 6px; height: 6px; }
+}
