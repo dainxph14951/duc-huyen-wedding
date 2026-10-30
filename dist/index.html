@@ -720,6 +720,15 @@
         </div>
         <div class="album-voyage">
           <div class="album-yacht">
+            <svg class="album-yacht__garland" viewBox="0 0 1000 140" preserveAspectRatio="none" fill="none" aria-hidden="true">
+              <g id="yacht-floral-left">
+                <path d="M18 130C10 72 26 14 112 25" stroke="#c69bb2" stroke-width="1.7" />
+                <path d="M19 111C-1 103 3 90 7 87c13 5 15 14 12 24Zm2-31C4 66 10 53 16 52c10 8 11 18 5 28Zm11-27C23 34 33 25 39 26c5 12 2 21-7 27Zm21-18C54 14 68 12 72 17c-1 13-9 18-19 18Zm27-10C89 9 102 13 104 18c-7 10-15 12-24 7Z" fill="#dfbfd0" />
+                <path d="M21 98c18-12 26-2 25 4-10 6-18 3-25-4Zm4-32c20-4 25 8 21 12-12 1-18-4-21-12Z" fill="#ecd3df" />
+                <g transform="translate(37 43)" fill="#fae1ed" stroke="#d3a1bb"><circle cy="-5" r="6"/><circle cx="5" cy="2" r="6"/><circle cx="-5" cy="2" r="6"/><circle r="2.5" fill="#c082a1" stroke="none"/></g>
+              </g>
+              <use href="#yacht-floral-left" transform="translate(1000 0) scale(-1 1)" />
+            </svg>
             <div class="album-yacht__deck" aria-hidden="true">
               <span class="album-yacht__mast"></span>
               <span class="album-yacht__cabin"><i></i><i></i><i></i></span>
@@ -893,16 +902,43 @@
                 </figcaption>
               </figure>
             </div>
-            <div class="album-yacht__hull" aria-hidden="true">
+            <div class="album-yacht__hull" id="albumHull">
+              <div class="album-yacht__hull-trim" aria-hidden="true">
               <span class="album-yacht__portholes"><i></i><i></i><i></i></span>
               <span class="album-yacht__name">Đ &amp; H <span>·</span> 17.01.2027</span>
               <svg viewBox="0 0 32 36" width="28" height="32" fill="none"><circle cx="16" cy="7" r="3"/><path d="M16 10v21M10 15h12M5 22c0 13 22 13 22 0M2 25l3-3 4 3m14 0 4-3 3 3"/></svg>
+              </div>
+              <div class="album-steering">
+                <button class="album-steering__wheel" id="albumSteering" type="button" aria-label="Xoay bánh lái sang trái hoặc phải để đổi ảnh. Có thể dùng phím mũi tên hoặc Enter." aria-controls="albumTrack">
+                  <svg viewBox="0 0 80 80" width="72" height="72" fill="none" aria-hidden="true">
+                    <circle cx="40" cy="40" r="25" fill="#fff6fb" stroke="#c795b0" stroke-width="5"/>
+                    <path d="M40 5v24m0 22v24M5 40h24m22 0h24M15 15l17 17m16 16 17 17M15 65l17-17m16-16 17-17" stroke="#d7a7c1" stroke-width="5" stroke-linecap="round"/>
+                    <circle cx="40" cy="40" r="12" fill="#f9e5ef" stroke="#c795b0" stroke-width="1.5"/>
+                    <path d="M40 46c-12-8-7-15 0-9 7-6 12 1 0 9Z" fill="#bd7b9d"/>
+                  </svg>
+                </button>
+                <span class="album-steering__hint" aria-hidden="true">← Xoay lái để xem ảnh →</span>
+              </div>
             </div>
           </div>
           <div class="album-voyage__sea" aria-hidden="true">
             <svg class="album-voyage__wave album-voyage__wave--back" viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0 35Q90 5 180 35T360 35T540 35T720 35T900 35T1080 35T1260 35T1440 35V100H0Z"/></svg>
             <svg class="album-voyage__wave album-voyage__wave--front" viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0 35Q90 5 180 35T360 35T540 35T720 35T900 35T1080 35T1260 35T1440 35V100H0Z"/></svg>
             <span class="album-voyage__wake"></span>
+            <div class="album-fish">
+              <span class="album-fish__swimmer" style="--swim-time: 19s; --swim-delay: -3s; --fish-depth: 55%; --fish-size: 44px">
+                <svg viewBox="0 0 50 30" width="50" height="30" fill="none"><path class="album-fish__tail" d="m15 15-12-9 2 9-2 9Z" fill="#c995b4"/><path d="M12 15C20 0 36 2 46 15 36 28 20 30 12 15Z" fill="#e4b5cc" stroke="#bd8aa7"/><path d="m27 10-4-6 12 3M26 19l6 5 1-8" fill="#c995b4"/><circle cx="38" cy="12" r="1.6" fill="#895a73"/><path d="M33 10q-3 5 0 10" stroke="#c18ca9" stroke-linecap="round"/></svg>
+              </span>
+              <span class="album-fish__swimmer album-fish__swimmer--reverse" style="--swim-time: 25s; --swim-delay: -14s; --fish-depth: 78%; --fish-size: 32px">
+                <svg viewBox="0 0 50 30" width="50" height="30" fill="none"><path class="album-fish__tail" d="m15 15-12-9 2 9-2 9Z" fill="#c995b4"/><path d="M12 15C20 0 36 2 46 15 36 28 20 30 12 15Z" fill="#e4b5cc" stroke="#bd8aa7"/><path d="m27 10-4-6 12 3M26 19l6 5 1-8" fill="#c995b4"/><circle cx="38" cy="12" r="1.6" fill="#895a73"/><path d="M33 10q-3 5 0 10" stroke="#c18ca9" stroke-linecap="round"/></svg>
+              </span>
+              <span class="album-fish__swimmer" style="--swim-time: 22s; --swim-delay: -9s; --fish-depth: 38%; --fish-size: 38px">
+                <svg viewBox="0 0 50 30" width="50" height="30" fill="none"><path class="album-fish__tail" d="m15 15-12-9 2 9-2 9Z" fill="#c995b4"/><path d="M12 15C20 0 36 2 46 15 36 28 20 30 12 15Z" fill="#e4b5cc" stroke="#bd8aa7"/><path d="m27 10-4-6 12 3M26 19l6 5 1-8" fill="#c995b4"/><circle cx="38" cy="12" r="1.6" fill="#895a73"/><path d="M33 10q-3 5 0 10" stroke="#c18ca9" stroke-linecap="round"/></svg>
+              </span>
+              <span class="album-fish__swimmer album-fish__swimmer--reverse" style="--swim-time: 29s; --swim-delay: -22s; --fish-depth: 66%; --fish-size: 27px">
+                <svg viewBox="0 0 50 30" width="50" height="30" fill="none"><path class="album-fish__tail" d="m15 15-12-9 2 9-2 9Z" fill="#c995b4"/><path d="M12 15C20 0 36 2 46 15 36 28 20 30 12 15Z" fill="#e4b5cc" stroke="#bd8aa7"/><path d="m27 10-4-6 12 3M26 19l6 5 1-8" fill="#c995b4"/><circle cx="38" cy="12" r="1.6" fill="#895a73"/><path d="M33 10q-3 5 0 10" stroke="#c18ca9" stroke-linecap="round"/></svg>
+              </span>
+            </div>
           </div>
         </div>
         <div class="album__controls">
@@ -923,7 +959,7 @@
           <p class="album__status">
             <span id="albumCount" aria-live="polite" aria-atomic="true"
               >01 / 06</span
-            ><span>Vuốt ngang · Tự chuyển sau 2 giây</span>
+            ><span>Xoay bánh lái · Tự chuyển sau 2 giây</span>
           </p>
           <button
             class="album__arrow"
@@ -1019,6 +1055,44 @@
       </p>
       <div class="footer__date" aria-label="Ngày cưới 17 tháng 1 năm 2027">
         <span aria-hidden="true"></span><time datetime="2027-01-17">17 . 01 . 2027</time><span aria-hidden="true"></span>
+      </div>
+      <div class="footer__dancing-couple" role="img" aria-label="Chibi cô dâu Ngọc Huyền và chú rể Minh Đức cùng nhảy múa">
+        <svg viewBox="0 0 240 180" width="240" height="180" fill="none" aria-hidden="true">
+          <defs>
+            <clipPath id="chibi-bride-face"><circle cx="74" cy="66" r="25" /></clipPath>
+            <clipPath id="chibi-groom-face"><circle cx="162" cy="65" r="25" /></clipPath>
+          </defs>
+          <ellipse cx="120" cy="163" rx="86" ry="7" fill="#d4a3bd22" />
+          <g class="chibi-heart chibi-heart--one"><path d="M120 29c-17-11-10-22 0-13 10-9 17 2 0 13Z" fill="#e5a3c2"/></g>
+          <g class="chibi-heart chibi-heart--two"><path d="M42 66c-11-8-7-15 0-9 7-6 11 1 0 9Z" fill="#edbfd4"/></g>
+          <g class="chibi-heart chibi-heart--three"><path d="M201 55c-13-9-8-18 0-11 8-7 13 2 0 11Z" fill="#d996b8"/></g>
+          <g class="chibi-bride">
+            <path d="M55 61c-10 20-10 43-4 62 12 9 38 9 48-2 3-26-3-46-12-62Z" fill="#fff5fa" stroke="#e1bfd0"/>
+            <path d="M55 66c-7 12-5 32-3 40h42c4-18 0-34-9-42Z" fill="#694855"/>
+            <g class="chibi-foot chibi-foot--left"><path d="M67 145v13l-8 2" stroke="#be88a4" stroke-width="5" stroke-linecap="round"/></g>
+            <g class="chibi-foot chibi-foot--right"><path d="m82 145 4 12 6 2" stroke="#be88a4" stroke-width="5" stroke-linecap="round"/></g>
+            <path d="m58 102-14 12-6-7m52-5 20 8 8-8" stroke="#f2cbd5" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M63 96c8 5 15 5 23 0l4 17 17 29c-21 13-46 13-66 0l18-29Z" fill="#fff9fc" stroke="#d7adbf" stroke-width="1.2"/>
+            <path d="M60 113q15 6 30 0M68 120l-9 23m21-21 7 22" stroke="#edcfdd" stroke-width="1.3"/>
+            <path d="M67 96q7 8 14 0" stroke="#e4bfd1" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="74" cy="66" r="26" fill="#fff5fa" />
+            <image class="chibi-real-face" href="https://res.cloudinary.com/dvglujyon/image/upload/c_scale,w_800/c_crop,g_north_west,x_215,y_145,w_210,h_210/c_scale,w_240/f_auto/q_auto/v1793071283/HAU07148_eak8wq.jpg" x="49" y="41" width="50" height="50" preserveAspectRatio="xMidYMid slice" clip-path="url(#chibi-bride-face)" />
+            <circle cx="74" cy="66" r="25" stroke="#dfb4c3" stroke-width="1" />
+          </g>
+          <g class="chibi-groom">
+            <g class="chibi-foot chibi-foot--left"><path d="m155 134-4 23-6 2" stroke="#604352" stroke-width="7" stroke-linecap="round"/></g>
+            <g class="chibi-foot chibi-foot--right"><path d="m171 134 5 22 7 2" stroke="#604352" stroke-width="7" stroke-linecap="round"/></g>
+            <path d="m148 101-18 10-12-9m60-1 16 12 6-8" stroke="#604352" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="m145 97 17-4 17 4 3 41c-13 5-25 5-39 0Z" fill="#604352" stroke="#49303e"/>
+            <path d="m152 95 10 30 10-30" fill="#fff5fa"/>
+            <path d="m150 99 5 15-5 3 12 15m12-33-5 15 5 3-12 15" stroke="#936e82" stroke-width="1.2"/>
+            <path d="m162 101-6-4v8l6-4 6-4v8Z" fill="#b8839e"/>
+            <circle cx="162" cy="65" r="26" fill="#fff5fa" />
+            <image class="chibi-real-face" href="https://res.cloudinary.com/dvglujyon/image/upload/c_scale,w_800/c_crop,g_north_west,x_503,y_222,w_110,h_110/c_scale,w_240/f_auto/q_auto/v1793071526/HAU07191_1_ccxikg.jpg" x="137" y="40" width="50" height="50" preserveAspectRatio="xMidYMid slice" clip-path="url(#chibi-groom-face)" />
+            <circle cx="162" cy="65" r="25" stroke="#dfb4c3" stroke-width="1" />
+          </g>
+          <path d="M118 105c-10-7-6-13 0-8 6-5 10 1 0 8Z" fill="#d794b5"/>
+        </svg>
       </div>
       <p class="footer__new-beginning">Cùng nhau, đón một khởi đầu mới.</p>
     </footer>

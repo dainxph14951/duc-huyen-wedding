@@ -102,10 +102,11 @@ h2 {
   transform: translateX(-50%);
   border: 1px solid rgba(255, 255, 255, 0.72);
   border-radius: 999px;
-  background: var(--glass);
-  box-shadow: 0 12px 42px rgba(184, 69, 111, 0.16);
+  background: rgba(255, 250, 252, 0.24);
+  box-shadow: 0 8px 28px rgba(83, 36, 61, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.4);
   padding: 4px 10px 4px 22px;
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(4px) saturate(115%);
+  -webkit-backdrop-filter: blur(4px) saturate(115%);
 }
 
 .topbar__brand {
@@ -2251,7 +2252,7 @@ body.gate-open .hero__names > span {
   isolation: isolate;
   padding: 78px 18px 48px;
   margin-inline: -12px;
-  background: radial-gradient(ellipse at 50% 90%, #f1d4df80, transparent 65%);
+  background: radial-gradient(ellipse at 50% 90%, #f1d4e080, transparent 65%);
 }
 .album-yacht {
   position: relative;
@@ -2277,17 +2278,17 @@ body.gate-open .hero__names > span {
   display: flex;
   gap: 7px;
   padding: 12px 20px 7px;
-  border: 1px solid #d2a5b5;
+  border: 1px solid #d2a5b7;
   border-radius: 36px 10px 0 0;
-  background: linear-gradient(#fffdf9, #f7e3ea);
-  box-shadow: 0 -5px 0 -2px #b88899;
+  background: linear-gradient(#fefafc, #f7e3eb);
+  box-shadow: 0 -5px 0 -2px #b8889b;
   transform: skewX(-14deg);
 }
 .album-yacht__cabin i {
   flex: 1;
   border-radius: 12px 3px 2px 2px;
-  background: linear-gradient(140deg, #e5bfcf, #faf1ed 48%, #c18a9f);
-  border: 1px solid #bd8e9e66;
+  background: linear-gradient(140deg, #e5bfce, #faedf2 48%, #c18aa0);
+  border: 1px solid #bd8ea166;
 }
 .album-yacht__mast {
   position: absolute;
@@ -2295,7 +2296,7 @@ body.gate-open .hero__names > span {
   bottom: 47px;
   height: 30px;
   width: 1px;
-  background: #b18c72;
+  background: #b1728b;
 }
 .album-yacht__mast::after {
   content: "";
@@ -2304,7 +2305,7 @@ body.gate-open .hero__names > span {
   left: 1px;
   width: 25px;
   height: 13px;
-  background: #bb7f98;
+  background: #bb7f97;
   clip-path: polygon(0 0, 100% 15%, 75% 55%, 100% 100%, 0 85%);
 }
 .album-yacht__rail {
@@ -2313,19 +2314,19 @@ body.gate-open .hero__names > span {
   right: 5%;
   width: 23%;
   height: 17px;
-  border-top: 2px solid #c19b80;
-  border-right: 1px solid #c19b80;
-  border-left: 1px solid #c19b80;
+  border-top: 2px solid #c1809a;
+  border-right: 1px solid #c1809a;
+  border-left: 1px solid #c1809a;
   border-radius: 4px 4px 0 0;
-  background: repeating-linear-gradient(90deg, transparent 0 24px, #c19b8080 24px 25px);
+  background: repeating-linear-gradient(90deg, transparent 0 24px, #c1809a80 24px 25px);
 }
 .album-yacht .album__grid {
   position: relative;
-  border: 1px solid #d8b6be;
+  border: 1px solid #d8b6c4;
   border-bottom: 0;
   border-radius: 48px 16px 0 0;
-  background: linear-gradient(135deg, #fffcfa, #faedf2);
-  box-shadow: 0 -5px 0 #f0d9df, 0 6px 30px #71435a12;
+  background: linear-gradient(135deg, #fefbfc, #faedf2);
+  box-shadow: 0 -5px 0 #f0d9e2, 0 6px 30px #71435512;
 }
 .album-yacht .album__item { padding-top: 18px; }
 .album-yacht .album__item img { border-radius: 30px 10px 6px 6px; }
@@ -2337,8 +2338,8 @@ body.gate-open .hero__names > span {
   gap: 12px;
   min-height: 86px;
   padding: 16px 10% 28px;
-  color: #fbe8cf;
-  background: linear-gradient(170deg, #a26d87, #70465e 75%);
+  color: #f3d7e2;
+  background: linear-gradient(170deg, #a26d82, #704657 75%);
   clip-path: polygon(0 0, 100% 0, 94% 63%, 88% 91%, 20% 100%, 10% 72%);
 }
 .album-yacht__hull::before {
@@ -2346,16 +2347,16 @@ body.gate-open .hero__names > span {
   position: absolute;
   inset: 7px 0 auto;
   height: 2px;
-  background: #e4c4a0;
+  background: #e4a0bb;
 }
 .album-yacht__portholes { display: flex; gap: 14px; }
 .album-yacht__portholes i {
   width: 15px;
   height: 15px;
-  border: 2px solid #e2bc99;
+  border: 2px solid #e299b6;
   border-radius: 50%;
-  background: linear-gradient(135deg, #fff5e2, #b88b9b 65%, #694254);
-  box-shadow: 0 1px 4px #45223930;
+  background: linear-gradient(135deg, #f8e9ef, #b88b9d 65%, #694252);
+  box-shadow: 0 1px 4px #45223030;
 }
 .album-yacht__name {
   font-family: var(--serif);
@@ -2387,9 +2388,9 @@ body.gate-open .hero__names > span {
   animation: album-waves-drift 12s linear infinite;
   animation-play-state: paused;
 }
-.album-voyage__wave--back { bottom: 15px; fill: #deb8cc99; }
+.album-voyage__wave--back { bottom: 15px; fill: #deb8c799; }
 .album-voyage__wave--front {
-  fill: #f2dfe8d9;
+  fill: #f2dfe7d9;
   animation-duration: 9s;
   animation-direction: reverse;
 }
@@ -2444,7 +2445,7 @@ body.gate-open .hero__names > span {
   height: 64px;
   border: 0;
   background: transparent;
-  color: #a5617e;
+  color: #a5617c;
   border-radius: 50%;
   -webkit-tap-highlight-color: transparent;
 }
@@ -2453,12 +2454,12 @@ body.gate-open .hero__names > span {
   width: 100%;
   height: 100%;
   overflow: visible;
-  filter: drop-shadow(0 2px 2px #85546a20);
+  filter: drop-shadow(0 2px 2px #85546820);
   transition: transform 550ms cubic-bezier(0.22, 1, 0.36, 1);
 }
-.album__helm-rim { stroke: #b88d71; stroke-width: 5; fill: #fff9f266; }
-.album__helm-spokes { stroke: #a46e85; stroke-width: 4; stroke-linecap: round; }
-.album__helm-hub { fill: #fff9f2; stroke: #be9978; stroke-width: 1.5; }
+.album__helm-rim { stroke: #b8718d; stroke-width: 5; fill: #fcf5f866; }
+.album__helm-spokes { stroke: #a46e84; stroke-width: 4; stroke-linecap: round; }
+.album__helm-hub { fill: #fcf5f8; stroke: #be7894; stroke-width: 1.5; }
 .album__helm-direction {
   position: absolute;
   top: 50%;
@@ -2483,10 +2484,10 @@ body.gate-open .hero__names > span {
   max-width: 100%;
   margin: 24px auto 0;
   padding: 12px 14px;
-  border-top: 1px solid #d7b6c166;
-  border-bottom: 1px solid #d7b6c166;
+  border-top: 1px solid #d7b6c366;
+  border-bottom: 1px solid #d7b6c366;
   border-radius: 28px;
-  background: linear-gradient(180deg, #fffaf655, #ecd6df80, #fffaf655);
+  background: linear-gradient(180deg, #fdf8fa55, #ecd6df80, #fdf8fa55);
 }
 .album__thumb {
   position: relative;
@@ -2494,10 +2495,10 @@ body.gate-open .hero__names > span {
   width: 64px;
   min-width: 0;
   padding: 6px;
-  border: 1px solid #c7a38b;
+  border: 1px solid #c78ba3;
   border-radius: 30px 30px 17px 17px;
-  background: linear-gradient(125deg, #fffcf4 5%, #d9b89a 30%, #f6e3cd 55%, #bf977d 90%);
-  box-shadow: inset 0 0 0 2px #fff4df99, 0 3px 6px #85546a1a;
+  background: linear-gradient(125deg, #fdf6f9 5%, #d99ab3 30%, #f2d1de 55%, #bf7d97 90%);
+  box-shadow: inset 0 0 0 2px #f8e6ed99, 0 3px 6px #8554681a;
   opacity: 0.7;
   transition: opacity 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
 }
@@ -2505,7 +2506,7 @@ body.gate-open .hero__names > span {
   content: "";
   position: absolute;
   inset: 2px;
-  border: 1px solid #b78c7155;
+  border: 1px solid #b7718d55;
   border-radius: inherit;
   pointer-events: none;
 }
@@ -2515,21 +2516,21 @@ body.gate-open .hero__names > span {
   inset: 6px;
   border-radius: 24px 24px 12px 12px;
   background: linear-gradient(125deg, #fff5 0%, #fff0 35%, #fff0 55%, #fff3 58%, #fff0 65%);
-  box-shadow: inset 0 1px 3px #51304455;
+  box-shadow: inset 0 1px 3px #51303d55;
   pointer-events: none;
 }
 .album__thumb img {
   height: 64px;
-  border: 1px solid #a57c6f80;
+  border: 1px solid #a56f8580;
   border-radius: 24px 24px 12px 12px;
   object-fit: cover;
   background: #f9edf2;
 }
 .album__thumb:hover { opacity: 1; }
 .album__thumb[aria-current="true"] {
-  border-color: #a25c7a;
+  border-color: #a25c78;
   opacity: 1;
-  box-shadow: inset 0 0 0 2px #fff4dfbb, 0 0 0 2px #d8a6bc66, 0 4px 12px #9b5c7b26;
+  box-shadow: inset 0 0 0 2px #f8e6edbb, 0 0 0 2px #d8a6ba66, 0 4px 12px #9b5c7526;
 }
 @media (max-width: 840px) {
   .album__controls { grid-template-columns: 50px minmax(0, 1fr) 50px; gap: 10px; }
@@ -3285,4 +3286,112 @@ body::after {
   .couple-home__fence { left: 18px; right: 18px; height: 20px; }
   .couple-home__fence span { width: calc(50% - 38px); }
   .couple-home__flowerbox i { width: 6px; height: 6px; }
+}
+
+/* Du thuyền vườn hồng, đồng bộ với mái cổng và ngôi nhà. */
+.topbar .brand, .topbar nav { text-shadow: 0 1px 3px #fffafccc; }
+.album-yacht__cabin {
+  left: 25%;
+  width: 44%;
+  transform: none;
+  border-color: #dab3c6;
+  border-radius: 18px 18px 0 0;
+  background: linear-gradient(#fff4f9, #f2dce7);
+  box-shadow: inset 0 0 0 3px #fff5f8;
+}
+.album-yacht__cabin::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: -10px;
+  right: -10px;
+  height: 17px;
+  clip-path: polygon(50% 0, 100% 72%, 97% 100%, 50% 24%, 3% 100%, 0 72%);
+  background: #d9adc2;
+}
+.album-yacht__cabin i { border-radius: 16px 16px 2px 2px; background: linear-gradient(135deg, #e3bfd0, #fff5fa 45%, #e8cbd9); }
+.album-yacht__mast { bottom: 56px; }
+.album-yacht__rail { height: 22px; border-color: #cfa2b9; border-radius: 8px 8px 0 0; background: repeating-linear-gradient(90deg, transparent 0 15px, #d5adbf 15px 17px); }
+.album-yacht .album__grid { border-radius: 36px 36px 0 0; border-color: #dcb8ca; box-shadow: 0 -4px 0 #f4dce8, 0 -7px 0 -2px #e4c2d2, 0 6px 30px #9f648011; }
+.album-yacht__garland { position: absolute; z-index: 2; top: -6px; left: 0; width: 100%; height: clamp(72px, 12vw, 112px); pointer-events: none; }
+.album-yacht__hull { color: #a06382; background: linear-gradient(170deg, #f9e7f0, #e6bfd2 75%); }
+.album-yacht__hull::before { background: #cfa1b9; }
+.album-yacht__hull::after { content: ""; position: absolute; left: 8%; right: 8%; bottom: 20px; height: 1px; background: #fff5f8bb; }
+.album-yacht__portholes i { border-color: #c795b0; background: linear-gradient(135deg, #fff3f9, #e5bcd0 65%, #c997b0); box-shadow: inset 0 0 0 1px #fff5f9; }
+@media (max-width: 840px) {
+  .album-yacht .album__grid { border-radius: 25px 25px 0 0; }
+  .album-yacht__cabin { left: 23%; width: 46%; padding-inline: 12px; }
+  .album-yacht__rail { width: 20%; right: 3%; height: 18px; }
+}
+
+/* Chỉ bánh lái trên thân tàu nhận thao tác xoay để đổi ảnh. */
+.album-yacht .album__grid { overflow-x: hidden; touch-action: pan-y; }
+.album__item img { -webkit-user-drag: none; user-select: none; }
+.album-yacht__hull { display: flex; flex-direction: column; gap: 4px; padding: 14px 10% 42px; }
+.album-yacht__hull-trim { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; }
+.album-yacht__hull::after { pointer-events: none; }
+.album-steering { display: grid; justify-items: center; gap: 2px; }
+.album-steering__wheel { --wheel-angle: 0deg; width: 72px; height: 72px; padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: grab; touch-action: none; user-select: none; }
+.album-yacht__hull .album-steering__wheel svg { display: block; width: 100%; height: 100%; transform: rotate(var(--wheel-angle)); transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1); filter: drop-shadow(0 3px 3px #9f648026); }
+.album-steering__wheel:focus-visible { outline: 2px solid var(--plum); outline-offset: 3px; }
+.album-steering__hint { font-size: 0.66rem; color: #a06382; }
+.album.is-steering .album-steering__wheel { cursor: grabbing; }
+.album.is-steering .album-steering__wheel svg { transition: none; }
+.album.is-steering .album-yacht { animation-play-state: paused; }
+.album.is-turning .album-voyage__wave { animation-duration: 4s; }
+.album-voyage { padding-bottom: 120px; }
+.album-voyage__sea { height: 162px; }
+.album-voyage__wave { height: 140px; }
+.album-voyage__wake { bottom: 90px; }
+.album-fish { position: absolute; inset: 42px 0 0; overflow: hidden; }
+.album-fish__swimmer { position: absolute; left: 0; top: var(--fish-depth); width: 100%; height: 30px; animation: yacht-fish-swim var(--swim-time) linear var(--swim-delay) infinite; animation-play-state: paused; }
+.album-fish__swimmer svg { display: block; width: var(--fish-size); height: auto; opacity: 0.8; }
+.album-fish__swimmer--reverse { animation-direction: reverse; }
+.album-fish__swimmer--reverse svg { transform: scaleX(-1); }
+.album-fish__tail { transform-origin: 14px 15px; animation: yacht-fish-tail 650ms ease-in-out infinite alternate; animation-play-state: paused; }
+.album.is-sailing .album-fish__swimmer, .album.is-sailing .album-fish__tail { animation-play-state: running; }
+@keyframes yacht-fish-swim { 0% { transform: translate(-12%, 0); } 50% { transform: translate(50%, -8px); } 100% { transform: translate(112%, 0); } }
+@keyframes yacht-fish-tail { from { transform: scaleX(0.65); } to { transform: scaleX(1.1); } }
+@media (max-width: 840px) {
+  .album-voyage { padding-bottom: 100px; }
+  .album-yacht__hull { padding: 12px 9% 36px; }
+  .album-steering__wheel { width: 62px; height: 62px; }
+  .album-steering__hint { font-size: 0.6rem; }
+  .album-voyage__sea { height: 136px; }
+  .album-voyage__wave { height: 116px; }
+  .album-voyage__wake { bottom: 76px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .album-steering__wheel svg { transition: none; }
+  .album-fish__swimmer, .album-fish__tail { animation: none; }
+  .album-fish__swimmer { transform: translateX(20%); }
+  .album-fish__swimmer:nth-child(2) { transform: translateX(40%); }
+  .album-fish__swimmer:nth-child(3) { transform: translateX(60%); }
+  .album-fish__swimmer:nth-child(4) { transform: translateX(75%); }
+}
+
+/* Cặp chibi cùng nhảy múa bên lời cảm ơn cuối thiệp. */
+.footer__dancing-couple { width: min(240px, 65vw); margin: 18px auto 0; }
+.footer__dancing-couple svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chibi-bride, .chibi-groom { transform-box: fill-box; transform-origin: 50% 100%; animation: chibi-wedding-dance 1.8s ease-in-out infinite; animation-play-state: paused; }
+.chibi-groom { animation-delay: -0.9s; }
+.chibi-foot { transform-box: fill-box; transform-origin: 50% 0; animation: chibi-wedding-step 900ms ease-in-out infinite alternate; animation-play-state: paused; }
+.chibi-foot--right { animation-delay: -900ms; }
+.chibi-heart { opacity: 0; animation: chibi-heart-float 3.6s ease-out infinite; animation-play-state: paused; }
+.chibi-heart--two { animation-delay: -1.2s; }
+.chibi-heart--three { animation-delay: -2.4s; }
+.footer.is-birds-visible .chibi-bride, .footer.is-birds-visible .chibi-groom,
+.footer.is-birds-visible .chibi-foot, .footer.is-birds-visible .chibi-heart { animation-play-state: running; }
+@keyframes chibi-wedding-dance {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  25% { transform: translateY(-5px) rotate(0deg); }
+  50% { transform: translateY(0) rotate(4deg); }
+  75% { transform: translateY(-5px) rotate(0deg); }
+}
+@keyframes chibi-wedding-step { from { transform: rotate(-10deg); } to { transform: rotate(12deg); } }
+@keyframes chibi-heart-float { 0% { opacity: 0; transform: translateY(8px); } 25%, 60% { opacity: 0.8; } 100% { opacity: 0; transform: translateY(-14px); } }
+@media (prefers-reduced-motion: reduce) {
+  .footer__dancing-couple .chibi-bride, .footer__dancing-couple .chibi-groom,
+  .footer__dancing-couple .chibi-foot, .footer__dancing-couple .chibi-heart { animation: none; transform: none; }
+  .footer__dancing-couple .chibi-heart { opacity: 0.6; }
 }
