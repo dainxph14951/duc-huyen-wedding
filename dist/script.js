@@ -661,3 +661,200 @@ if (coupleHomeSection) {
     coupleHomeSection.classList.add("is-home-visible");
   }
 }
+
+/* Hai vòi pháo sáng ở chân ảnh, chỉ chạy khi ảnh đang trong màn hình. */
+const fireworksPhoto = document.querySelector(".feature__photo");
+const fireworksLayer = fireworksPhoto?.querySelector(".feature-fireworks");
+if (fireworksLayer) {
+  ["left", "right"].forEach((side) => {
+    const fountain = document.createElement("span");
+    fountain.className = `feature-fireworks__fountain feature-fireworks__fountain--${side}`;
+    for (let index = 0; index < 42; index++) {
+      const spark = document.createElement("i");
+      spark.className = "feature-fireworks__spark";
+      spark.style.setProperty("--drift", `${((index * 17) % 131) - 65}px`);
+      spark.style.setProperty("--lift", String(0.65 + ((index * 13) % 36) / 100));
+      spark.style.setProperty("--duration", `${1.25 + ((index * 7) % 85) / 100}s`);
+      spark.style.setProperty("--spark-delay", `${-index * 0.137 - (side === "right" ? 0.6 : 0)}s`);
+      fountain.append(spark);
+    }
+    fireworksLayer.append(fountain);
+  });
+
+  let fireworksVisible = !("IntersectionObserver" in window);
+  function updateFireworks() {
+    fireworksPhoto.classList.toggle("is-firing", fireworksVisible && !document.hidden && !reduceMotionQuery.matches);
+  }
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(([entry]) => {
+      fireworksVisible = entry.isIntersecting;
+      updateFireworks();
+    }, { threshold: 0.15 }).observe(fireworksPhoto);
+  }
+  document.addEventListener("visibilitychange", updateFireworks);
+  reduceMotionQuery.addEventListener("change", updateFireworks);
+  updateFireworks();
+}
+
+/* Một nhịp chung để em bé tới cửa trước khi cửa mở và bóng bay xuất hiện. */
+const visitor = document.querySelector(".home-visitor");
+const storyEntrance = document.querySelector(".story-entrance");
+const visitorRoad = storyEntrance?.querySelector(".story-entrance__road");
+const visitorPath = visitorRoad?.querySelector("path");
+const homeDoor = document.querySelector(".couple-home__door-leaf");
+const homeBalloon = document.querySelector(".couple-home__balloon");
+if (visitor && visitorPath && homeDoor && homeBalloon && coupleHomeSection) {
+  const pathLength = visitorPath.getTotalLength();
+  const seen = new Set();
+  let frame = 0;
+  let previousTime;
+  let elapsed = 0;
+  let roadWidth = 0;
+  let roadHeight = 0;
+  let roadLeft = 0;
+  const clamp = (value) => Math.max(0, Math.min(1, value));
+  const ease = (value) => value * value * (3 - 2 * value);
+
+  function measureVisitorRoad() {
+    const bounds = visitorRoad.getBoundingClientRect();
+    roadWidth = bounds.width;
+    roadHeight = bounds.height;
+    roadLeft = (storyEntrance.clientWidth - roadWidth) / 2;
+  }
+  function paintVisitor() {
+    const phase = (elapsed % 20000) / 20000;
+    const walk = clamp(phase / 0.58);
+    const point = visitorPath.getPointAtLength(pathLength * (1 - walk));
+    const enter = ease(clamp((phase - 0.73) / 0.08));
+    visitor.style.left = `${roadLeft + point.x / 520 * roadWidth}px`;
+    visitor.style.top = `${point.y / 520 * roadHeight - enter * 22}px`;
+    visitor.style.opacity = String(Math.min(clamp(phase / 0.025), 1 - enter));
+    visitor.style.transform = `translate(-50%, -100%) scale(${1 - enter * 0.35})`;
+    visitor.classList.toggle("is-walking", phase < 0.58 || (phase > 0.73 && phase < 0.81));
+    visitor.classList.toggle("is-reaching", phase >= 0.58 && phase < 0.73);
+
+    const open = ease(clamp((phase - 0.61) / 0.09)) * (1 - ease(clamp((phase - 0.9) / 0.07)));
+    homeDoor.style.transform = `rotateY(${-105 * open}deg)`;
+    const balloon = ease(clamp((phase - 0.7) / 0.08)) * (1 - ease(clamp((phase - 0.83) / 0.06)));
+    homeBalloon.style.opacity = String(balloon);
+    homeBalloon.style.transform = `translateY(${32 * (1 - balloon)}px) scale(${0.65 + balloon * 0.35})`;
+  }
+  function tick(timestamp) {
+    frame = 0;
+    if (previousTime !== undefined) elapsed += Math.min(timestamp - previousTime, 64);
+    previousTime = timestamp;
+    paintVisitor();
+    frame = requestAnimationFrame(tick);
+  }
+  function updateVisitorPlayback() {
+    const reduced = reduceMotionQuery.matches;
+    coupleHomeSection.classList.toggle("has-home-visitor", !reduced);
+    cancelAnimationFrame(frame);
+    frame = 0;
+    previousTime = undefined;
+    if (reduced) {
+      homeDoor.style.removeProperty("transform");
+      homeBalloon.style.removeProperty("transform");
+      homeBalloon.style.removeProperty("opacity");
+      return;
+    }
+    if (document.hidden || document.body.classList.contains("gate-open") || !seen.size) return;
+    measureVisitorRoad();
+    paintVisitor();
+    frame = requestAnimationFrame(tick);
+  }
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver((entries) => {
+      entries.forEach(({ target, isIntersecting }) => {
+        if (isIntersecting) seen.add(target);
+        else seen.delete(target);
+      });
+      updateVisitorPlayback();
+    }).observe(coupleHomeSection);
+    // Observe the entire route, including the gate, with the same playback state.
+    const routeObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) seen.add(storyEntrance);
+      else seen.delete(storyEntrance);
+      updateVisitorPlayback();
+    });
+    routeObserver.observe(storyEntrance);
+  } else {
+    seen.add(storyEntrance);
+  }
+  if ("ResizeObserver" in window) new ResizeObserver(measureVisitorRoad).observe(storyEntrance);
+  else window.addEventListener("resize", measureVisitorRoad);
+  new MutationObserver(updateVisitorPlayback).observe(document.body, { attributes: true, attributeFilter: ["class"] });
+  document.addEventListener("visibilitychange", updateVisitorPlayback);
+  reduceMotionQuery.addEventListener("change", updateVisitorPlayback);
+  updateVisitorPlayback();
+}
+
+/* Cánh chim lướt qua bình minh khi phần núi đồi đang hiển thị. */
+const dawnFooter = document.querySelector(".footer");
+if (dawnFooter) {
+  let dawnVisible = !("IntersectionObserver" in window);
+  const updateDawnBirds = () => dawnFooter.classList.toggle("is-birds-visible", dawnVisible && !document.hidden && !reduceMotionQuery.matches);
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(([entry]) => {
+      dawnVisible = entry.isIntersecting;
+      updateDawnBirds();
+    }).observe(dawnFooter);
+  }
+  document.addEventListener("visibilitychange", updateDawnBirds);
+  reduceMotionQuery.addEventListener("change", updateDawnBirds);
+  updateDawnBirds();
+}
+
+/* Độ nghiêng 3D độc lập với transform của reveal, du thuyền và pháo sáng. */
+const depthPointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+const depthCards = document.querySelectorAll(".invite-gate__card, .event__panel, .story-gate, .album-voyage, .feature__photo");
+const resetDepthCards = [];
+depthCards.forEach((card) => {
+  card.classList.add("depth-card");
+  const glint = document.createElement("span");
+  glint.className = "depth-card__glint";
+  glint.setAttribute("aria-hidden", "true");
+  card.append(glint);
+  let frame = 0;
+  let bounds;
+  let pointerX = 0;
+  let pointerY = 0;
+
+  function reset() {
+    cancelAnimationFrame(frame);
+    frame = 0;
+    bounds = undefined;
+    card.classList.remove("depth-card--active");
+    ["--depth-axis-x", "--depth-axis-y", "--depth-angle", "--depth-light-x", "--depth-light-y"].forEach((name) => card.style.removeProperty(name));
+  }
+  function paint() {
+    frame = 0;
+    if (!bounds?.width || !bounds.height) return;
+    const x = Math.max(-1, Math.min(1, (pointerX - bounds.left) / bounds.width * 2 - 1));
+    const y = Math.max(-1, Math.min(1, (pointerY - bounds.top) / bounds.height * 2 - 1));
+    const distance = Math.hypot(x, y);
+    card.style.setProperty("--depth-axis-x", String(distance ? -y / distance : 0));
+    card.style.setProperty("--depth-axis-y", String(distance ? x / distance : 1));
+    card.style.setProperty("--depth-angle", `${Math.min(distance, 1) * 4}deg`);
+    card.style.setProperty("--depth-light-x", `${(x + 1) * 50}%`);
+    card.style.setProperty("--depth-light-y", `${(y + 1) * 50}%`);
+    card.classList.add("depth-card--active");
+  }
+  card.addEventListener("pointermove", (event) => {
+    if (!depthPointer.matches || reduceMotionQuery.matches || event.pointerType === "touch") return;
+    if (!bounds) bounds = card.getBoundingClientRect();
+    pointerX = event.clientX;
+    pointerY = event.clientY;
+    if (!frame) frame = requestAnimationFrame(paint);
+  }, { passive: true });
+  card.addEventListener("pointerleave", reset);
+  card.addEventListener("pointercancel", reset);
+  card.addEventListener("click", reset);
+  resetDepthCards.push(reset);
+});
+const resetAllDepth = () => resetDepthCards.forEach((reset) => reset());
+window.addEventListener("scroll", resetAllDepth, { passive: true });
+window.addEventListener("resize", resetAllDepth);
+document.addEventListener("visibilitychange", resetAllDepth);
+depthPointer.addEventListener("change", resetAllDepth);
+reduceMotionQuery.addEventListener("change", resetAllDepth);

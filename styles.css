@@ -95,7 +95,7 @@ h2 {
   left: 50%;
   display: flex;
   width: min(calc(100% - 32px), 1040px);
-  min-height: 56px;
+  min-height: 42px;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
@@ -104,7 +104,7 @@ h2 {
   border-radius: 999px;
   background: var(--glass);
   box-shadow: 0 12px 42px rgba(184, 69, 111, 0.16);
-  padding: 8px 10px 8px 22px;
+  padding: 4px 10px 4px 22px;
   backdrop-filter: blur(18px);
 }
 
@@ -137,7 +137,7 @@ nav a,
   font: inherit;
   font-size: 0.88rem;
   font-weight: 600;
-  padding: 10px 16px;
+  padding: 5px 16px;
 }
 
 nav a:hover,
@@ -148,8 +148,8 @@ nav a:hover,
 /* Music toggle */
 .music-toggle {
   display: grid;
-  width: 42px;
-  height: 42px;
+  width: 32px;
+  height: 32px;
   place-items: center;
   border: 1px solid rgba(255, 255, 255, 0.78);
   border-radius: 50%;
@@ -162,8 +162,8 @@ nav a:hover,
 .music-toggle__disc {
   position: relative;
   display: grid;
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   place-items: center;
   border: 2px solid rgba(255, 255, 255, 0.9);
   border-radius: 50%;
@@ -179,15 +179,15 @@ nav a:hover,
 }
 
 .music-toggle__disc::after {
-  inset: 11px;
+  inset: 8px;
   background: #fff;
 }
 
 .music-toggle__mic {
   position: absolute;
   z-index: 1;
-  width: 8px;
-  height: 18px;
+  width: 6px;
+  height: 13px;
   border: 2px solid #fff;
   border-radius: 999px;
   transform: rotate(-42deg) translate(1px, -1px);
@@ -1639,7 +1639,7 @@ body.gate-open .hero__names > span {
   .topbar {
     top: 10px;
     width: calc(100% - 20px);
-    padding: 8px 12px;
+    padding: 4px 12px;
   }
 
   nav {
@@ -1808,7 +1808,7 @@ body.gate-open .hero__names > span {
     gap: 5px;
     width: min(calc(100% - 32px), 390px);
     margin-inline: auto;
-    padding: 6px;
+    padding: 4px;
     border: 1px solid rgba(255, 255, 255, 0.65);
     border-radius: 24px;
     background: rgba(255, 250, 252, 0.24);
@@ -1822,9 +1822,9 @@ body.gate-open .hero__names > span {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 5px;
-    min-height: 58px;
-    padding: 7px 4px;
+    gap: 2px;
+    min-height: 44px;
+    padding: 3px 4px;
     border: 0;
     border-radius: 18px;
     background: transparent;
@@ -2604,9 +2604,9 @@ body.gate-open .hero__names > span {
   bottom: 24%;
   width: 36px;
   height: 90px;
-  border: 1px solid #b88a85;
+  border: 1px solid #dfc1cd;
   border-radius: 3px 3px 0 0;
-  background: repeating-linear-gradient(0deg, transparent 0 16px, #ba8c8833 16px 17px), linear-gradient(90deg, #e8bfb9, #f5d9ce);
+  background: repeating-linear-gradient(0deg, transparent 0 16px, #d8b5c31c 16px 17px), linear-gradient(90deg, #f5dde7, #faedf2);
 }
 .couple-home__chimney::before {
   content: "";
@@ -2616,7 +2616,7 @@ body.gate-open .hero__names > span {
   right: -5px;
   height: 9px;
   border-radius: 2px;
-  background: #b9888b;
+  background: #ddbdca;
 }
 .couple-home__smoke {
   position: absolute;
@@ -2625,7 +2625,7 @@ body.gate-open .hero__names > span {
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background: radial-gradient(ellipse, #c5abbc88, #dbc9d255 50%, transparent 72%);
+  background: radial-gradient(ellipse, #caa6b488, #ddc7d055 50%, transparent 72%);
   opacity: 0;
   animation: couple-chimney-smoke 5.4s ease-out infinite;
   animation-play-state: paused;
@@ -2641,11 +2641,11 @@ body.gate-open .hero__names > span {
   gap: 64px;
   margin: 0;
   padding: 28px 40px 72px;
-  border: 1px solid #dcbdad;
+  border: 1px solid #e9ccd8;
   border-top: 0;
   border-radius: 0 0 5px 5px;
-  background: repeating-linear-gradient(0deg, transparent 0 38px, #c9a8a00d 38px 39px), linear-gradient(110deg, #fff9ee, #f8e6e6);
-  box-shadow: 0 16px 35px #9d647c12, inset 7px 0 0 #fff9f044, inset -7px 0 0 #dcbeb51a;
+  background: repeating-linear-gradient(0deg, transparent 0 38px, #c9a0b00d 38px 39px), linear-gradient(110deg, #fbf2f6, #fbf3f6);
+  box-shadow: 0 16px 35px #a0617a08, inset 7px 0 0 #fcf3f744, inset -7px 0 0 #dcb5c51a;
 }
 .couple-home .couple__person { min-width: 0; width: 100%; gap: 22px; }
 .couple-home__window {
@@ -2653,10 +2653,10 @@ body.gate-open .hero__names > span {
   width: 100%;
   max-width: 210px;
   padding: 8px;
-  border: 1px solid #bf9984;
+  border: 1px solid #dbb5c4;
   border-radius: 100px 100px 5px 5px;
-  background: linear-gradient(120deg, #edcbb4, #fff7e5 45%, #cda58f);
-  box-shadow: 0 3px 10px #905c6a1a, inset 0 0 0 3px #fff1d9;
+  background: linear-gradient(120deg, #f4dbe5, #f9ebf1 45%, #e7c2d1);
+  box-shadow: 0 3px 10px #9458700d, inset 0 0 0 3px #f6e2ea;
 }
 .couple-home__window::before {
   content: "";
@@ -2665,7 +2665,7 @@ body.gate-open .hero__names > span {
   z-index: 1;
   border-radius: inherit;
   background: linear-gradient(120deg, #fff3, transparent 35%, transparent 60%, #fff2 62%, transparent 70%);
-  box-shadow: inset 0 2px 6px #845c6d33;
+  box-shadow: inset 0 2px 6px #8c546a1a;
   pointer-events: none;
 }
 .couple-home__window::after {
@@ -2675,16 +2675,16 @@ body.gate-open .hero__names > span {
   right: -8px;
   bottom: -6px;
   height: 9px;
-  border: 1px solid #c4a08c;
+  border: 1px solid #dfbcca;
   border-radius: 3px;
-  background: linear-gradient(#fff6e8, #e3c1ac);
-  box-shadow: 0 4px 0 #ba948020;
+  background: linear-gradient(#faedf2, #f0d2de);
+  box-shadow: 0 4px 0 #ba809710;
 }
 .couple-home .couple__person img {
   display: block;
   width: 100%;
   aspect-ratio: 4 / 5;
-  border: 1px solid #bd9b8b66;
+  border: 1px solid #bd8b9f66;
   border-radius: 92px 92px 2px 2px;
   box-shadow: none;
 }
@@ -2699,12 +2699,12 @@ body.gate-open .hero__names > span {
   left: calc(50% - 22px);
   width: 44px;
   height: 62px;
-  border: 1px solid #c69989;
+  border: 1px solid #e1bdcb;
   border-radius: 24px 24px 0 0;
-  background: linear-gradient(90deg, #e8b8bd, #f5d8cf);
-  box-shadow: inset 0 0 0 4px #fff5e833;
+  background: linear-gradient(90deg, #f3dce5, #f8e9ef);
+  box-shadow: inset 0 0 0 4px #faedf233;
 }
-.couple-home__door span { position: absolute; right: 8px; top: 35px; width: 4px; height: 4px; border-radius: 50%; background: #b58b62; }
+.couple-home__door-knob { position: absolute; right: 8px; top: 35px; width: 4px; height: 4px; border-radius: 50%; background: #b56283; }
 .couple-home::after {
   content: "";
   position: absolute;
@@ -2712,9 +2712,9 @@ body.gate-open .hero__names > span {
   left: 18px;
   right: 18px;
   height: 12px;
-  border: 1px solid #d3b7a4;
+  border: 1px solid #e6c7d3;
   border-radius: 4px;
-  background: linear-gradient(#fff5e6, #e3c8b8);
+  background: linear-gradient(#f9ecf1, #f2dae4);
 }
 @keyframes couple-chimney-smoke {
   0% { opacity: 0; transform: translate(0, 0) scale(0.65); }
@@ -2739,4 +2739,336 @@ body.gate-open .hero__names > span {
   .couple-home .couple-home__smoke { animation: none; opacity: 0.25; transform: translate(8px, -18px) scale(1.2); }
   .couple-home .couple-home__smoke:nth-child(2) { transform: translate(14px, -38px) scale(1.5); }
   .couple-home .couple-home__smoke:nth-child(3) { display: none; }
+}
+
+/* Con đường từ tổ ấm tới cánh cổng câu chuyện tình yêu. */
+.love-story { padding-top: 0; }
+.story-entrance {
+  position: relative;
+  isolation: isolate;
+  padding-top: 210px;
+  margin-bottom: 28px;
+}
+.story-entrance__road {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 50%;
+  width: min(100%, 520px);
+  height: 100%;
+  transform: translateX(-50%);
+  fill: none;
+  pointer-events: none;
+}
+.story-entrance__road-edge { stroke: #e8bfcf; stroke-width: 46; }
+.story-entrance__road-surface { stroke: #f7e5ec; stroke-width: 42; }
+.story-entrance__road-center { stroke: #dfa5bc; stroke-width: 1.5; stroke-dasharray: 3 11; stroke-linecap: round; }
+.story-gate {
+  position: relative;
+  width: min(calc(100% - 28px), 540px);
+  margin: 0 auto;
+  padding: 54px 44px 110px;
+  border: 2px solid #d9a6ba;
+  border-bottom: 0;
+  border-radius: 48% 48% 0 0 / 42% 42% 0 0;
+  background: linear-gradient(180deg, #fdf6f9eb 0%, #fdf7f9ed 58%, #fdf7f900 85%);
+  box-shadow: inset 5px 0 0 #fbf3f6, inset -5px 0 0 #fbf3f6, inset 7px 0 0 #ebc6d580, inset -7px 0 0 #ebc6d580;
+}
+.story-gate::before,
+.story-gate::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  width: 24px;
+  height: 9px;
+  border: 1px solid #dcb0c2;
+  border-radius: 3px;
+  background: #f6e1e9;
+}
+.story-gate::before { left: -13px; }
+.story-gate::after { right: -13px; }
+.story-gate .love-story__eyebrow { font-size: clamp(1.1rem, 3.5vw, 1.5rem); }
+.story-gate h2 { max-width: 380px; margin-inline: auto; font-size: clamp(1.8rem, 5.5vw, 2.8rem); line-height: 1.15; }
+.story-gate .text-word { position: relative; }
+.story-gate__finial {
+  position: absolute;
+  top: -22px;
+  left: calc(50% - 21px);
+  width: 42px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #e2b4c6;
+  border-radius: 50%;
+  background: #fdf6f9;
+  color: #c48fa4;
+  font-size: 28px;
+  line-height: 1;
+}
+.love-story__intro.story-gate::after {
+  /* Chân trụ thay cho họa tiết chữ của tiêu đề cũ. */
+  display: block;
+  margin: 0;
+  letter-spacing: normal;
+}
+.story-gate__doors {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  height: 82px;
+  pointer-events: none;
+}
+.story-gate__doors span {
+  position: relative;
+  width: 25%;
+  border: 1px solid #d095ad;
+  border-top: 2px solid #d095ad;
+  border-radius: 0 32px 0 0;
+  background: repeating-linear-gradient(90deg, transparent 0 17px, #d8a5b9 17px 18px);
+  transform: skewY(10deg);
+  transform-origin: left bottom;
+}
+.story-gate__doors span:last-child { transform: skewY(-10deg); transform-origin: right bottom; border-radius: 32px 0 0 0; }
+.story-gate__doors span::after { content: ""; position: absolute; top: 28px; left: 0; right: 0; height: 1px; background: #d8a5b9; }
+@media (max-width: 840px) {
+  .story-entrance { padding-top: 170px; margin-bottom: 22px; }
+  .story-gate { width: calc(100% - 24px); padding: 46px 26px 100px; }
+  .story-gate__doors { height: 74px; }
+}
+
+/* Cửa mở trước, bóng bay trái tim hiện ra; bóng thu vào rồi cửa khép lại. */
+.couple-home__door {
+  perspective: 180px;
+  background: #d8acbf;
+  box-shadow: inset 0 2px 9px #98617e33;
+}
+.couple-home__door-inside {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  background: radial-gradient(ellipse at 50% 85%, #f7d8e7, #c993ab);
+}
+.couple-home__door-leaf {
+  position: absolute;
+  z-index: 1;
+  inset: -1px;
+  border: 1px solid #d9b1c3;
+  border-radius: inherit;
+  background: linear-gradient(100deg, #f3dce5, #f8e9ef);
+  box-shadow: inset 0 0 0 4px #fff4f880;
+  transform-origin: left center;
+  backface-visibility: hidden;
+  animation: couple-door-open 8s ease-in-out infinite;
+  animation-play-state: paused;
+}
+.couple-home__balloon {
+  position: absolute;
+  bottom: 2px;
+  left: calc(50% - 18px);
+  opacity: 0;
+  transform: translateY(32px) scale(0.65);
+  transform-origin: center bottom;
+  animation: couple-balloon-peek 8s ease-in-out infinite;
+  animation-play-state: paused;
+}
+.couple.is-home-visible .couple-home__door-leaf,
+.couple.is-home-visible .couple-home__balloon { animation-play-state: running; }
+@keyframes couple-door-open {
+  0%, 15%, 96%, 100% { transform: rotateY(0deg); }
+  34%, 82% { transform: rotateY(-105deg); }
+}
+@keyframes couple-balloon-peek {
+  0%, 34%, 80%, 100% { opacity: 0; transform: translateY(32px) scale(0.65); }
+  45%, 65% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .couple-home .couple-home__door-leaf { animation: none; transform: none; }
+  .couple-home .couple-home__balloon { animation: none; opacity: 0; }
+}
+
+/* Pháo phun trắng hồng từ hai góc dưới, nằm sau lớp chữ tên/ngày. */
+.feature__photo figcaption { z-index: 2; }
+.feature-fireworks {
+  --rise: clamp(200px, 48vw, 360px);
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.feature-fireworks__fountain {
+  position: absolute;
+  bottom: 0;
+  left: 7%;
+  width: 1px;
+  height: 1px;
+}
+.feature-fireworks__fountain--right { left: auto; right: 7%; }
+.feature-fireworks__fountain::before {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: -36px;
+  width: 72px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, #fff9fcdd, #f7bed97a 35%, transparent 72%);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.feature__photo.is-firing .feature-fireworks__fountain::before { opacity: 1; }
+.feature-fireworks__spark {
+  position: absolute;
+  bottom: 0;
+  left: -2px;
+  width: 3px;
+  height: 13px;
+  border-radius: 50%;
+  background: linear-gradient(#fff, #ffd3e8);
+  box-shadow: 0 0 5px 1px #fff, 0 0 12px #f7a9cc, 0 0 20px #e78fb955;
+  opacity: 0;
+  animation: feature-spark-rise var(--duration) linear var(--spark-delay) infinite;
+  animation-play-state: paused;
+}
+.feature-fireworks__spark:nth-child(3n) { width: 4px; height: 4px; }
+.feature-fireworks__spark:nth-child(4n) { background: #f6b3d0; }
+.feature__photo.is-firing .feature-fireworks__spark { animation-play-state: running; }
+@keyframes feature-spark-rise {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.4); }
+  10% { opacity: 1; transform: translate(calc(var(--drift) * 0.15), calc(var(--rise) * var(--lift) * -0.25)) scale(1); }
+  55% { opacity: 0.9; transform: translate(var(--drift), calc(var(--rise) * var(--lift) * -1)) scale(0.8); }
+  100% { opacity: 0; transform: translate(calc(var(--drift) * 1.35), calc(var(--rise) * var(--lift) * -0.75)) scale(0.2); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .feature-fireworks { display: none; }
+  .feature-fireworks__spark { animation: none; }
+}
+
+/* Em bé đi theo con đường, rồi với tay mở cửa ngôi nhà. */
+.home-visitor {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  left: 50%;
+  width: 38px;
+  height: 56px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -100%);
+}
+.home-visitor__figure { display: block; width: 100%; height: 100%; }
+.home-visitor__leg { transform-origin: 22px 45px; animation: visitor-step 600ms ease-in-out infinite alternate; animation-play-state: paused; }
+.home-visitor__leg--right { animation-delay: -600ms; }
+.home-visitor.is-walking .home-visitor__leg { animation-play-state: running; }
+.home-visitor.is-walking .home-visitor__figure { animation: visitor-bob 600ms ease-in-out infinite; }
+.home-visitor__arm { transform-origin: 30px 31px; transition: transform 600ms ease; }
+.home-visitor.is-reaching .home-visitor__arm { transform: rotate(-80deg); }
+.couple.has-home-visitor .couple-home__door-leaf,
+.couple.has-home-visitor .couple-home__balloon { animation: none; }
+@keyframes visitor-step { from { transform: rotate(-13deg); } to { transform: rotate(13deg); } }
+@keyframes visitor-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+.footer__birds { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.footer__bird {
+  position: absolute;
+  top: var(--bird-height);
+  left: 0;
+  width: 100%;
+  height: 30px;
+  opacity: 0;
+  animation: dawn-bird-flight var(--flight-time) linear var(--flight-delay) infinite;
+  animation-play-state: paused;
+}
+.footer__bird svg { display: block; width: var(--bird-size); height: auto; stroke: #a16c88; stroke-width: 1.8; stroke-linecap: round; }
+.footer__bird-wings { transform-origin: 20px 17px; animation: dawn-bird-flap 850ms ease-in-out infinite alternate; animation-play-state: paused; }
+.footer.is-birds-visible .footer__bird,
+.footer.is-birds-visible .footer__bird-wings { animation-play-state: running; }
+@keyframes dawn-bird-flight {
+  0% { opacity: 0; transform: translate(-10%, 8px); }
+  8%, 90% { opacity: 0.8; }
+  100% { opacity: 0; transform: translate(110%, -16px); }
+}
+@keyframes dawn-bird-flap { from { transform: scaleY(1); } to { transform: scaleY(0.3); } }
+@media (max-width: 840px) { .home-visitor { width: 32px; height: 48px; } }
+@media (prefers-reduced-motion: reduce) {
+  .home-visitor { display: none; }
+  .home-visitor__leg, .home-visitor__figure, .footer__bird, .footer__bird-wings { animation: none !important; }
+  .footer__bird { opacity: 0.65; transform: translateX(35%); }
+  .footer__bird:nth-child(2) { transform: translateX(60%); }
+  .footer__bird:nth-child(3) { transform: translateX(45%); }
+  .footer__bird:nth-child(4) { transform: translateX(70%); }
+}
+
+/* Chiều sâu của tấm thiệp và ánh phản chiếu nhẹ trên bề mặt. */
+.event, .feature, .album, .story-entrance, .invite-gate { perspective: 1400px; }
+.depth-card {
+  position: relative;
+  rotate: var(--depth-axis-x, 0) var(--depth-axis-y, 1) 0 var(--depth-angle, 0deg);
+  /* Giữ nguyên transition transform/opacity sẵn có của các khối xuất hiện. */
+}
+.depth-card__glint {
+  position: absolute;
+  z-index: 6;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--depth-light-x, 50%) var(--depth-light-y, 30%), #fff8, #ffe4f01a 38%, transparent 65%);
+  opacity: 0;
+  transition: opacity 350ms ease;
+}
+.depth-card--active > .depth-card__glint { opacity: 0.65; }
+.event__panel {
+  box-shadow: 0 3px 0 #eed1df, 0 7px 0 -2px #f5e1eb, 0 22px 48px #a35f7e1f, inset 0 1px 0 #fffc;
+}
+.feature__photo {
+  border: 1px solid #fff9;
+  box-shadow: 0 4px 0 #e7c5d5, 0 8px 0 -2px #f1d9e4, 0 24px 55px #9a57772b;
+}
+.story-chime__paper {
+  box-shadow: 2px 3px 0 #efd4e0, 4px 6px 0 -1px #f7e4ed, 0 16px 30px #9b5a761a, inset 0 0 0 5px #ffffff80;
+}
+.album-yacht__hull { filter: drop-shadow(0 9px 8px #71435a26); }
+.story-gate {
+  box-shadow: 3px 2px 0 #edd5df, -3px 2px 0 #f6e3eb, inset 5px 0 0 #fff4f8, inset -5px 0 0 #fff4f8, inset 7px 0 0 #ebc6d580, inset -7px 0 0 #ebc6d580;
+}
+@media (prefers-reduced-motion: reduce) {
+  .depth-card { rotate: none; }
+  .depth-card__glint { display: none; }
+}
+
+/* Nền sương hồng: làm mờ lớp trang trí, giữ nội dung phía trên sắc nét. */
+body { isolation: isolate; }
+body::before {
+  z-index: -2;
+  filter: blur(1.5px);
+}
+body::after {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 12% 18%, #edaccb99 0%, #f5c5de55 18%, transparent 44%),
+    radial-gradient(ellipse at 88% 38%, #e2bfdc88 0%, #efcfe744 20%, transparent 46%),
+    radial-gradient(ellipse at 35% 78%, #fffafdcc 0%, #ffe6f366 24%, transparent 50%),
+    radial-gradient(ellipse at 92% 94%, #efb3cd88 0%, transparent 43%);
+  filter: blur(42px);
+  opacity: 0.75;
+  animation: invitation-pink-mist 24s ease-in-out infinite alternate;
+}
+@keyframes invitation-pink-mist {
+  0% { transform: translate3d(-1%, -1%, 0) scale(1.03); opacity: 0.6; }
+  50% { transform: translate3d(1.5%, 1%, 0) scale(1.07); opacity: 0.8; }
+  100% { transform: translate3d(-0.5%, 2%, 0) scale(1.04); opacity: 0.65; }
+}
+@media (max-width: 840px) {
+  body::after { filter: blur(28px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  body::after { animation: none; opacity: 0.65; }
 }

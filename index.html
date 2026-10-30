@@ -272,11 +272,11 @@
               <span class="couple-home__smoke"></span>
             </div>
             <svg viewBox="0 0 720 190" width="720" height="190" fill="none">
-              <path d="M48 180 360 26 672 180Z" fill="#f8e4e4"/>
-              <path d="M14 177 350 7Q360 2 370 7L706 177 692 189 360 24 28 189Z" fill="#b97d91"/>
-              <path d="M45 173 360 17 675 173" stroke="#e8c3bd" stroke-width="2"/>
-              <circle cx="360" cy="121" r="28" fill="#fff8ed" stroke="#c69b85" stroke-width="3"/>
-              <path d="M360 135c-27-17-17-36 0-22 17-14 27 5 0 22Z" fill="#c8869f"/>
+              <path d="M48 180 360 26 672 180Z" fill="#fbf1f5"/>
+              <path d="M14 177 350 7Q360 2 370 7L706 177 692 189 360 24 28 189Z" fill="#dfb9c8"/>
+              <path d="M45 173 360 17 675 173" stroke="#f4d9e4" stroke-width="2"/>
+              <circle cx="360" cy="121" r="28" fill="#fbf1f5" stroke="#dfb4c5" stroke-width="3"/>
+              <path d="M360 135c-27-17-17-36 0-22 17-14 27 5 0 22Z" fill="#e5b6c9"/>
             </svg>
           </div>
           <div class="couple__pair">
@@ -322,7 +322,17 @@
               </figcaption>
             </figure>
           </div>
-          <div class="couple-home__door" aria-hidden="true"><span></span></div>
+          <div class="couple-home__door" aria-hidden="true">
+            <div class="couple-home__door-inside">
+              <svg class="couple-home__balloon" viewBox="0 0 48 52" width="36" height="40" fill="none">
+                <path d="M24 31C17 25 5 19 5 11 5 2 18 0 24 9 30 0 43 2 43 11 43 19 31 25 24 31Z" fill="#ed9ec2" stroke="#bd6b92" stroke-width="1.1" />
+                <path d="M10 12c0-4 4-6 8-5" stroke="#fff3f9" stroke-width="2.5" stroke-linecap="round" />
+                <path d="m24 30-3 4h6Z" fill="#d780a9" stroke="#bd6b92" stroke-width="0.8" stroke-linejoin="round" />
+                <path d="M24 34c-7 6 7 8 0 16" stroke="#b56a89" stroke-width="1" stroke-linecap="round" />
+              </svg>
+            </div>
+            <div class="couple-home__door-leaf"><span class="couple-home__door-knob"></span></div>
+          </div>
         </div>
       </section>
 
@@ -346,9 +356,36 @@
           <span class="love-story__sparkle" style="--x: 74%; --y: 5%; --size: 8px; --delay: -7.0s; --duration: 4.7s"></span>
           <span class="love-story__sparkle" style="--x: 48%; --y: 77%; --size: 9px; --delay: -7.7s; --duration: 5.3s"></span>
         </div>
-        <div class="love-story__intro" data-anim="up">
-          <p class="love-story__eyebrow" lang="en">Our Love Story</p>
-          <h2 id="love-story-title">Hành trình của chúng mình</h2>
+        <div class="story-entrance">
+          <div class="home-visitor" aria-hidden="true">
+            <svg class="home-visitor__figure" viewBox="0 0 44 64" width="38" height="56" fill="none">
+              <ellipse cx="22" cy="61" rx="13" ry="2" fill="#a66c8b22" />
+              <g class="home-visitor__leg home-visitor__leg--left"><path d="M17 46v12" stroke="#e9b7c7" stroke-width="6" stroke-linecap="round"/><path d="M17 59h-5" stroke="#ae6f91" stroke-width="4" stroke-linecap="round"/></g>
+              <g class="home-visitor__leg home-visitor__leg--right"><path d="M27 46v12" stroke="#e9b7c7" stroke-width="6" stroke-linecap="round"/><path d="M27 59h5" stroke="#ae6f91" stroke-width="4" stroke-linecap="round"/></g>
+              <path d="m14 31-6 12" stroke="#efc4d0" stroke-width="5" stroke-linecap="round"/>
+              <path class="home-visitor__arm" d="m30 31 6 10" stroke="#efc4d0" stroke-width="5" stroke-linecap="round"/>
+              <path d="M13 29q9-5 18 0l2 19H11Z" fill="#f5dce8" stroke="#cf9cb5"/>
+              <path d="M16 29v8h12v-8m-14 8h16v11H14Z" fill="#dca8c2"/>
+              <circle cx="22" cy="17" r="12" fill="#f9dce1" stroke="#e1b5c3"/>
+              <path d="M10 16C8 1 35 0 34 16c-4-3-7-5-8-8-4 5-10 7-16 8Z" fill="#95677d"/>
+              <path d="M20 5q-3-6 3-4" stroke="#95677d" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="18" cy="18" r="1" fill="#724559"/><circle cx="27" cy="18" r="1" fill="#724559"/>
+              <path d="M20 23q2 2 4 0" stroke="#be7898" stroke-linecap="round"/>
+              <ellipse cx="14" cy="22" rx="2" ry="1.2" fill="#eaa8c1"/><ellipse cx="30" cy="22" rx="2" ry="1.2" fill="#eaa8c1"/>
+            </svg>
+          </div>
+
+          <svg class="story-entrance__road" viewBox="0 0 520 520" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <path class="story-entrance__road-edge" d="M260 0V20C260 75 390 65 390 122S130 170 130 230 260 262 260 326V520" />
+            <path class="story-entrance__road-surface" d="M260 0V20C260 75 390 65 390 122S130 170 130 230 260 262 260 326V520" />
+            <path class="story-entrance__road-center" d="M260 0V20C260 75 390 65 390 122S130 170 130 230 260 262 260 326V520" />
+          </svg>
+          <div class="love-story__intro story-gate" data-anim="up">
+            <span class="story-gate__finial" aria-hidden="true">♡</span>
+            <p class="love-story__eyebrow" lang="en">Our Love Story</p>
+            <h2 id="love-story-title">Hành trình của chúng mình</h2>
+            <div class="story-gate__doors" aria-hidden="true"><span></span><span></span></div>
+          </div>
         </div>
         <ol class="love-story__chapters" data-stagger>
           <li>
@@ -661,6 +698,7 @@
             alt="Minh Đức và Ngọc Huyền"
             loading="lazy"
           />
+          <div class="feature-fireworks" aria-hidden="true"></div>
           <figcaption>
             <strong>Minh Đức & Ngọc Huyền</strong>
             <span>17.01.2027</span>
@@ -672,6 +710,21 @@
     <footer class="footer" data-anim="up">
       <div class="footer__landscape" aria-hidden="true">
         <img src="assets/sunrise-hills.svg" alt="" width="1200" height="400" loading="lazy" decoding="async" />
+        <div class="footer__birds">
+          <span class="footer__bird" style="--flight-time: 22s; --flight-delay: -4s; --bird-height: 18%; --bird-size: 34px">
+            <svg viewBox="0 0 40 24" width="40" height="24" fill="none"><g class="footer__bird-wings"><path d="M20 17Q9 0 2 7M20 17Q31 0 38 7"/></g><path d="m18 17 2 2 2-2"/></svg>
+          </span>
+          <span class="footer__bird" style="--flight-time: 27s; --flight-delay: -13s; --bird-height: 30%; --bird-size: 25px">
+            <svg viewBox="0 0 40 24" width="40" height="24" fill="none"><g class="footer__bird-wings"><path d="M20 17Q9 0 2 7M20 17Q31 0 38 7"/></g><path d="m18 17 2 2 2-2"/></svg>
+          </span>
+          <span class="footer__bird" style="--flight-time: 24s; --flight-delay: -19s; --bird-height: 12%; --bird-size: 29px">
+            <svg viewBox="0 0 40 24" width="40" height="24" fill="none"><g class="footer__bird-wings"><path d="M20 17Q9 0 2 7M20 17Q31 0 38 7"/></g><path d="m18 17 2 2 2-2"/></svg>
+          </span>
+          <span class="footer__bird" style="--flight-time: 30s; --flight-delay: -8s; --bird-height: 40%; --bird-size: 21px">
+            <svg viewBox="0 0 40 24" width="40" height="24" fill="none"><g class="footer__bird-wings"><path d="M20 17Q9 0 2 7M20 17Q31 0 38 7"/></g><path d="m18 17 2 2 2-2"/></svg>
+          </span>
+        </div>
+
       </div>
       <div class="footer__ornament" aria-hidden="true">
         <span></span>
