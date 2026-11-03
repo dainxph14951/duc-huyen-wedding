@@ -45,6 +45,7 @@ if (inviteGate && openInviteButton) {
       document.querySelector('.hero__actions a')?.focus({ preventScroll: true });
       startInvitationReveals();
       startInvitationScroll();
+      document.dispatchEvent(new Event("invitation-opened"));
     });
 
     // Bấm "Mở thiệp" là thao tác của người dùng nên trình duyệt cho phép phát nhạc
@@ -231,6 +232,7 @@ function showItem(item) {
 }
 
 let invitationRevealsStarted = false;
+const invitationObservers = [];
 function startInvitationReveals() {
   if (invitationRevealsStarted) return;
   invitationRevealsStarted = true;
@@ -273,6 +275,7 @@ function startInvitationReveals() {
       revealObserver.observe(item);
       resetObserver.observe(item);
     });
+    invitationObservers.push(revealObserver, resetObserver);
   } else {
     revealItems.forEach(showItem);
   }
@@ -280,6 +283,21 @@ function startInvitationReveals() {
 
 // Cổng mở thiệp che nội dung, nên chưa chạy hiệu ứng phía sau.
 if (!document.body.classList.contains("gate-open")) startInvitationReveals();
+
+// Giữ nội dung rõ ràng khi khách dùng bàn phím hoặc đổi chế độ chuyển động.
+document.addEventListener("focusin", ({ target }) => {
+  for (let item = target; item && item !== document.body; item = item.parentElement) {
+    if (item.matches("[data-anim], [data-text-motion]")) {
+      showItem(item);
+      invitationObservers.forEach((observer) => observer.unobserve(item));
+    }
+  }
+});
+reduceMotionQuery.addEventListener("change", () => {
+  if (!reduceMotionQuery.matches) return;
+  invitationObservers.forEach((observer) => observer.disconnect());
+  revealItems.forEach(showItem);
+});
 
 /* ---------- Album trượt ngang ---------- */
 const albumTrack = document.querySelector("#albumTrack");
@@ -826,3 +844,141 @@ window.addEventListener("resize", resetAllDepth);
 document.addEventListener("visibilitychange", resetAllDepth);
 depthPointer.addEventListener("change", resetAllDepth);
 reduceMotionQuery.addEventListener("change", resetAllDepth);
+
+/* Cánh hoa và hoa bung khi mở thiệp, lấy nhịp nhẹ từ mẫu Maison. */
+(() => {
+  const canvas = document.createElement("canvas");
+  canvas.className = "wedding-petals";
+  canvas.setAttribute("aria-hidden", "true");
+  const progress = document.createElement("div");
+  progress.className = "reading-progress";
+  progress.setAttribute("aria-hidden", "true");
+  const toggle = document.createElement("button");
+  toggle.type = "button";
+  toggle.className = "petals-toggle";
+  toggle.innerHTML = '<span aria-hidden="true">✿</span>';
+  document.querySelector(".topbar__brand")?.append(toggle);
+  document.body.append(canvas, progress);
+  const ctx = canvas.getContext("2d");
+  let enabled = true;
+  try { enabled = localStorage.getItem("wedding-petals") !== "off"; } catch {}
+  let width = 0, height = 0, frame = 0, previous = 0;
+  let petals = [], burst = [];
+  const photos = [...document.querySelectorAll(".feature__photo img")];
+
+  function resize() {
+    const bounds = document.querySelector("main").getBoundingClientRect();
+    width = Math.min(bounds.width, 440);
+    height = window.innerHeight;
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.round(width * ratio);
+    canvas.height = Math.round(height * ratio);
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+    ctx?.setTransform(ratio, 0, 0, ratio, 0, 0);
+    petals = Array.from({ length: width < 400 ? 13 : 18 }, () => ({
+      x: Math.random() * width, y: Math.random() * height,
+      size: 3 + Math.random() * 3, speed: 13 + Math.random() * 17,
+      phase: Math.random() * Math.PI * 2, rotation: Math.random() * Math.PI,
+    }));
+  }
+  function allowed() {
+    return ctx && enabled && !reduceMotionQuery.matches && !document.hidden
+      && !document.body.classList.contains("gate-open")
+      && !document.body.classList.contains("modal-open")
+      && !document.body.classList.contains("qr-open");
+  }
+  function drawPetal(p, opacity) {
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rotation);
+    ctx.globalAlpha = opacity;
+    ctx.fillStyle = p.phase > Math.PI ? "#b9658c" : "#c6a16c";
+    ctx.beginPath();
+    ctx.ellipse(0, 0, p.size, p.size * .46, .3, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+  function paint(time) {
+    frame = 0;
+    if (!allowed()) return;
+    const dt = previous ? Math.min((time - previous) / 1000, .05) : 0;
+    previous = time;
+    ctx.clearRect(0, 0, width, height);
+    petals.forEach((p) => {
+      p.y += p.speed * dt;
+      p.x += Math.sin(time * .0005 + p.phase) * 9 * dt;
+      p.rotation += dt * .35;
+      if (p.y > height + 12) { p.y = -12; p.x = Math.random() * width; }
+      drawPetal(p, .24);
+    });
+    burst = burst.filter((p) => p.life > 0);
+    burst.forEach((p) => {
+      p.life -= dt;
+      p.x += p.vx * dt;
+      p.y += p.vy * dt;
+      p.vy += 42 * dt;
+      p.rotation += dt * 1.8;
+      drawPetal(p, Math.max(0, Math.min(.7, p.life / 2)));
+    });
+    frame = requestAnimationFrame(paint);
+  }
+  function sync() {
+    cancelAnimationFrame(frame);
+    frame = previous = 0;
+    ctx?.clearRect(0, 0, width, height);
+    const active = enabled && !reduceMotionQuery.matches;
+    toggle.disabled = reduceMotionQuery.matches || !ctx;
+    toggle.setAttribute("aria-pressed", String(active));
+    toggle.setAttribute("aria-label", reduceMotionQuery.matches
+      ? "Cánh hoa đã tắt theo chế độ giảm chuyển động"
+      : active ? "Tắt hiệu ứng cánh hoa" : "Bật hiệu ứng cánh hoa");
+    toggle.title = toggle.getAttribute("aria-label");
+    if (allowed()) frame = requestAnimationFrame(paint);
+  }
+  toggle.addEventListener("click", () => {
+    enabled = !enabled;
+    burst = [];
+    try { localStorage.setItem("wedding-petals", enabled ? "on" : "off"); } catch {}
+    sync();
+  });
+  document.addEventListener("invitation-opened", () => {
+    if (allowed()) {
+      burst = Array.from({ length: 26 }, (_, i) => {
+        const angle = i / 26 * Math.PI * 2;
+        const speed = 45 + Math.random() * 95;
+        return { x: width / 2, y: height * .4, vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - 35, size: 3 + Math.random() * 3,
+          rotation: angle, phase: angle, life: 3 + Math.random() };
+      });
+    }
+    sync();
+    updateScrollEffects();
+  });
+
+  // Dùng translate riêng để không ghi đè zoom/reveal sẵn có của ảnh.
+  let scrollFrame = 0;
+  function updateScrollEffects() {
+    scrollFrame = 0;
+    const distance = document.documentElement.scrollHeight - window.innerHeight;
+    const amount = distance > 0 ? Math.max(0, Math.min(1, window.scrollY / distance)) : 0;
+    progress.style.transform = `scaleX(${amount})`;
+    photos.forEach((photo) => {
+      if (reduceMotionQuery.matches) { photo.style.removeProperty("translate"); return; }
+      const bounds = photo.parentElement.getBoundingClientRect();
+      if (bounds.bottom < 0 || bounds.top > window.innerHeight) return;
+      const offset = Math.max(-10, Math.min(10, (bounds.top + bounds.height / 2 - window.innerHeight / 2) * .035));
+      photo.style.translate = `0 ${offset}px`;
+    });
+  }
+  window.addEventListener("scroll", () => {
+    if (!scrollFrame) scrollFrame = requestAnimationFrame(updateScrollEffects);
+  }, { passive: true });
+  window.addEventListener("resize", () => { resize(); sync(); updateScrollEffects(); });
+  document.addEventListener("visibilitychange", sync);
+  reduceMotionQuery.addEventListener("change", () => { burst = []; sync(); updateScrollEffects(); });
+  new MutationObserver(sync).observe(document.body, { attributes: true, attributeFilter: ["class"] });
+  resize();
+  sync();
+  updateScrollEffects();
+})();

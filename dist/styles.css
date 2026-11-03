@@ -3476,3 +3476,53 @@ body::before, body::after {
 .album__nameplate h2 { margin: 0; color: #945776; font-size: clamp(1.65rem, calc(var(--phone-unit) * 7.2), 2rem); line-height: 1.15; font-style: italic; }
 .album__intro p { max-width: 310px; margin: 20px auto 0; padding-inline: 8px; font-size: 0.82rem; line-height: 1.85; color: #977186; }
 .album__intro-waves { display: block; margin: 13px auto 0; width: 116px; height: 13px; stroke: #d6a9c0; stroke-width: 1.2; stroke-linecap: round; }
+
+/* Hiệu ứng bổ sung từ các mẫu thiệp mới, giới hạn trong khung thiệp. */
+.wedding-petals {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 19;
+  pointer-events: none;
+}
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: max(0px, calc((100% - 440px) / 2));
+  width: min(100%, 440px);
+  height: 3px;
+  z-index: 35;
+  background: linear-gradient(90deg, #e8b9ce, #b8456f, #c6a16c);
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+}
+.petals-toggle {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--plum);
+  background: var(--surface);
+  cursor: pointer;
+  font-size: 23px;
+  transition: background 180ms ease, color 180ms ease;
+}
+.petals-toggle[aria-pressed="true"] { background: var(--rose-soft); }
+.petals-toggle[aria-pressed="false"] { color: var(--muted); }
+.petals-toggle:focus-visible { outline: 2px solid var(--plum); outline-offset: 3px; }
+.petals-toggle:disabled { opacity: .5; cursor: default; }
+body.gate-open .reading-progress,
+body.gate-open .wedding-petals,
+body.modal-open .wedding-petals,
+body.qr-open .wedding-petals { visibility: hidden; }
+.can-animate .feature__photo img { height: calc(100% + 24px); margin-top: -12px; }
+@media (prefers-reduced-motion: reduce) {
+  .wedding-petals { display: none; }
+  .can-animate .feature__photo img { translate: none !important; }
+}
