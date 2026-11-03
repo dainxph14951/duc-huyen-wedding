@@ -853,15 +853,8 @@ reduceMotionQuery.addEventListener("change", resetAllDepth);
   const progress = document.createElement("div");
   progress.className = "reading-progress";
   progress.setAttribute("aria-hidden", "true");
-  const toggle = document.createElement("button");
-  toggle.type = "button";
-  toggle.className = "petals-toggle";
-  toggle.innerHTML = '<span aria-hidden="true">✿</span>';
-  document.querySelector(".topbar__brand")?.append(toggle);
   document.body.append(canvas, progress);
   const ctx = canvas.getContext("2d");
-  let enabled = true;
-  try { enabled = localStorage.getItem("wedding-petals") !== "off"; } catch {}
   let width = 0, height = 0, frame = 0, previous = 0;
   let petals = [], burst = [];
   const photos = [...document.querySelectorAll(".feature__photo img")];
@@ -883,7 +876,7 @@ reduceMotionQuery.addEventListener("change", resetAllDepth);
     }));
   }
   function allowed() {
-    return ctx && enabled && !reduceMotionQuery.matches && !document.hidden
+    return ctx && !reduceMotionQuery.matches && !document.hidden
       && !document.body.classList.contains("gate-open")
       && !document.body.classList.contains("modal-open")
       && !document.body.classList.contains("qr-open");
@@ -927,21 +920,8 @@ reduceMotionQuery.addEventListener("change", resetAllDepth);
     cancelAnimationFrame(frame);
     frame = previous = 0;
     ctx?.clearRect(0, 0, width, height);
-    const active = enabled && !reduceMotionQuery.matches;
-    toggle.disabled = reduceMotionQuery.matches || !ctx;
-    toggle.setAttribute("aria-pressed", String(active));
-    toggle.setAttribute("aria-label", reduceMotionQuery.matches
-      ? "Cánh hoa đã tắt theo chế độ giảm chuyển động"
-      : active ? "Tắt hiệu ứng cánh hoa" : "Bật hiệu ứng cánh hoa");
-    toggle.title = toggle.getAttribute("aria-label");
     if (allowed()) frame = requestAnimationFrame(paint);
   }
-  toggle.addEventListener("click", () => {
-    enabled = !enabled;
-    burst = [];
-    try { localStorage.setItem("wedding-petals", enabled ? "on" : "off"); } catch {}
-    sync();
-  });
   document.addEventListener("invitation-opened", () => {
     if (allowed()) {
       burst = Array.from({ length: 26 }, (_, i) => {

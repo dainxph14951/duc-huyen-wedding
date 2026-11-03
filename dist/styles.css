@@ -3498,25 +3498,6 @@ body::before, body::after {
   transform-origin: left;
   pointer-events: none;
 }
-.petals-toggle {
-  display: inline-grid;
-  place-items: center;
-  flex-shrink: 0;
-  width: 36px;
-  height: 36px;
-  padding: 0;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  color: var(--plum);
-  background: var(--surface);
-  cursor: pointer;
-  font-size: 23px;
-  transition: background 180ms ease, color 180ms ease;
-}
-.petals-toggle[aria-pressed="true"] { background: var(--rose-soft); }
-.petals-toggle[aria-pressed="false"] { color: var(--muted); }
-.petals-toggle:focus-visible { outline: 2px solid var(--plum); outline-offset: 3px; }
-.petals-toggle:disabled { opacity: .5; cursor: default; }
 body.gate-open .reading-progress,
 body.gate-open .wedding-petals,
 body.modal-open .wedding-petals,
