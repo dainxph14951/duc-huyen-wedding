@@ -1,3 +1,25 @@
+// Chỉ hạn chế thao tác thông thường; trình duyệt vẫn tải được mã frontend.
+document.addEventListener("keydown", (event) => {
+  const key = event.key.toLowerCase();
+  const command = event.ctrlKey || event.metaKey;
+  const developerShortcut = key === "f12"
+    || (command && event.shiftKey && ["i", "j", "c", "k"].includes(key))
+    || (event.metaKey && event.altKey && ["i", "j", "c", "u"].includes(key));
+  const sourceShortcut = command && ["u", "s"].includes(key);
+
+  if (developerShortcut || sourceShortcut) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+  }
+}, { capture: true });
+
+document.addEventListener("contextmenu", (event) => {
+  // Giữ menu sửa văn bản và các tiện ích nhập liệu của trình duyệt.
+  if (event.target instanceof Element
+    && event.target.closest('input, textarea, [contenteditable]:not([contenteditable="false"])')) return;
+  event.preventDefault();
+}, { capture: true });
+
 const weddingDate = new Date("2027-01-17T16:10:00+07:00");
 const daysLeft = document.querySelector("#daysLeft");
 const inviteGate = document.querySelector("#inviteGate");
