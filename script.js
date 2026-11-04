@@ -103,7 +103,8 @@ function startInvitationScroll() {
     // Không cuộn nền khi xem ảnh, QR hoặc chuyển sang tab khác.
     const paused = document.hidden
       || document.body.classList.contains("modal-open")
-      || document.body.classList.contains("qr-open");
+      || document.body.classList.contains("qr-open")
+      || document.body.classList.contains("wishes-open");
     if (paused || timestamp < startsAt) {
       previousTime = undefined;
       position = window.scrollY;
@@ -363,7 +364,7 @@ if (albumTrack && albumThumbs && albumItems.length) {
     clearTimeout(autoplayTimer);
     if (albumAnimationFrame || isPaused || !isAlbumVisible || document.hidden) return;
     autoplayTimer = setTimeout(() => {
-      if (document.body.classList.contains("modal-open") || document.body.classList.contains("gate-open") || document.body.classList.contains("qr-open")) {
+      if (document.body.classList.contains("modal-open") || document.body.classList.contains("gate-open") || document.body.classList.contains("qr-open") || document.body.classList.contains("wishes-open")) {
         scheduleAutoplay();
         return;
       }
@@ -594,6 +595,111 @@ qrModal?.addEventListener("click", (event) => {
   }
 });
 
+/* ---------- Lời chúc ---------- */
+const wishesModal = document.querySelector("#wishesModal");
+const wishesForm = document.querySelector("#wishesForm");
+const wishesStatus = document.querySelector("#wishesStatus");
+let wishesTrigger = null;
+let pendingWish = null;
+let sendingWish = false;
+
+wishesForm?.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  if (sendingWish || !wishesForm.reportValidity()) return;
+  const nameField = wishesForm.elements.namedItem("name");
+  const messageField = wishesForm.elements.namedItem("message");
+  const name = nameField.value.trim();
+  const message = messageField.value.trim();
+  if (!name || !message) {
+    wishesStatus.textContent = "Bạn vui lòng nhập tên và lời chúc trước khi gửi nhé.";
+    (!name ? nameField : messageField).focus();
+    return;
+  }
+  if (typeof globalThis.crypto?.randomUUID !== "function") {
+    wishesStatus.textContent = "Bạn vui lòng mở thiệp bằng HTTPS trên trình duyệt mới để gửi lời chúc nhé.";
+    return;
+  }
+  if (!pendingWish || pendingWish.name !== name || pendingWish.message !== message) {
+    pendingWish = { id: crypto.randomUUID(), name, message };
+  }
+  const submitButton = wishesForm.querySelector('[type="submit"]');
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 15000);
+  sendingWish = true;
+  [submitButton, nameField, messageField].forEach((field) => { field.disabled = true; });
+  wishesForm.setAttribute("aria-busy", "true");
+  wishesStatus.textContent = "Đang gửi lời chúc của bạn…";
+  submitButton.textContent = "Đang gửi…";
+  try {
+    const response = await fetch("/api/wishes", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(pendingWish),
+      signal: controller.signal,
+    });
+    const unavailable = response.status === 404 || response.status === 405;
+    let result;
+    try {
+      result = await response.json();
+    } catch {
+      throw new Error(unavailable
+        ? "Chức năng gửi lời chúc chưa được triển khai trên trang này. Bạn vui lòng thử lại sau nhé."
+        : "Máy chủ chưa trả về kết quả hợp lệ. Lời chúc vẫn được giữ lại để bạn thử gửi lại.");
+    }
+    if (!result || typeof result !== "object" || Array.isArray(result)) {
+      throw new Error("Máy chủ chưa trả về kết quả hợp lệ. Lời chúc vẫn được giữ lại để bạn thử gửi lại.");
+    }
+    if (!response.ok || result.saved !== true || result.id !== pendingWish.id) {
+      const messages = {
+        rate_limited: "Bạn vừa gửi lời chúc. Vui lòng chờ 30 giây rồi thử lại nhé.",
+        invalid_input: "Tên cần từ 1–80 ký tự và lời chúc từ 1–1.000 ký tự hợp lệ.",
+        not_configured: "Chức năng nhận lời chúc chưa sẵn sàng. Bạn vui lòng quay lại sau nhé.",
+        request_conflict: "Lượt gửi này không hợp lệ. Vui lòng thử gửi lại.",
+        method_not_allowed: "Chức năng gửi lời chúc chưa được triển khai trên trang này. Bạn vui lòng thử lại sau nhé.",
+        storage_unavailable: "Chưa thể lưu lời chúc lúc này. Bạn vui lòng thử lại sau nhé.",
+      };
+      if (result.code === "request_conflict") pendingWish = null;
+      throw new Error(messages[result.code] || "Chưa thể xác nhận lời chúc đã được lưu. Bạn vui lòng thử lại nhé.");
+    }
+    pendingWish = null;
+    wishesForm.reset();
+    wishesStatus.textContent = "Đã gửi lời chúc! Minh Đức & Ngọc Huyền cảm ơn tình cảm của bạn ♥";
+    document.dispatchEvent(new Event("wishes-updated"));
+  } catch (error) {
+    // Keep the text and request ID so a retry after a lost response cannot duplicate the wish.
+    wishesStatus.textContent = error instanceof TypeError || error.name === "AbortError"
+      ? "Kết nối bị gián đoạn. Lời chúc vẫn còn ở đây, bạn vui lòng bấm gửi lại nhé."
+      : error.message;
+  } finally {
+    clearTimeout(timeout);
+    sendingWish = false;
+    [submitButton, nameField, messageField].forEach((field) => { field.disabled = false; });
+    wishesForm.removeAttribute("aria-busy");
+    submitButton.textContent = "Gửi lời chúc";
+  }
+});
+
+document.querySelectorAll("[data-open-wishes]").forEach((button) => {
+  button.addEventListener("click", () => {
+    if (!wishesModal || wishesModal.open) return;
+    wishesTrigger = button;
+    wishesModal.showModal();
+    document.body.classList.add("wishes-open");
+    document.querySelector("#wishName")?.focus();
+  });
+});
+document.querySelector("#closeWishesModal")?.addEventListener("click", () => wishesModal?.close());
+wishesModal?.addEventListener("click", (event) => {
+  if (event.target !== wishesModal) return;
+  const bounds = wishesModal.getBoundingClientRect();
+  if (event.clientX < bounds.left || event.clientX > bounds.right
+    || event.clientY < bounds.top || event.clientY > bounds.bottom) wishesModal.close();
+});
+wishesModal?.addEventListener("close", () => {
+  document.body.classList.remove("wishes-open");
+  wishesTrigger?.focus({ preventScroll: true });
+});
+
 /* ---------- Bàn phím ---------- */
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
@@ -610,6 +716,136 @@ document.addEventListener("keydown", (event) => {
     }
   }
 });
+
+/* ---------- Lời chúc trên thiệp ---------- */
+(() => {
+  const wall = document.querySelector("#wishWall");
+  if (!wall) return;
+  const list = wall.querySelector("#wishPopups");
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const active = new Set();
+  let queue = [], cursor = 0, started = false, completed = false, timer = null;
+  let waiting = false, remaining = 0, scheduledAt = 0;
+
+  function isPaused() {
+    return document.hidden || ["gate-open", "modal-open", "qr-open", "wishes-open"]
+      .some((name) => document.body.classList.contains(name));
+  }
+  function syncPause() {
+    const paused = isPaused();
+    wall.classList.toggle("is-paused", paused);
+    wall.classList.toggle("is-reduced", reduced.matches);
+    if (paused && waiting && timer !== null) {
+      remaining = Math.max(0, remaining - (performance.now() - scheduledAt));
+      clearTimeout(timer);
+      timer = null;
+    }
+    if (!paused) armTimer();
+  }
+  function armTimer() {
+    if (!waiting || timer !== null || completed || isPaused()) return;
+    scheduledAt = performance.now();
+    timer = setTimeout(() => { timer = null; waiting = false; emit(); }, remaining);
+  }
+  function createPopup(row) {
+    const item = document.createElement("li");
+    item.className = "wish-popup";
+    const line = document.createElement("p");
+    const name = document.createElement("strong");
+    name.textContent = `${row.name}: `;
+    const message = document.createElement("span");
+    message.textContent = row.message;
+    line.append(name, message);
+    item.append(line);
+    return item;
+  }
+  function nextDelay(previous) {
+    const duration = Number.parseFloat(previous.style.animationDuration) || 16000;
+    if (reduced.matches) return duration + 500;
+    if (duration > 16000) return duration + 200;
+    const height = previous.offsetHeight || 40;
+    // Maintain the 6px gap, or wait until a very tall wish has fully disappeared.
+    return Math.min(duration + 200, Math.max(1200, Math.ceil((height + 6) * duration / 238)));
+  }
+  function finish() {
+    if (completed || cursor < queue.length || active.size) return;
+    completed = true;
+    waiting = false;
+    clearTimeout(timer);
+    wall.classList.add("is-finished");
+    setTimeout(() => { wall.hidden = true; }, 800);
+  }
+  function emit() {
+    if (completed) return;
+    syncPause();
+    if (isPaused()) {
+      remaining = 0;
+      waiting = true;
+      return;
+    }
+    if (cursor >= queue.length) { finish(); return; }
+    const item = createPopup(queue[cursor++]);
+    const readingTime = Math.max(16000, (queue[cursor - 1].name.length + queue[cursor - 1].message.length) * 45);
+    item.style.animationDuration = `${readingTime}ms`;
+    active.add(item);
+    item.addEventListener("animationend", (event) => {
+      if (event.target !== item || !["wish-popup-fall", "wish-popup-still"].includes(event.animationName)) return;
+      item.remove();
+      active.delete(item);
+      finish();
+    });
+    list.append(item);
+    if (cursor < queue.length) {
+      remaining = nextDelay(item);
+      waiting = true;
+      armTimer();
+    }
+  }
+  function start() {
+    if (started || completed || !queue.length || document.body.classList.contains("gate-open")) return;
+    started = true;
+    wall.hidden = false;
+    emit();
+  }
+  async function load() {
+    const rows = new Map();
+    try {
+      // Fetch every page, not just the first 100 wishes. IDs are deduplicated across pages.
+      for (let offset = 0; ; offset += 100) {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 12000);
+        let batch;
+        try {
+          const response = await fetch(`/api/wishes?offset=${offset}`, { cache: "no-store", signal: controller.signal });
+          if (!response.ok) throw new Error("Unavailable");
+          const result = await response.json();
+          if (!Array.isArray(result?.wishes) || result.wishes.some((row) => !row
+            || typeof row.id !== "string" || typeof row.name !== "string" || typeof row.message !== "string")) throw new Error("Invalid data");
+          batch = result.wishes;
+        } finally { clearTimeout(timeout); }
+        let added = 0;
+        batch.forEach((row) => { if (!rows.has(row.id)) { rows.set(row.id, row); added++; } });
+        if (batch.length < 100) break;
+        if (!added) throw new Error("Repeated page");
+      }
+      const wishes = [...rows.values()];
+      queue = wishes;
+      start();
+    } catch {
+      // The decorative overlay stays hidden if data is unavailable; the invitation remains usable.
+      wall.hidden = true;
+    }
+  }
+  document.addEventListener("invitation-opened", start);
+  document.addEventListener("visibilitychange", syncPause);
+  reduced.addEventListener("change", syncPause);
+  if (typeof MutationObserver === "function") {
+    new MutationObserver(syncPause).observe(document.body, { attributes: true, attributeFilter: ["class"] });
+  }
+  // Playback state lives only in this page instance. A reload creates a new single-pass queue.
+  syncPause();
+  void load();
+})();
 
 /* ---------- Mục đang xem trên thanh điều hướng di động ---------- */
 const mobileSectionLinks = Array.from(document.querySelectorAll('.mobile-actions a[href^="#"]'));
@@ -901,7 +1137,8 @@ reduceMotionQuery.addEventListener("change", resetAllDepth);
     return ctx && !reduceMotionQuery.matches && !document.hidden
       && !document.body.classList.contains("gate-open")
       && !document.body.classList.contains("modal-open")
-      && !document.body.classList.contains("qr-open");
+      && !document.body.classList.contains("qr-open")
+      && !document.body.classList.contains("wishes-open");
   }
   function drawPetal(p, opacity) {
     ctx.save();

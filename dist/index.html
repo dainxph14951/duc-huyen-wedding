@@ -59,7 +59,11 @@
   <body>
     <header class="topbar" aria-label="Điều hướng thiệp cưới">
       <div class="topbar__brand">
-        <a class="brand" href="#home">Đ & H</a>
+        <a class="brand" href="#home" aria-label="Minh Đức và Ngọc Huyền — Về đầu thiệp">
+          <span class="brand__letter brand__letter--first" aria-hidden="true">Đ</span>
+          <span class="brand__ampersand" aria-hidden="true">&amp;</span>
+          <span class="brand__letter brand__letter--last" aria-hidden="true">H</span>
+        </a>
         <button
           class="music-toggle"
           id="musicToggle"
@@ -67,9 +71,8 @@
           aria-label="Phát nhạc nền thiệp cưới"
           aria-pressed="false"
         >
-          <span class="music-toggle__disc" aria-hidden="true">
-            <span class="music-toggle__mic"></span>
-          </span>
+          <svg class="music-toggle__play" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5.5a1 1 0 0 0-1.5.86v11.28a1 1 0 0 0 1.5.86l9-5.64a1 1 0 0 0 0-1.72Z" fill="currentColor"/></svg>
+          <span class="music-toggle__waves" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
         </button>
       </div>
       <nav>
@@ -1142,6 +1145,10 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="8" cy="9" r="1.5"/><path d="m3 17 5-5 4 4 4-6 5 7"/></svg>
         <span>Album</span>
       </a>
+      <button class="mobile-actions__item" type="button" data-open-wishes aria-haspopup="dialog" aria-controls="wishesModal">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H8l-5 3V7.5A4.5 4.5 0 0 1 7.5 3h8A4.5 4.5 0 0 1 20 7.5Z"/><path d="M8 9h7m-7 4h5"/></svg>
+        <span>Gửi lời chúc</span>
+      </button>
       <button class="mobile-actions__item mobile-actions__gift" type="button" data-open-qr>
         <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v8h14v-8M12 8v12m0-12H8.5A2.5 2.5 0 1 1 11 5.5L12 8Zm0 0h3.5A2.5 2.5 0 1 0 13 5.5L12 8Z"/></svg>
         <span>Mừng cưới</span>
@@ -1333,6 +1340,45 @@
         </footer>
       </div>
     </div>
+
+    <dialog class="wishes-modal" id="wishesModal" aria-labelledby="wishesTitle" aria-describedby="wishesIntro">
+      <button class="wishes-modal__close" type="button" id="closeWishesModal" aria-label="Đóng hộp thoại lời chúc">×</button>
+      <header class="wishes-modal__heading">
+        <div class="wishes-modal__art" aria-hidden="true">
+          <svg viewBox="0 0 160 108" fill="none">
+            <ellipse cx="80" cy="96" rx="46" ry="5" fill="#e9bfd1" opacity=".32"/>
+            <path d="m31 46 49-28 49 28v42a7 7 0 0 1-7 7H38a7 7 0 0 1-7-7Z" fill="#f2b7cf" stroke="#d78ba8" stroke-width="1.5"/>
+            <rect x="47" y="18" width="66" height="65" rx="7" transform="rotate(-6 80 50)" fill="#fffaf6" stroke="#e8c5d3" stroke-width="1.5"/>
+            <path d="M66 38h27M66 45h21" stroke="#ecc8d7" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M80 65c-15-9-17-17-11-20 4-2 8 0 11 4 3-4 7-6 11-4 6 3 4 11-11 20Z" fill="#d9749c"/>
+            <path d="m31 47 49 31 49-31v41a7 7 0 0 1-7 7H38a7 7 0 0 1-7-7Z" fill="#f9d4e3" stroke="#d78ba8" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="m34 91 34-27m58 27L92 64" stroke="#e7abc3" stroke-width="1.5"/>
+            <path d="M80 88c-9-5-11-10-7-12 3-2 5 0 7 2 2-2 4-4 7-2 4 2 2 7-7 12Z" fill="#c66d93"/>
+            <path d="M23 29c-11-7-12-12-8-14 3-1 5 0 8 3 2-3 5-4 8-3 4 2 3 7-8 14Z" fill="#eaa2bd"/>
+            <path d="M132 24c-8-5-9-9-6-10 2-1 4 0 6 2 2-2 4-3 6-2 3 1 2 5-6 10Z" fill="#d78ba8"/>
+            <path d="M17 58v10m-5-5h10m117-23v8m-4-4h8" stroke="#c6a16c" stroke-width="1.7" stroke-linecap="round"/>
+            <circle cx="139" cy="76" r="2.5" fill="#ecc0d2"/>
+          </svg>
+        </div>
+        <p class="wishes-modal__eyebrow">Một chút yêu thương</p>
+        <h2 id="wishesTitle">Gửi lời chúc</h2>
+        <p id="wishesIntro">Gói ghém lời thương, gửi đến<br /><strong>Minh Đức &amp; Ngọc Huyền</strong> nhé!</p>
+      </header>
+      <form id="wishesForm">
+        <label for="wishName">Tên của bạn <span aria-hidden="true">*</span></label>
+        <input id="wishName" name="name" autocomplete="name" maxlength="80" required placeholder="Cho chúng mình biết tên bạn nhé" />
+        <label for="wishMessage">Đôi lời nhắn nhủ <span aria-hidden="true">*</span></label>
+        <textarea id="wishMessage" name="message" rows="3" maxlength="1000" required placeholder="Chúc hai bạn một đời bên nhau, ngập tràn tiếng cười và yêu thương…"></textarea>
+        <p class="wishes-modal__status" id="wishesStatus" role="status" aria-live="polite"></p>
+        <button class="button button--primary" type="submit">Gửi lời chúc</button>
+      </form>
+      <p class="wishes-modal__privacy">Tên và lời chúc của bạn sẽ hiển thị công khai trên thiệp.</p>
+      <p class="wishes-modal__signature" aria-hidden="true">With love, Đ &amp; H <span>♡</span></p>
+    </dialog>
+
+    <aside class="wish-wall" id="wishWall" hidden aria-label="Lời chúc từ khách mời" aria-live="off">
+      <ul class="wish-popups" id="wishPopups"></ul>
+    </aside>
 
     <audio
       id="weddingMusic"
