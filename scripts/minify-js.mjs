@@ -1,4 +1,4 @@
-import { readFile, writeFile, mkdir, rm } from "node:fs/promises";
+import { readFile, writeFile, mkdir, rm, copyFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { Script } from "node:vm";
 import { minify } from "terser";
@@ -16,6 +16,9 @@ const result = await minify({ "script.js": source }, {
 if (!result.code) throw new Error("Terser produced empty JavaScript.");
 new Script(result.code, { filename: fileURLToPath(outputPath) });
 await mkdir(new URL("../dist/", import.meta.url), { recursive: true });
+for (const file of ["index.html", "styles.css"]) {
+  await copyFile(new URL(`../${file}`, import.meta.url), new URL(`../dist/${file}`, import.meta.url));
+}
 await writeFile(outputPath, `${result.code}\n`);
 await rm(new URL("../dist/script.js.map", import.meta.url), { force: true });
 

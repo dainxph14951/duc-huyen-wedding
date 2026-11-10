@@ -1,5 +1,34 @@
 # Website thiệp cưới
 
+## Mời khách theo tên
+
+Thêm `?` rồi tên khách được mã hóa vào link thiệp, ví dụ:
+
+```text
+https://duc-huyen-wedding.vercel.app/?Anh%20%C4%90%E1%BA%A1i
+```
+
+Thiệp hiện **Anh Đại** ở màn mở thiệp và lời mời bên trong. Không có tên,
+hoặc tên chỉ gồm khoảng trắng, sẽ hiện **Quý khách**. Tên giữ nguyên cách xưng hô
+bạn nhập, tối đa 100 ký tự; không cần chạy SQL hoặc lưu khách trong Supabase.
+Để tạo link với tên bất kỳ bằng JavaScript, dùng
+`'https://duc-huyen-wedding.vercel.app/?' + encodeURIComponent('Anh Đại')`.
+Không đặt tên trong dấu ngoặc kép. Link cũ dạng `?guest=Anh%20Đại` vẫn hoạt động.
+Tên có ký tự `&`, `=`, `+`, `#` cần được mã hóa bằng `encodeURIComponent`.
+
+Vercel rewrite `/` và `/index.html` sang `api/invitation.js`. Function đọc
+`dist/index.html` và trả tên, tiêu đề, mô tả, canonical và Open Graph URL riêng
+ngay trong HTML để bot chia sẻ đọc được. Ảnh xem trước giữ nguyên.
+Phản hồi dùng `private, no-store` để tránh cache dùng chung tên khách.
+Cần redeploy Vercel để áp dụng; nền tảng nhắn tin có thể giữ bản xem trước cũ
+và cách hiển thị cuối cùng do nền tảng quyết định.
+
+Chạy `npm run dev` rồi mở `http://127.0.0.1:3000/?Anh%20%C4%90%E1%BA%A1i` để thử local.
+Với Live Server, dùng `http://127.0.0.1:5501/index.html?Anh%20%C4%90%E1%BA%A1i`.
+Live Server hoặc hosting static vẫn hiển thị tên bằng JavaScript, nhưng bản xem
+trước có tên cần Function trên Vercel. Triển khai repository với `api/` và
+`vercel.json`, không chỉ tải riêng thư mục `dist/`.
+
 ## Nén JavaScript trước khi triển khai
 
 Yêu cầu Node.js và npm. Cài công cụ lần đầu bằng:
@@ -16,7 +45,8 @@ npm run build:js
 
 Lệnh này nén JavaScript, rút gọn tên biến/hàm và ghi vào `dist/script.js`,
 không tạo source map. Mã nguồn gốc được giữ nguyên để chỉnh sửa.
-Lệnh chỉ cập nhật JavaScript; HTML, CSS và ảnh trong `dist` vẫn được quản lý như trước.
+Lệnh đồng thời chép `index.html` và `styles.css` từ gốc sang `dist/` để bản
+triển khai và template của Function luôn khớp mã nguồn. Ảnh trong `dist/` được giữ nguyên.
 
 Triển khai thư mục `dist/`, không triển khai toàn bộ repository, để tránh công khai
 `script.js` gốc. `dist/index.html` đã sử dụng bản `script.js` cùng thư mục.

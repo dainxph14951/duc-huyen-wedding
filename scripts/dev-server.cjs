@@ -4,6 +4,7 @@ const path = require("node:path");
 const { existsSync } = require("node:fs");
 const { readFile } = require("node:fs/promises");
 const wishes = require("../api/wishes.js");
+const { renderInvitation } = require("../api/invitation.js");
 
 const root = path.resolve(__dirname, "..");
 const envPath = path.join(root, ".env");
@@ -59,7 +60,9 @@ async function serve(req, res) {
     return;
   }
   try {
-    const content = await readFile(filename);
+    const content = relative === "index.html"
+      ? renderInvitation(await readFile(filename, "utf8"), req.url)
+      : await readFile(filename);
     res.setHeader("Content-Type", types[path.extname(filename)] || "application/octet-stream");
     res.end(req.method === "HEAD" ? undefined : content);
   } catch {

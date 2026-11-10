@@ -1,3 +1,21 @@
+/* ---------- Tên khách mời (cũng hoạt động trên hosting static) ---------- */
+(() => {
+  const search = window.location.search;
+  const params = new URLSearchParams(search);
+  let raw = params.get("guest") || "";
+  if (!params.has("guest") && search.length > 1 && !search.includes("=")) {
+    try { raw = decodeURIComponent(search.slice(1).replace(/\+/g, " ")); }
+    catch { raw = ""; }
+  }
+  const guest = Array.from(raw.normalize("NFC")
+    .replace(/[\u0000-\u001f\u007f-\u009f\u202a-\u202e\u2066-\u2069]/g, " ")
+    .replace(/\s+/gu, " ").trim()).slice(0, 100).join("");
+  document.querySelectorAll("[data-guest-name]").forEach((node) => {
+    node.textContent = guest || "Quý khách";
+  });
+  if (guest) document.title = `Thân mời ${guest} | Minh Đức ♥ Ngọc Huyền`;
+})();
+
 // Chỉ hạn chế thao tác thông thường; trình duyệt vẫn tải được mã frontend.
 document.addEventListener("keydown", (event) => {
   const key = event.key.toLowerCase();

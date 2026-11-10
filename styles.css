@@ -381,6 +381,10 @@ nav a:hover,
   border-left: 1px solid var(--rose);
 }
 
+[data-guest-name] {
+  overflow-wrap: anywhere;
+}
+
 .hero__copy {
   max-width: 340px;
   margin: 0 auto 28px;
