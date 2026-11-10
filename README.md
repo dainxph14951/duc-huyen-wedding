@@ -16,7 +16,11 @@ bạn nhập, tối đa 100 ký tự; không cần chạy SQL hoặc lưu khách
 Không đặt tên trong dấu ngoặc kép. Link cũ dạng `?guest=Anh%20Đại` vẫn hoạt động.
 Tên có ký tự `&`, `=`, `+`, `#` cần được mã hóa bằng `encodeURIComponent`.
 
-Vercel rewrite `/` và `/index.html` sang `api/invitation.js`. Function đọc
+Vercel định tuyến `/` và `/index.html` sang `api/invitation.js` **trước khi
+kiểm tra file tĩnh** bằng `routes`. Không thay bằng `rewrites`: file
+`dist/index.html` có thể được ưu tiên, khiến bản xem trước vẫn ghi “Quý khách”.
+Các đường dẫn còn lại dùng `filesystem` để phục vụ tài nguyên và API lời chúc.
+Function đọc
 `dist/index.html` và trả tên, tiêu đề, mô tả, canonical và Open Graph URL riêng
 ngay trong HTML để bot chia sẻ đọc được. Ảnh xem trước giữ nguyên.
 Phản hồi dùng `private, no-store` để tránh cache dùng chung tên khách.

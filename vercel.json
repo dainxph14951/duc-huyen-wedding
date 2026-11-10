@@ -5,8 +5,8 @@
   "functions": {
     "api/invitation.js": { "includeFiles": "dist/index.html" }
   },
-  "rewrites": [
-    { "source": "/", "destination": "/api/invitation" },
-    { "source": "/index.html", "destination": "/api/invitation" }
+  "routes": [
+    { "src": "^/(?:index\\.html)?$", "dest": "/api/invitation" },
+    { "handle": "filesystem" }
   ]
 }
